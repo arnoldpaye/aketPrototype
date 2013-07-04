@@ -8,8 +8,8 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <h:outputStylesheet library="css" name="cssLayout.css" />
+        <h:outputStylesheet library="css" name="default.css" />
         <title>Aket Project</title>
     </h:head>
 
@@ -24,19 +24,16 @@
         <div id="content" class="center_content">
             <h:form>
                 <p:menubar>
-                    <p:submenu label="Archivo" icon="ui-icon-document">
-                        <p:submenu label="Nuevo" icon="ui-icon-contact">
-                            <p:menuitem value="Proyecto" url="#"/>
-                            <p:menuitem value="Otro" url="#"/>
-                        </p:submenu>
-                        <p:menuitem value="Abrir documento" url="#" />
+                    <p:menuitem value="Inicio" action="/index?faces-redirect=true" icon="ui-icon-home" ajax="false" />
+                    <p:submenu label="Archivo">
+                        <p:menuitem value="Nuevo texto" action="text/newText?faces-redirect=true" ajax="false" />
                     </p:submenu>
                     <p:menuitem value="Resultados"/>
                     <p:menuitem value="Reportes"/>
                     <p:menuitem value="Acerca de"/>
                     <f:facet name="options">
                         <p:inputText style="margin-right: 10px"/>
-                        <p:commandButton type="button" value="Salir" icon="ui-icon-extlink"/>
+                        <p:commandButton type="button" value="Buscar" icon="ui-icon-search"/>
                     </f:facet>
                 </p:menubar>
                 
