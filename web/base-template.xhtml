@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         <h:outputStylesheet library="css" name="cssLayout.css" />
         <h:outputStylesheet library="css" name="default.css" />
         <title>Aket Project</title>
@@ -15,35 +15,37 @@
 
     <h:body>
         <!-- Div top -->
-        <div id="top" class="top">
+        <div class="top" id="top">
             <ui:insert name="top">
                 Top
             </ui:insert>    
         </div>
         <!-- Div content -->
-        <div id="content" class="center_content">
+        <div class="center_content" id="content">
             <h:form>
                 <p:menubar>
-                    <p:menuitem value="Inicio" action="/index?faces-redirect=true" icon="ui-icon-home" />
-                    <p:menuitem value="Resultados"/>
-                    <p:menuitem value="Reportes"/>
-                    <p:menuitem value="Acerca de"/>
+                    <p:menuitem action="/index?faces-redirect=true" icon="ui-icon-home" value="Inicio" />
+                    <p:menuitem action="/results/results?faces-redirect=true" value="Resultados" />
+                    <p:menuitem action="/reports/reports?faces-redirect=true" value="Reportes" />
+                    <p:menuitem onclick="dlgAbout.show();" value="Acerca de" />
                     <f:facet name="options">
                         <p:inputText style="margin-right: 10px"/>
-                        <p:commandButton type="button" value="Buscar" icon="ui-icon-search"/>
+                        <p:commandButton icon="ui-icon-search" type="button" value="Buscar" />
                     </f:facet>
                 </p:menubar>
                 <h1><ui:insert name="title" /></h1>
                 <ui:insert name="content" />
             </h:form>
-            
+            <!-- About dialog -->
+            <p:dialog header="Aket Project" modal="true" widgetVar="dlgAbout">
+                <h:outputText value="Aket Project by Arnold Paye" />
+            </p:dialog>
         </div>
         <!-- Div bottom -->
-        <div id="bottom" class="bottom">
+        <div class="bottom" id="bottom">
             <ui:insert name="bottom">
                 Arnold Paye
             </ui:insert>
         </div>
     </h:body>
-
 </html>

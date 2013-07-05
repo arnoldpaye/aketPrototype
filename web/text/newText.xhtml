@@ -2,13 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
     template="../base-template.xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:h="http://java.sun.com/jsf/html">
+    xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Nuevo Texto</ui:define>
     <ui:define name="content">
-        <p:commandButton id="btnCancel" value="Cancelar" action="/index?faces-redirect=true"/>
+        <p:panelGrid columns="2">
+            <p:outputLabel value="Titulo"/>
+            <p:inputText id="txtTitle" />
+            <p:outputLabel value="Autor" />
+            <p:inputText id="txtAuthor" />
+            <p:outputLabel value="Palabras clave" />
+            <p:inputText id="txtRawKewords" />
+        </p:panelGrid>
+        <p:commandButton action="/index?faces-redirect=true" id="btnCancel" value="Cancelar" />
         <p:commandButton id="btnSave" value="Guardar" />
     </ui:define>
 </ui:composition>
-

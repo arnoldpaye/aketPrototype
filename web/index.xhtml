@@ -2,15 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
     template="base-template.xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Inicio</ui:define>
     <ui:define name="content">
         <p:toolbar>
             <p:toolbarGroup align="left">
-                <p:commandButton value="Nuevo" icon="ui-icon-document" action="text/newText?faces-redirect=true" />
+                <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
             </p:toolbarGroup>
         </p:toolbar>
         <p:dataTable value="#{textManager.data}" var="vText">
@@ -30,11 +30,11 @@
                 <f:facet name="header">
                     Operaciones
                 </f:facet>
-                <p:commandLink value="Editar" action="text/newText?faces-redirect=true" />
+                <p:commandLink action="text/newText?faces-redirect=true" value="Editar" />
                 <p:spacer width="10" />
-                <p:commandLink value="Clasificacion" action="operations/classification?faces-redirect=true" />
+                <p:commandLink action="operations/classification?faces-redirect=true" value="Clasificacion" />
                 <p:spacer width="10" />
-                <p:commandLink value="Seleccion" action="operations/selection?faces-redirect=true" />
+                <p:commandLink action="operations/selection?faces-redirect=true" value="Seleccion" />
             </p:column>
         </p:dataTable>
     </ui:define>
