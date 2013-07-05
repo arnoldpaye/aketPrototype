@@ -4,8 +4,38 @@
     template="base-template.xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:h="http://java.sun.com/jsf/html">
-    <ui:define name="content">  
-        <h1>Aket Project</h1>
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">Inicio</ui:define>
+    <ui:define name="content">
+        <p:toolbar>
+            <p:toolbarGroup align="left">
+                <p:commandButton value="Nuevo" icon="ui-icon-document" action="text/newText?faces-redirect=true" />
+            </p:toolbarGroup>
+        </p:toolbar>
+        <p:dataTable value="#{textManager.data}" var="vText">
+            <p:column headerText="Id">
+                <h:outputText value="#{vText.txtId}" />
+            </p:column>
+            <p:column headerText="Author">
+                <h:outputText value="#{vText.txtAuthor}" />
+            </p:column>
+            <p:column headerText="Title">
+                <h:outputText value="#{vText.txtTitle}" />
+            </p:column>
+            <p:column headerText="Text">
+                <h:outputText value="#{vText.txtText}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Operaciones
+                </f:facet>
+                <p:commandLink value="Editar" />
+                <p:spacer width="10" />
+                <p:commandLink value="Clasificacion" />
+                <p:spacer width="10" />
+                <p:commandLink value="Seleccion" />
+            </p:column>
+        </p:dataTable>
     </ui:define>
 </ui:composition>

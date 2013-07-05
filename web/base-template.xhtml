@@ -24,10 +24,7 @@
         <div id="content" class="center_content">
             <h:form>
                 <p:menubar>
-                    <p:menuitem value="Inicio" action="/index?faces-redirect=true" icon="ui-icon-home" ajax="false" />
-                    <p:submenu label="Archivo">
-                        <p:menuitem value="Nuevo texto" action="text/newText?faces-redirect=true" ajax="false" />
-                    </p:submenu>
+                    <p:menuitem value="Inicio" action="/index?faces-redirect=true" icon="ui-icon-home" />
                     <p:menuitem value="Resultados"/>
                     <p:menuitem value="Reportes"/>
                     <p:menuitem value="Acerca de"/>
@@ -36,7 +33,7 @@
                         <p:commandButton type="button" value="Buscar" icon="ui-icon-search"/>
                     </f:facet>
                 </p:menubar>
-                
+                <h1><ui:insert name="title" /></h1>
                 <ui:insert name="content" />
             </h:form>
             
