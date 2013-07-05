@@ -15,7 +15,17 @@
             <p:outputLabel value="Palabras clave" />
             <p:inputText id="txtRawKewords" />
         </p:panelGrid>
-        <p:commandButton action="/index?faces-redirect=true" id="btnCancel" value="Cancelar" />
-        <p:commandButton id="btnSave" value="Guardar" />
+        <p:panelGrid columns="2">
+            <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" />
+            <p:menu>
+                <p:menuitem icon="ui-icon-clipboard" value="Importar TXT" />
+                <p:menuitem icon="ui-icon-note" value="Importar PDF" />
+                <p:menuitem icon="ui-icon-trash" value="Limpiar" />
+            </p:menu>
+        </p:panelGrid>
+        <p:panel>
+            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
+        </p:panel>
     </ui:define>
 </ui:composition>
