@@ -1,8 +1,5 @@
 package com.apt.aket.model;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
 /**
  * Project: aketPrototype 
  * Package: com.apt.aket.model 
@@ -11,8 +8,6 @@ import javax.faces.bean.RequestScoped;
  * @author Arnold Paye
  */
 
-@ManagedBean
-@RequestScoped
 public class Text {
 
     private int txtId;

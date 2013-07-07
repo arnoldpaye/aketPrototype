@@ -7,5 +7,15 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Clasificacion de palabras</ui:define>
     <ui:define name="content">
+        <p:panelGrid columns="2">
+            <h:outputText value="Texto original"/>
+            <h:outputText value="Texto clasificado"/>
+            <p:inputTextarea autoResize="false" cols="85" id="txtRawText" rows="20" />
+            <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" />
+        </p:panelGrid>
+        <p:panel>
+            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton icon="ui-icon-transfer-e-w" id="btnClassify" value="Clasificar" />
+        </p:panel>
     </ui:define>
 </ui:composition>

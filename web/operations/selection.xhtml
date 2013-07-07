@@ -4,8 +4,31 @@
     template="../base-template.xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Seleccion de palabras</ui:define>
     <ui:define name="content">
+        <p:panelGrid columns="2">
+            <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" />
+            <p:panel id="pnlExtractionOptions">
+                <h:outputText value="Categorias gramaticales:" />
+                <p:selectManyCheckbox>
+                    <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
+                    <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
+                    <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
+                    <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
+                </p:selectManyCheckbox>
+                <h:outputText value="Ancho de ventana:" />
+                <p:spinner max="5" min="2" value="2" />
+                <p:commandButton value="Obtener lista de palabras" />
+                <p:dataList value="#{dataBean.words}" var="vWord">
+                    #{vWord.word} - #{vWord.rank}
+                </p:dataList>                    
+            </p:panel>
+        </p:panelGrid>
+        <p:panel>
+            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton icon="ui-icon-gear" id="btnExtraction" value="Seleccionar" />
+        </p:panel>
     </ui:define>
 </ui:composition>

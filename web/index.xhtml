@@ -17,19 +17,16 @@
             <p:column headerText="Id">
                 <h:outputText value="#{vText.txtId}" />
             </p:column>
-            <p:column headerText="Author">
+            <p:column headerText="Autor">
                 <h:outputText value="#{vText.txtAuthor}" />
             </p:column>
-            <p:column headerText="Title">
+            <p:column headerText="Titulo">
                 <h:outputText value="#{vText.txtTitle}" />
             </p:column>
-            <p:column headerText="Text">
+            <p:column headerText="Texto">
                 <h:outputText value="#{vText.txtText}" />
             </p:column>
             <p:column>
-                <f:facet name="header">
-                    Operaciones
-                </f:facet>
                 <p:commandLink action="text/newText?faces-redirect=true" value="Editar" />
                 <p:spacer width="10" />
                 <p:commandLink action="operations/classification?faces-redirect=true" value="Clasificacion" />
