@@ -18,6 +18,13 @@ public class Text {
     public int getTxtId() {
         return txtId;
     }
+    
+    public Text(int txtId, String txtTitle, String txtAuthor, String txtText) {
+        this.txtId = txtId;
+        this.txtTitle = txtTitle;
+        this.txtAuthor = txtAuthor;
+        this.txtText = txtText;
+    }
 
     public void setTxtId(int txtId) {
         this.txtId = txtId;

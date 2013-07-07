@@ -1,6 +1,7 @@
 package com.apt.aket.manager;
 
 import com.apt.aket.model.Text;
+import com.apt.bean.DataBean;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,12 +22,8 @@ public class TextManager extends DefaultManager<Text> {
     @Override
     protected List<Text> fetchDataFromDataSource() throws Exception {
         data.clear();
-        Text text1 = new Text();
-        text1.setTxtId(1);
-        text1.setTxtTitle("Seleccion automatica de palabras clave mediante el modelo TextRank");
-        text1.setTxtAuthor("Arnold Paye");
-        text1.setTxtText("XXXXXXXXXXXXX");
-        data.add(text1);
+        DataBean dataBean = new DataBean();
+        data = dataBean.getTexts();
         return data;
         
     }
