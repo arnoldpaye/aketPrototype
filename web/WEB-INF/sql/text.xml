@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <statements>
-    <st id ="getTexts">
+    <st id ="getAllTexts">
         SELECT txt_id, txt_title, txt_author, txt_text
         FROM text;
+    </st>
+    <st id="insertText">
+        INSERT INTO text(txt_title, txt_author, txt_text)
+        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText});
     </st>
 </statements>

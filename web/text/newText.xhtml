@@ -9,14 +9,14 @@
     <ui:define name="content">
         <p:panelGrid columns="2">
             <h:outputText value="Titulo"/>
-            <p:inputText id="txtTitle" />
+            <p:inputText id="txtTitle" value="#{text.txtTitle}" />
             <h:outputText value="Autor" />
-            <p:inputText id="txtAuthor" />
+            <p:inputText id="txtAuthor" value="#{text.txtAuthor}" />
             <h:outputText value="Palabras clave" />
             <p:inputText id="txtRawKewords" />
         </p:panelGrid>
         <p:panelGrid columns="2">
-            <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" />
+            <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" value="#{text.txtText}" />
             <p:menu>
                 <p:menuitem icon="ui-icon-clipboard" value="Importar TXT" />
                 <p:menuitem icon="ui-icon-note" value="Importar PDF" />
@@ -25,7 +25,7 @@
         </p:panelGrid>
         <p:panel>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
+            <p:commandButton action="#{textManager.insertItem()}" icon="ui-icon-disk" id="btnSave" value="Guardar" />
         </p:panel>
     </ui:define>
 </ui:composition>

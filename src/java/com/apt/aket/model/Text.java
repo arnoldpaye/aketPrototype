@@ -1,5 +1,7 @@
 package com.apt.aket.model;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import org.openlogics.cjb.jdbc.annotation.Column;
 
 /**
@@ -10,6 +12,8 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  * @date 05/07/2013
  * @author Arnold Paye
  */
+@ManagedBean
+@RequestScoped
 public class Text {
 
     @Column("txt_id")
