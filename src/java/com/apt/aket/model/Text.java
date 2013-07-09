@@ -3,7 +3,9 @@ package com.apt.aket.model;
 import org.openlogics.cjb.jdbc.annotation.Column;
 
 /**
- * Project: aketPrototype Package: com.apt.aket.model Class : Text.java (UTF-8)
+ * Project: aketPrototype 
+ * Package: com.apt.aket.model 
+ * Class : Text.java (UTF-8)
  *
  * @date 05/07/2013
  * @author Arnold Paye

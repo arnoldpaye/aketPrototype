@@ -5,14 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.AuthProvider;
 import java.util.Properties;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.JdbcDataStore;
 
 /**
- * Project: aketPrototype Package: com.apt.aket.data Class :
- * DataStoreManager.java (UTF-8)
+ * Project: aketPrototype 
+ * Package: com.apt.aket.data 
+ * Class : DataStoreManager.java (UTF-8)
  *
  * @date 09/07/2013
  * @author Arnold Paye

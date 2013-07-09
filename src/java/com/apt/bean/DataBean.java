@@ -1,6 +1,5 @@
 package com.apt.bean;
 
-import com.apt.aket.model.Text;
 import com.apt.aket.model.Word;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,7 @@ import javax.faces.bean.RequestScoped;
  * Project: aketPrototype
  * Package: com.apt.bean
  * Class  : DataBean.java (UTF-8)
+ * 
  * @date 06/07/2013
  * @author Arnold Paye
  */

@@ -4,6 +4,7 @@ package com.apt.aket.model;
  * Project: aketPrototype
  * Package: com.apt.aket.model
  * Class  : Word.java (UTF-8)
+ * 
  * @date 06/07/2013
  * @author Arnold Paye
  */

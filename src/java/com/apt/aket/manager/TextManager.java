@@ -15,8 +15,9 @@ import org.openlogics.cjb.jee.jdbc.DSDescriptor;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
 
 /**
- * Project: aketPrototype Package: com.apt.aket.manager Class : TextManager.java
- * (UTF-8)
+ * Project: aketPrototype 
+ * Package: com.apt.aket.manager 
+ * Class : TextManager.java (UTF-8)
  *
  * @date 05/07/2013
  * @author Arnold Paye
