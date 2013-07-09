@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.DSDescriptor;
@@ -24,7 +24,7 @@ import org.openlogics.cjb.jsf.controller.DefaultManager;
  * @author Arnold Paye
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 @DSDescriptor("sql/text.xml")
 public class TextManager extends DefaultManager<Text> {
     
@@ -55,11 +55,23 @@ public class TextManager extends DefaultManager<Text> {
         try {
             dataStore.execute(getStatementReader().getStatement("insertText"), text);
             dataStore.commit();
-            refresh();
             return "/index?faces-redirect=true";
         } catch (SQLException sqle) {
             dataStore.rollBack();
-            return ""; //TODO: change this considering the exception
+            return "/"; //TODO: change this considering the exception
+        }
+    }
+    
+    public String editSelected() throws FileNotFoundException, IOException, SQLException {
+        DataStore dataStore = DataStoreManager.getDataStore();
+        dataStore.setAutoCommit(false);
+        try {
+            dataStore.execute(getStatementReader().getStatement("editText"), selected);
+            dataStore.commit();
+            return "/index?faces-redirect=true";
+        } catch (SQLException sqle) {
+            dataStore.rollBack();
+            return "/";
         }
     }
 }

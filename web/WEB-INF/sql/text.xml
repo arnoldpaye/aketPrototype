@@ -8,4 +8,9 @@
         INSERT INTO text(txt_title, txt_author, txt_text)
         VALUES (#{txtTitle}, #{txtAuthor}, #{txtText});
     </st>
+    <st id="editText">
+        UPDATE text
+        SET txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text=#{txtText}
+        WHERE txt_id = #{txtId};
+    </st>
 </statements>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    template="../base-template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="title">Editar Texto</ui:define>
+    <ui:define name="content">
+        <p:panelGrid columns="2">
+            <h:outputText value="Titulo"/>
+            <p:inputText id="txtTitle" value="#{textManager.selected.txtTitle}" />
+            <h:outputText value="Autor" />
+            <p:inputText id="txtAuthor" value="#{textManager.selected.txtAuthor}" />
+            <h:outputText value="Palabras clave" />
+            <p:inputText id="txtRawKewords" />
+        </p:panelGrid>
+        <p:panelGrid columns="2">
+            <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" value="#{textManager.selected.txtText}" />
+            <p:menu>
+                <p:menuitem icon="ui-icon-clipboard" value="Importar TXT" />
+                <p:menuitem icon="ui-icon-note" value="Importar PDF" />
+                <p:menuitem icon="ui-icon-trash" value="Limpiar" />
+            </p:menu>
+        </p:panelGrid>
+        <p:panel>
+            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton action="#{textManager.editSelected()}" icon="ui-icon-disk" id="btnEdit" value="Modificar" />
+        </p:panel>
+    </ui:define>
+</ui:composition>
+
