@@ -2,6 +2,8 @@ package com.apt.aket.manager;
 
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Text;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,7 +28,7 @@ import org.openlogics.cjb.jsf.controller.DefaultManager;
 public class TextManager extends DefaultManager<Text> {
     
     @Override
-    protected List<Text> fetchDataFromDataSource() throws SQLException {
+    protected List<Text> fetchDataFromDataSource() throws SQLException, FileNotFoundException, IOException {
         DataStore dataStore = DataStoreManager.getDataStore();
         data.clear();
         dataStore.select(getStatementReader().getStatement("getTexts"), Text.class, new MappedResultVisitor<Text>() {

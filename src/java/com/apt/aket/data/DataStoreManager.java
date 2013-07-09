@@ -1,5 +1,11 @@
 package com.apt.aket.data;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.AuthProvider;
 import java.util.Properties;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.JdbcDataStore;
@@ -13,16 +19,24 @@ import org.openlogics.cjb.jdbc.JdbcDataStore;
  */
 public class DataStoreManager {
 
-    public static DataStore getDataStore() {
-        Properties properties = new Properties();
-        //TODO: load properties data from a file in the server
-        properties.setProperty("driver", "org.postgresql.Driver");
-        properties.setProperty("url", "jdbc:postgresql://localhost:5432/aket_db");
-        properties.setProperty("user", "postgres");
-        properties.setProperty("password", "postgres");
+    public static DataStore getDataStore() throws FileNotFoundException, IOException {
+        InputStream stream = null;
         try {
+            File configDir = new File(System.getProperty("catalina.base"), "conf");
+            File configFile = new File(configDir, "aket.properties");
+            stream = new FileInputStream(configFile);
+            Properties properties = new Properties();
+            properties.load(stream);
+            System.out.println("properties " + properties.toString());
             return new JdbcDataStore(properties);
         } finally {
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch(IOException ioe) {
+                    
+                }
+            }
         }
     }
 }
