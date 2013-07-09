@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+    <st id ="getTexts">
+        SELECT txt_id, txt_title, txt_author, txt_text
+        FROM text;
+    </st>
+</statements>

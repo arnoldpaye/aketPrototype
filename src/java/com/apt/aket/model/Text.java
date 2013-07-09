@@ -1,29 +1,26 @@
 package com.apt.aket.model;
 
+import org.openlogics.cjb.jdbc.annotation.Column;
+
 /**
- * Project: aketPrototype 
- * Package: com.apt.aket.model 
- * Class : Text.java (UTF-8)
+ * Project: aketPrototype Package: com.apt.aket.model Class : Text.java (UTF-8)
+ *
  * @date 05/07/2013
  * @author Arnold Paye
  */
-
 public class Text {
 
+    @Column("txt_id")
     private int txtId;
+    @Column("txt_title")
     private String txtTitle;
+    @Column("txt_author")
     private String txtAuthor;
+    @Column("txt_text")
     private String txtText;
 
     public int getTxtId() {
         return txtId;
-    }
-    
-    public Text(int txtId, String txtTitle, String txtAuthor, String txtText) {
-        this.txtId = txtId;
-        this.txtTitle = txtTitle;
-        this.txtAuthor = txtAuthor;
-        this.txtText = txtText;
     }
 
     public void setTxtId(int txtId) {

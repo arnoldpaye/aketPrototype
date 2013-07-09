@@ -28,15 +28,4 @@ public class DataBean {
         words.add(new Word("Palabra 6", 0.5));
         return words;
     }
-    
-    public List<Text> getTexts() {
-        List<Text> texts = new ArrayList<Text>();
-        texts.add(new Text(1, "Seleccion automatizada de palabras clave mediante el modelo TextRank", "Arnold Paye", "---"));
-        texts.add(new Text(2, "Voip sobre redes inalambricas aplicado a la telefonia movil", "Efrain Rodriquez", "---"));
-        texts.add(new Text(3, "Patrones de identificacion biometrica mediante geometrica de la palma de la mano", "Guadalupe Antelo", "---"));
-        texts.add(new Text(4, "Reconocimiento de texto manuscrito continuo en lengua aymaraa", "Ramiro Balmaceda", "---"));
-        texts.add(new Text(5, "Diseno, validacion y verificacion de formularios, utilizando maquinas de Turing", "Hernan Valero", "---"));
-        texts.add(new Text(6, "Sistema tutor inteligente para la ensenanza en ninos con discapacidad intelectual", "Gary Mamani", "---"));
-        return texts;
-    }
 }
