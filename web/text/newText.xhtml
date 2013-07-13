@@ -4,7 +4,8 @@
     template="../base-template.xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Nuevo Texto</ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2">
@@ -17,11 +18,13 @@
         </p:panelGrid>
         <p:panelGrid columns="2">
             <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" value="#{text.txtText}" />
-            <p:menu>
-                <p:menuitem icon="ui-icon-clipboard" value="Importar TXT" />
-                <p:menuitem icon="ui-icon-note" value="Importar PDF" />
-                <p:menuitem icon="ui-icon-trash" value="Limpiar" />
-            </p:menu>
+            <p:panelGrid columns="2">
+                <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
+                <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
+                <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-note" value="Importar PDF" />
+                <p:fileUpload mode="simple" />
+                <p:commandButton icon="ui-icon-trash" value="Limpiar" />
+            </p:panelGrid>
         </p:panelGrid>
         <p:panel>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />

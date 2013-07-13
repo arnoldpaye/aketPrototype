@@ -27,7 +27,6 @@ public class DataStoreManager {
             stream = new FileInputStream(configFile);
             Properties properties = new Properties();
             properties.load(stream);
-            System.out.println("properties " + properties.toString());
             return new JdbcDataStore(properties);
         } finally {
             if (stream != null) {

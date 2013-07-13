@@ -22,13 +22,16 @@
         </div>
         <!-- Div content -->
         <div class="center_content" id="content">
-            <h:form>
+            <h:form id="menuForm">
                 <p:menubar>
                     <p:menuitem action="/index?faces-redirect=true" icon="ui-icon-home" value="Inicio" />
                     <p:menuitem action="/results/results?faces-redirect=true" value="Resultados" />
                     <p:menuitem action="/reports/reports?faces-redirect=true" value="Reportes" />
                     <p:menuitem onclick="dlgAbout.show();" value="Acerca de" />
                 </p:menubar>
+            </h:form>
+            <!-- TODO: enctype="multipart/form-data"? -->
+            <h:form id="mainForm" enctype="multipart/form-data">
                 <h1><ui:insert name="title" /></h1>
                 <ui:insert name="content" />
             </h:form>
