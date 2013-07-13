@@ -14,8 +14,13 @@
             </p:toolbarGroup>
         </p:toolbar>
         <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" />
-        <p:dataTable value="#{textManager.data}" paginator="true" rows="10" scrollable="true" var="vText">
-            <p:column headerText="Id">
+        <p:dataTable emptyMessage="Sin registros." paginator="true" rows="7" scrollable="true" value="#{textManager.data}" var="vText">
+            <p:column style="width: 30px">
+                <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteText.show()" update=":mainForm">
+                    <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
+                </p:commandButton>
+            </p:column>
+            <p:column headerText="Id" style="width: 50px">
                 <h:outputText value="#{vText.txtId}" />
             </p:column>
             <p:column headerText="Titulo" sortBy="#{vText.txtTitle}">
@@ -37,5 +42,9 @@
                 <p:commandLink action="operations/selection?faces-redirect=true" value="Seleccion" />
             </p:column>
         </p:dataTable>
+        <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
+            <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
+            <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
+        </p:confirmDialog>
     </ui:define>
 </ui:composition>

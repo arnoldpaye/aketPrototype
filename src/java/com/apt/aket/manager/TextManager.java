@@ -94,11 +94,50 @@ public class TextManager extends DefaultManager<Text> {
         } catch (SQLException sqle) {
             dataStore.rollBack();
             return "/";
+        } 
+    }
+
+    public void deleteSelected() throws FileNotFoundException, IOException, SQLException {
+        DataStore dataStore = DataStoreManager.getDataStore();
+        dataStore.setAutoCommit(false);
+        try {
+            dataStore.execute(getStatementReader().getStatement("deleteText"), selected);
+            dataStore.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Texto eliminado."));
+        } catch (SQLException sqle) {
+            dataStore.rollBack();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, sqle.getMessage()));
+        } finally {
+            refresh();
         }
     }
 
     public void loadFromTxt() throws IOException {
         Text text = JEEContext.getRequestScopedBean(Text.class);
+        byte[] buffer = new byte[6124];
+        int bulk;
+        StringBuilder stringBuilder = new StringBuilder();
+        if (text != null) {
+            if (txtFile != null) {
+                InputStream inputStream = txtFile.getInputstream();
+                while (true) {
+                    bulk = inputStream.read(buffer);
+                    if (bulk < 0) {
+                        break;
+                    }
+                    System.out.write(buffer, 0, bulk);
+                    stringBuilder.append(new String(buffer));
+                }
+                text.setTxtText(stringBuilder.toString());
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Archivo importado."));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Archivo no seleccionado."));
+            }
+        }
+    }
+
+    public void loadEditFromTxt() throws IOException {
+        Text text = selected;
         byte[] buffer = new byte[6124];
         int bulk;
         StringBuilder stringBuilder = new StringBuilder();

@@ -13,4 +13,8 @@
         SET txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text=#{txtText}
         WHERE txt_id = #{txtId};
     </st>
+    <st id="deleteText">
+        DELETE FROM text
+        WHERE txt_id = #{txtId};
+    </st>
 </statements>
