@@ -2,25 +2,22 @@ package com.apt.aket.manager;
 
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Text;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.apache.commons.io.IOUtils;
+import javax.faces.context.FacesContext;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.DSDescriptor;
 import org.openlogics.cjb.jee.util.JEEContext;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -36,6 +33,7 @@ import org.primefaces.model.UploadedFile;
 public class TextManager extends DefaultManager<Text> {
 
     private UploadedFile txtFile;
+    private UploadedFile pdfFile;
 
     public UploadedFile getTxtFile() {
         return txtFile;
@@ -43,6 +41,14 @@ public class TextManager extends DefaultManager<Text> {
 
     public void setTxtFile(UploadedFile txtFile) {
         this.txtFile = txtFile;
+    }
+
+    public UploadedFile getPdfFile() {
+        return pdfFile;
+    }
+
+    public void setPdfFile(UploadedFile pdfFile) {
+        this.pdfFile = pdfFile;
     }
 
     @Override
@@ -99,8 +105,8 @@ public class TextManager extends DefaultManager<Text> {
         StringBuilder stringBuilder = new StringBuilder();
         if (text != null) {
             if (txtFile != null) {
-                InputStream inputStream =  txtFile.getInputstream();
-                while(true) {
+                InputStream inputStream = txtFile.getInputstream();
+                while (true) {
                     bulk = inputStream.read(buffer);
                     if (bulk < 0) {
                         break;
@@ -109,7 +115,19 @@ public class TextManager extends DefaultManager<Text> {
                     stringBuilder.append(new String(buffer));
                 }
                 text.setTxtText(stringBuilder.toString());
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Archivo importado."));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Archivo no seleccionado."));
             }
+        }
+    }
+
+    public void cleanNewTexForm() {
+        Text text = JEEContext.getRequestScopedBean(Text.class);
+        if (text != null) {
+            text.setTxtTitle("");
+            text.setTxtAuthor("");
+            text.setTxtText("");
         }
     }
 }

@@ -18,13 +18,16 @@
         </p:panelGrid>
         <p:panelGrid columns="2">
             <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="20" value="#{text.txtText}" />
-            <p:panelGrid columns="2">
-                <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
-                <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
-                <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-note" value="Importar PDF" />
-                <p:fileUpload mode="simple" />
-                <p:commandButton icon="ui-icon-trash" value="Limpiar" />
-            </p:panelGrid>
+            <p:panel>
+                <p:panelGrid columns="2">
+                    <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
+                    <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
+                    <p:commandButton ajax="false" icon="ui-icon-note" value="Importar PDF" />
+                    <p:fileUpload mode="simple" value="#{textManager.pdfFile}" />
+                    <p:commandButton action="#{textManager.cleanNewTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
+                </p:panelGrid>
+                <p:messages autoUpdate="true" id="msgNewText" showDetail="true" showSummary="false" />
+            </p:panel>
         </p:panelGrid>
         <p:panel>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
