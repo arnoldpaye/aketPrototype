@@ -17,7 +17,6 @@ import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.DSDescriptor;
 import org.openlogics.cjb.jee.util.JEEContext;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
-import org.primefaces.context.RequestContext;
 import org.primefaces.model.UploadedFile;
 
 /**

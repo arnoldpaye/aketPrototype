@@ -13,17 +13,18 @@
                 <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
             </p:toolbarGroup>
         </p:toolbar>
-        <p:dataTable value="#{textManager.data}" var="vText">
+        <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" />
+        <p:dataTable value="#{textManager.data}" paginator="true" rows="10" scrollable="true" var="vText">
             <p:column headerText="Id">
                 <h:outputText value="#{vText.txtId}" />
             </p:column>
-            <p:column headerText="Titulo">
+            <p:column headerText="Titulo" sortBy="#{vText.txtTitle}">
                 <h:outputText value="#{vText.txtTitle}" />
             </p:column>
-            <p:column headerText="Autor">
+            <p:column headerText="Autor" sortBy="#{vText.txtAuthor}">
                 <h:outputText value="#{vText.txtAuthor}" />
             </p:column>
-            <p:column headerText="Text">
+            <p:column headerText="Text" sortBy="#{vText.txtText}">
                 <h:outputText value="#{vText.txtText}" />
             </p:column>
             <p:column>
