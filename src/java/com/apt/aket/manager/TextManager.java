@@ -71,30 +71,43 @@ public class TextManager extends DefaultManager<Text> {
 
     public String insertItem() throws FileNotFoundException, IOException, SQLException {
         //TODO: handle exceptions
-        Text text = JEEContext.pullRequestScopedBean(Text.class);
-        DataStore dataStore = DataStoreManager.getDataStore();
-        dataStore.setAutoCommit(false);
-        try {
-            dataStore.execute(getStatementReader().getStatement("insertText"), text);
-            dataStore.commit();
-            return "/index?faces-redirect=true";
-        } catch (SQLException sqle) {
-            dataStore.rollBack();
-            return "/"; //TODO: change this considering the exception
+        Text text = JEEContext.getRequestScopedBean(Text.class);
+        if (text.getTxtTitle().trim().isEmpty() || text.getTxtAuthor().trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Titulo y Autor son requeridos."));
+            return "/";
+        } else {
+            DataStore dataStore = DataStoreManager.getDataStore();
+            dataStore.setAutoCommit(false);
+            try {
+                dataStore.execute(getStatementReader().getStatement("insertText"), text);
+                dataStore.commit();
+                return "/index?faces-redirect=true";
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, sqle.getMessage()));
+                dataStore.rollBack();
+                return "/";
+            }
         }
+
     }
 
     public String editSelected() throws FileNotFoundException, IOException, SQLException {
-        DataStore dataStore = DataStoreManager.getDataStore();
-        dataStore.setAutoCommit(false);
-        try {
-            dataStore.execute(getStatementReader().getStatement("editText"), selected);
-            dataStore.commit();
-            return "/index?faces-redirect=true";
-        } catch (SQLException sqle) {
-            dataStore.rollBack();
+        if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Titulo y Autor son requeridos."));
             return "/";
-        } 
+        } else {
+            DataStore dataStore = DataStoreManager.getDataStore();
+            dataStore.setAutoCommit(false);
+            try {
+                dataStore.execute(getStatementReader().getStatement("editText"), selected);
+                dataStore.commit();
+                return "/index?faces-redirect=true";
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, sqle.getMessage()));
+                dataStore.rollBack();
+                return "/";
+            }
+        }
     }
 
     public void deleteSelected() throws FileNotFoundException, IOException, SQLException {
@@ -162,6 +175,15 @@ public class TextManager extends DefaultManager<Text> {
 
     public void cleanNewTexForm() {
         Text text = JEEContext.getRequestScopedBean(Text.class);
+        if (text != null) {
+            text.setTxtTitle("");
+            text.setTxtAuthor("");
+            text.setTxtText("");
+        }
+    }
+
+    public void cleanEditTexForm() {
+        Text text = selected;
         if (text != null) {
             text.setTxtTitle("");
             text.setTxtAuthor("");

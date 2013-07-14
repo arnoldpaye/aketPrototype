@@ -8,17 +8,18 @@
     xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Editar Texto</ui:define>
     <ui:define name="content">
-        <p:panelGrid columns="2">
-            <h:outputText value="Titulo"/>
-            <p:inputText id="txtTitle" value="#{textManager.selected.txtTitle}" disabled="true" />
-            <h:outputText value="Autor" />
-            <p:inputText id="txtAuthor" value="#{textManager.selected.txtAuthor}" disabled="true" />
-            <h:outputText value="Palabras clave" />
-            <p:inputText id="txtRawKewords" />
-        </p:panelGrid>
-        <p:panelGrid columns="2">
-            <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="20" value="#{textManager.selected.txtText}" />
-            <p:panel>
+        <p:messages autoUpdate="true" id="msgEditText" showDetail="true" showSummary="false" closable="true" />
+        <h:form enctype="multipart/form-data" id="editTextForm">
+            <p:panelGrid columns="2">
+                <h:outputText value="Titulo"/>
+                <p:inputText id="txtTitle" value="#{textManager.selected.txtTitle}" />
+                <h:outputText value="Autor" />
+                <p:inputText id="txtAuthor" value="#{textManager.selected.txtAuthor}" />
+                <h:outputText value="Palabras clave" />
+                <p:inputText id="txtRawKewords" />
+            </p:panelGrid>
+            <p:panelGrid columns="2" >
+                <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="17" value="#{textManager.selected.txtText}" />
                 <p:panelGrid columns="2">
                     <p:commandButton action="#{textManager.loadEditFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
                     <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
@@ -26,12 +27,9 @@
                     <p:fileUpload mode="simple" value="#{textManager.pdfFile}" />
                     <p:commandButton action="#{textManager.cleanNewTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
                 </p:panelGrid>
-                <p:messages autoUpdate="true" id="msgNewText" showDetail="true" showSummary="false" />
-            </p:panel>
-        </p:panelGrid>
-        <p:panel>
+            </p:panelGrid>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton action="#{textManager.editSelected()}" icon="ui-icon-disk" id="btnSave" value="Modificar" />
-        </p:panel>
+            <p:commandButton action="#{textManager.editSelected()}" ajax="false" icon="ui-icon-disk" id="btnEdit" value="Modificar" />
+        </h:form>
     </ui:define>
 </ui:composition>

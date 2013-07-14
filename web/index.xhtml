@@ -8,43 +8,45 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Inicio</ui:define>
     <ui:define name="content">
-        <p:toolbar>
-            <p:toolbarGroup align="left">
-                <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
-            </p:toolbarGroup>
-        </p:toolbar>
-        <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" />
-        <p:dataTable emptyMessage="Sin registros." paginator="true" rows="7" scrollable="true" value="#{textManager.data}" var="vText">
-            <p:column style="width: 30px">
-                <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteText.show()" update=":mainForm">
-                    <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
-                </p:commandButton>
-            </p:column>
-            <p:column headerText="Id" style="width: 50px">
-                <h:outputText value="#{vText.txtId}" />
-            </p:column>
-            <p:column headerText="Titulo" sortBy="#{vText.txtTitle}">
-                <h:outputText value="#{vText.txtTitle}" />
-            </p:column>
-            <p:column headerText="Autor" sortBy="#{vText.txtAuthor}">
-                <h:outputText value="#{vText.txtAuthor}" />
-            </p:column>
-            <p:column headerText="Text" sortBy="#{vText.txtText}">
-                <h:outputText value="#{vText.txtText}" />
-            </p:column>
-            <p:column>
-                <p:commandLink action="text/editText?faces-redirect=true" value="Editar">
-                    <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
-                </p:commandLink>
-                <p:spacer width="10" />
-                <p:commandLink action="operations/classification?faces-redirect=true" value="Clasificacion" />
-                <p:spacer width="10" />
-                <p:commandLink action="operations/selection?faces-redirect=true" value="Seleccion" />
-            </p:column>
-        </p:dataTable>
-        <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
-            <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
-            <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
-        </p:confirmDialog>
+        <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" closable="true" />
+        <h:form id="mainForm">
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="7" scrollable="true" value="#{textManager.data}" var="vText">
+                <p:column style="width: 30px">
+                    <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteText.show()" update=":mainForm">
+                        <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Id" style="width: 50px">
+                    <h:outputText value="#{vText.txtId}" />
+                </p:column>
+                <p:column headerText="Titulo" sortBy="#{vText.txtTitle}">
+                    <h:outputText value="#{vText.txtTitle}" />
+                </p:column>
+                <p:column headerText="Autor" sortBy="#{vText.txtAuthor}">
+                    <h:outputText value="#{vText.txtAuthor}" />
+                </p:column>
+                <p:column headerText="Text" sortBy="#{vText.txtText}">
+                    <h:outputText value="#{vText.txtText}" />
+                </p:column>
+                <p:column>
+                    <p:commandLink action="text/editText?faces-redirect=true" value="Editar">
+                        <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
+                    </p:commandLink>
+                    <p:spacer width="10" />
+                    <p:commandLink action="operations/classification?faces-redirect=true" value="Clasificacion" />
+                    <p:spacer width="10" />
+                    <p:commandLink action="operations/selection?faces-redirect=true" value="Seleccion" />
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
+                <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
+                <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
+            </p:confirmDialog>
+        </h:form>
     </ui:define>
 </ui:composition>
