@@ -23,9 +23,9 @@
                 <p:panelGrid columns="2">
                     <p:commandButton action="#{textManager.loadEditFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
                     <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
-                    <p:commandButton ajax="false" icon="ui-icon-note" value="Importar PDF" />
+                    <p:commandButton ajax="false" disabled="true" icon="ui-icon-note" value="Importar PDF" />
                     <p:fileUpload mode="simple" value="#{textManager.pdfFile}" />
-                    <p:commandButton action="#{textManager.cleanNewTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
+                    <p:commandButton action="#{textManager.cleanEditTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
                 </p:panelGrid>
             </p:panelGrid>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
