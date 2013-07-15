@@ -5,9 +5,7 @@ import javax.faces.bean.RequestScoped;
 import org.openlogics.cjb.jdbc.annotation.Column;
 
 /**
- * Project: aketPrototype 
- * Package: com.apt.aket.model 
- * Class : Text.java (UTF-8)
+ * Project: aketPrototype Package: com.apt.aket.model Class : Text.java (UTF-8)
  *
  * @date 05/07/2013
  * @author Arnold Paye
@@ -22,8 +20,14 @@ public class Text {
     private String txtTitle;
     @Column("txt_author")
     private String txtAuthor;
-    @Column("txt_text")
+    @Column("txt_text_raw")
     private String txtText;
+    @Column("txt_text_classified")
+    private String txtTextClassified;
+    @Column("txt_keywords_mac")
+    private String txtKeywordsMac;
+    @Column("txt_keywords_textrank")
+    private String txtKeywordsTextRank;
 
     public int getTxtId() {
         return txtId;
@@ -55,5 +59,29 @@ public class Text {
 
     public void setTxtText(String txtText) {
         this.txtText = txtText;
+    }
+
+    public String getTxtTextClassified() {
+        return txtTextClassified;
+    }
+
+    public void setTxtTextClassified(String txtTextClassified) {
+        this.txtTextClassified = txtTextClassified;
+    }
+
+    public String getTxtKeywordsMac() {
+        return txtKeywordsMac;
+    }
+
+    public void setTxtKeywordsMac(String txtKeywordsMac) {
+        this.txtKeywordsMac = txtKeywordsMac;
+    }
+
+    public String getTxtKeywordsTextRank() {
+        return txtKeywordsTextRank;
+    }
+
+    public void setTxtKeywordsTextRank(String txtKeywordsTextRank) {
+        this.txtKeywordsTextRank = txtKeywordsTextRank;
     }
 }

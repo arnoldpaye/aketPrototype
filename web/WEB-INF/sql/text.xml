@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <statements>
     <st id ="getAllTexts">
-        SELECT txt_id, txt_title, txt_author, txt_text
+        SELECT 
+        txt_id, txt_title, txt_author, txt_text_raw, txt_text_classified,
+        txt_keywords_mac, txt_keywords_textrank
         FROM text;
     </st>
     <st id="insertText">
-        INSERT INTO text(txt_title, txt_author, txt_text)
-        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText});
+        INSERT INTO text(txt_title, txt_author, txt_text_raw, txt_keywords_mac)
+        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText}, #{txtKeywordsMac});
     </st>
     <st id="editText">
         UPDATE text
-        SET txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text=#{txtText}
+        SET
+        txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text_raw=#{txtText},
+        txt_keywords_mac = #{txtKeywordsMac}
         WHERE txt_id = #{txtId};
     </st>
     <st id="deleteText">

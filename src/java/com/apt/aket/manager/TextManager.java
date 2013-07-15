@@ -51,17 +51,25 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     @Override
-    protected List<Text> fetchDataFromDataSource() throws SQLException, FileNotFoundException, IOException {
-        DataStore dataStore = DataStoreManager.getDataStore();
-        data.clear();
-        dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
-            @Override
-            public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
-                data.add(text);
-            }
-        });
-        return data;
-
+    protected List<Text> fetchDataFromDataSource() {
+        try {
+            DataStore dataStore = DataStoreManager.getDataStore();
+            data.clear();
+            dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
+                @Override
+                public void visit(Text text, DataStore dataStore, ResultSet resultSet) {
+                    data.add(text);
+                }
+            });
+        } catch (SQLException sqle) {
+            //TODO: handle with log
+            System.out.println("SQLException in fetchDataFromDataSource-> " + sqle.getMessage());
+        } catch (IOException ioe) {
+            //TODO: handle with log
+            System.out.println("IOException in fetchDataFromDataSource-> " + ioe.getMessage());
+        } finally {
+            return data;
+        }
     }
 
     @Override
