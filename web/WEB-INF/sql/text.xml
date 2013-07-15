@@ -21,4 +21,10 @@
         DELETE FROM text
         WHERE txt_id = #{txtId};
     </st>
+    <st id="classifyText">
+        UPDATE text
+        SET
+        txt_text_classified = #{txtTextClassified}
+        WHERE txt_id = #{txtId};
+    </st>
 </statements>

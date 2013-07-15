@@ -198,4 +198,33 @@ public class TextManager extends DefaultManager<Text> {
             text.setTxtText("");
         }
     }
+    
+    public void classifySelected() {
+        System.out.println("Classify Selected");
+        System.out.println("log-> " + selected.getTxtTitle());
+        
+        if (selected != null) {
+            //TODO: call to viterbi algorithm
+            selected.setTxtTextClassified("Texto clasificado en categorias gramaticales");
+        }
+    }
+    
+    public String saveSelectedClassified() throws FileNotFoundException, IOException, SQLException {
+        if (selected.getTxtTextClassified().trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Texto clasificado es requerido requeridos."));
+            return "/";
+        } else {
+            DataStore dataStore = DataStoreManager.getDataStore();
+            dataStore.setAutoCommit(false);
+            try {
+                dataStore.execute(getStatementReader().getStatement("classifyText"), selected);
+                dataStore.commit();
+                return "/index?faces-redirect=true";
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, sqle.getMessage()));
+                dataStore.rollBack();
+                return "/";
+            }
+        }
+    }
 }

@@ -7,15 +7,19 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Clasificacion de palabras</ui:define>
     <ui:define name="content">
+        <p:messages autoUpdate="true" id="msgClassifyText" showDetail="true" showSummary="false" closable="true" />
         <h:form id="classifyTextForm">
-            <p:panelGrid columns="2">
-                <h:outputText value="Texto original"/>
-                <h:outputText value="Texto clasificado"/>
-                <p:inputTextarea autoResize="false" cols="85" disabled="true" id="txtRawText" rows="20" value="#{textManager.selected.txtText}" />
-                <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" />
-            </p:panelGrid>
+            <p:panel id="classifyTextPanel">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Texto original"/>
+                    <h:outputText value="Texto clasificado"/>
+                    <p:inputTextarea autoResize="false" cols="85" id="txtRawText" rows="20" value="#{textManager.selected.txtText}" />
+                    <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" value="#{textManager.selected.txtTextClassified}" />
+                </p:panelGrid>
+            </p:panel>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton icon="ui-icon-transfer-e-w" id="btnClassify" value="Clasificar" />
+            <p:commandButton action="#{textManager.classifySelected()}" icon="ui-icon-transfer-e-w" id="btnClassify" update="classifyTextPanel" value="Clasificar" />
+            <p:commandButton action="#{textManager.saveSelectedClassified()}" ajax="false" id="btnSave" value="Guardar" />
         </h:form>
     </ui:define>
 </ui:composition>

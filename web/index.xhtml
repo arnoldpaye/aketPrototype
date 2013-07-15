@@ -42,7 +42,9 @@
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="operations/selection?faces-redirect=true" value="Seleccion" />
+                    <p:commandLink action="operations/selection?faces-redirect=true" disabled="#{vText.txtTextClassified eq null}" value="Seleccion">
+                        <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
+                    </p:commandLink>
                 </p:column>
             </p:dataTable>
             <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
