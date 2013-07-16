@@ -12,11 +12,11 @@
         <h:form enctype="multipart/form-data" id="newTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="Titulo"/>
-                <p:inputText id="txtTitle" value="#{text.txtTitle}" />
+                <p:inputText id="txtTitle" value="#{text.txtTitle}" style="width: 400px" />
                 <h:outputText value="Autor" />
-                <p:inputText id="txtAuthor" value="#{text.txtAuthor}" />
+                <p:inputText id="txtAuthor" value="#{text.txtAuthor}" style="width: 400px" />
                 <h:outputText value="Palabras clave" />
-                <p:inputText id="txtKeywordsMac" value="#{text.txtKeywordsMac}" />
+                <p:inputText id="txtKeywordsMac" value="#{text.txtKeywordsMac}" style="width: 400px" />
             </p:panelGrid>
             <p:panelGrid columns="2" >
                 <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="17" value="#{text.txtText}" />
