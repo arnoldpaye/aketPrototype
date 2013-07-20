@@ -82,7 +82,6 @@ public class TextManager extends DefaultManager<Text> {
         } catch (SQLException sqle) {
             log.error("SQLException in fetchDataFromDataSource method->" + sqle.getMessage());
         } catch (IOException ioe) {
-            //TODO: handle with log
             log.error("IOException in fetchDataFromDataSource method->" + ioe.getMessage());
         } finally {
             return data;

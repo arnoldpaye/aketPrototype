@@ -8,10 +8,13 @@
     xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Seleccion de palabras</ui:define>
     <ui:define name="content">
-        <h:form id="extractionTextForm">
+        <p:messages autoUpdate="true" id="msgSelectionText" showDetail="true" showSummary="false" closable="true" />
+        <h:form id="selectionTextForm">
             <p:panelGrid columns="2">
-                <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" />
-                <p:panel id="pnlExtractionOptions">
+                <p:dataList value="#{wordTagManager.words}" var="vWord" rendered="#{wordTagManager.data.size() > 0}">
+                    #{vWord.value} - #{vWord.tag}
+                </p:dataList>
+                <p:panel id="pnlSelectionOptions">
                     <h:outputText value="Categorias gramaticales:" />
                     <p:selectManyCheckbox>
                         <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
@@ -22,13 +25,10 @@
                     <h:outputText value="Ancho de ventana:" />
                     <p:spinner max="5" min="2" value="2" />
                     <p:commandButton value="Obtener lista de palabras" />
-<!--                    <p:dataList value="#{dataBean.words}" var="vWord">
-                        #{vWord.word} - #{vWord.rank}
-                    </p:dataList>                    -->
                 </p:panel>
             </p:panelGrid>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton icon="ui-icon-gear" id="btnExtraction" value="Seleccionar" />
+            <p:commandButton icon="ui-icon-gear" id="btnSelection" value="Seleccionar" />
         </h:form>
     </ui:define>
 </ui:composition>

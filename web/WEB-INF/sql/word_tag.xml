@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+    <st id="getAllWordTags">
+        SELECT wtg_id, wtg_txt_id, wtg_value, wtg_tag
+        FROM word_tag;
+    </st>
+    <st id="getWordTagsByText">
+        SELECT wtg_id, wtg_txt_id, wtg_value, wtg_tag
+        FROM word_tag
+        WHERE wtg_txt_id = #{txtId};
+    </st>
+</statements>

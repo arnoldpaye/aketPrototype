@@ -1,0 +1,6 @@
+20/07/2013--------------------------------------------------------------------------
+- Enable import from pdf file. [feature][TODO]
+- Validate insert and modify keywords with regular expression. [feature][TODO]
+- Handle special characters ('á', '\n') in text. [code][TODO]
+- Display tagwords in case the are [code][TODO]
+-------------------------------------------------------------------------------------

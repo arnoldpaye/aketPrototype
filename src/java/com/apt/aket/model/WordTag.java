@@ -10,6 +10,7 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  * @author Arnold Paye
  */
 public class WordTag {
+
     @Column("wtg_id")
     private long worTagId;
     @Column("wtg_txt_id")
@@ -50,10 +51,13 @@ public class WordTag {
     public void setTag(String tag) {
         this.tag = tag;
     }
-    
+
     public WordTag(int textId, String value, String tag) {
         this.textId = textId;
         this.value = value;
         this.tag = tag;
+    }
+
+    public WordTag() {
     }
 }
