@@ -14,10 +14,17 @@
                     <h:outputText value="Texto original"/>
                     <h:outputText value="Texto clasificado"/>
                     <p:inputTextarea autoResize="false" cols="85" id="txtRawText" rows="20" value="#{textManager.selected.txtText}" />
-                    <p:inputTextarea autoResize="false" cols="85" id="txtTaggedText" rows="20" value="#{textManager.selected.txtTextClassified}" />
+                    <p:dataTable paginator="true" rendered="#{textManager.wordTags.size() > 0}" rows="10"  value="#{textManager.wordTags}" var="vWord">
+                        <p:column headerText="Palabra">
+                            <h:outputText value="#{vWord.value}" />
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{vWord.tag}" />
+                        </p:column>
+                    </p:dataTable> 
                 </p:panelGrid>
             </p:panel>
-            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton action="#{textManager.cancelSelectedClassified()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
             <p:commandButton action="#{textManager.classifySelected()}" icon="ui-icon-transfer-e-w" id="btnClassify" update="classifyTextPanel" value="Clasificar" />
             <p:commandButton action="#{textManager.saveSelectedClassified()}" ajax="false" id="btnSave" value="Guardar" />
         </h:form>

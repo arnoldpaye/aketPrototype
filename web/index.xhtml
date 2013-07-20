@@ -42,7 +42,7 @@
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="operations/selection?faces-redirect=true" disabled="#{vText.txtTextClassified eq null}" value="Seleccion">
+                    <p:commandLink action="operations/selection?faces-redirect=true" disabled="#{not vText.txtTextClassified}" value="Seleccion">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                 </p:column>

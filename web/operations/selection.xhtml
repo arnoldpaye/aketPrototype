@@ -22,9 +22,9 @@
                     <h:outputText value="Ancho de ventana:" />
                     <p:spinner max="5" min="2" value="2" />
                     <p:commandButton value="Obtener lista de palabras" />
-                    <p:dataList value="#{dataBean.words}" var="vWord">
+<!--                    <p:dataList value="#{dataBean.words}" var="vWord">
                         #{vWord.word} - #{vWord.rank}
-                    </p:dataList>                    
+                    </p:dataList>                    -->
                 </p:panel>
             </p:panelGrid>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />

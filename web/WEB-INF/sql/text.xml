@@ -2,18 +2,18 @@
 <statements>
     <st id ="getAllTexts">
         SELECT 
-        txt_id, txt_title, txt_author, txt_text_raw, txt_text_classified,
+        txt_id, txt_title, txt_author, txt_text, txt_text_classified,
         txt_keywords_mac, txt_keywords_textrank
         FROM text;
     </st>
     <st id="insertText">
-        INSERT INTO text(txt_title, txt_author, txt_text_raw, txt_keywords_mac)
-        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText}, #{txtKeywordsMac});
+        INSERT INTO text(txt_title, txt_author, txt_text, txt_text_classified, txt_keywords_mac)
+        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText}, #{txtTextClassified}, #{txtKeywordsMac});
     </st>
     <st id="editText">
         UPDATE text
         SET
-        txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text_raw=#{txtText},
+        txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text=#{txtText},
         txt_keywords_mac = #{txtKeywordsMac}
         WHERE txt_id = #{txtId};
     </st>
@@ -24,7 +24,11 @@
     <st id="classifyText">
         UPDATE text
         SET
-        txt_text_classified = #{txtTextClassified}
+        txt_text_classified = TRUE
         WHERE txt_id = #{txtId};
+    </st>
+    <st id="insertWordTag">
+        INSERT INTO word_tag(wtg_txt_id, wtg_value, wtg_tag)
+        VALUES (#{textId}, #{value}, #{tag});
     </st>
 </statements>

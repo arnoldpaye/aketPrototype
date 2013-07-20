@@ -5,8 +5,9 @@ import javax.faces.bean.RequestScoped;
 import org.openlogics.cjb.jdbc.annotation.Column;
 
 /**
- * Project: aketPrototype Package: com.apt.aket.model Class : Text.java (UTF-8)
- *
+ * @project aketPrototype
+ * @package com.apt.aket.model
+ * @class Text.java (UTF-8)
  * @date 05/07/2013
  * @author Arnold Paye
  */
@@ -20,10 +21,10 @@ public class Text {
     private String txtTitle;
     @Column("txt_author")
     private String txtAuthor;
-    @Column("txt_text_raw")
+    @Column("txt_text")
     private String txtText;
     @Column("txt_text_classified")
-    private String txtTextClassified;
+    private boolean txtTextClassified;
     @Column("txt_keywords_mac")
     private String txtKeywordsMac;
     @Column("txt_keywords_textrank")
@@ -61,11 +62,11 @@ public class Text {
         this.txtText = txtText;
     }
 
-    public String getTxtTextClassified() {
+    public boolean isTxtTextClassified() {
         return txtTextClassified;
     }
 
-    public void setTxtTextClassified(String txtTextClassified) {
+    public void setTxtTextClassified(boolean txtTextClassified) {
         this.txtTextClassified = txtTextClassified;
     }
 

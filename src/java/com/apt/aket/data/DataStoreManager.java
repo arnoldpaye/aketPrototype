@@ -10,10 +10,9 @@ import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.JdbcDataStore;
 
 /**
- * Project: aketPrototype 
- * Package: com.apt.aket.data 
- * Class : DataStoreManager.java (UTF-8)
- *
+ * @project aketPrototype
+ * @package com.apt.aket.data
+ * @class DataStoreManager.java (UTF-8)
  * @date 09/07/2013
  * @author Arnold Paye
  */
@@ -32,8 +31,7 @@ public class DataStoreManager {
             if (stream != null) {
                 try {
                     stream.close();
-                } catch(IOException ioe) {
-                    
+                } catch (IOException ioe) {
                 }
             }
         }
