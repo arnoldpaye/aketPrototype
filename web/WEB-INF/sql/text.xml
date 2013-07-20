@@ -31,4 +31,8 @@
         INSERT INTO word_tag(wtg_txt_id, wtg_value, wtg_tag)
         VALUES (#{textId}, #{value}, #{tag});
     </st>
+    <st id="deleteWordTag">
+        DELETE FROM word_tag
+        WHERE wtg_txt_id = #{txtId};
+    </st>
 </statements>

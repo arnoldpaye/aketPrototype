@@ -139,6 +139,7 @@ public class TextManager extends DefaultManager<Text> {
         DataStore dataStore = DataStoreManager.getDataStore();
         dataStore.setAutoCommit(false);
         try {
+            dataStore.execute(getStatementReader().getStatement("deleteWordTag"), selected);
             dataStore.execute(getStatementReader().getStatement("deleteText"), selected);
             dataStore.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Texto eliminado."));
@@ -263,7 +264,7 @@ public class TextManager extends DefaultManager<Text> {
             PreparedStatement statement = null;
             StatementReader reader = getStatementReader();
             try {
-
+                dataStore.execute(getStatementReader().getStatement("deleteWordTag"), selected);
                 // Insert each tag into database.
                 for (WordTag wordTag : wordTags) {
                     statement = dataStore.addBatch(reader.getStatement("insertWordTag"), statement, wordTag);
@@ -280,6 +281,7 @@ public class TextManager extends DefaultManager<Text> {
                 return "/";
             } finally {
                 statement.close();
+                wordTags = null;
             }
         }
     }
