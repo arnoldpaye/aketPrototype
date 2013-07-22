@@ -10,25 +10,31 @@
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgSelectionText" showDetail="true" showSummary="false" closable="true" />
         <h:form id="selectionTextForm">
-            <p:panelGrid columns="2">
-                <p:dataList value="#{wordTagManager.words}" var="vWord" rendered="#{wordTagManager.data.size() > 0}">
-                    #{vWord.value} - #{vWord.tag}
-                </p:dataList>
-                <p:panel id="pnlSelectionOptions">
-                    <h:outputText value="Categorias gramaticales:" />
-                    <p:selectManyCheckbox>
-                        <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
-                        <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
-                        <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
-                        <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
-                    </p:selectManyCheckbox>
-                    <h:outputText value="Ancho de ventana:" />
-                    <p:spinner max="5" min="2" value="2" />
-                    <p:commandButton value="Obtener lista de palabras" />
-                </p:panel>
-            </p:panelGrid>
-            <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton icon="ui-icon-gear" id="btnSelection" value="Seleccionar" />
+            <p:panel id="selctionTextPanel">
+                <p:panelGrid columns="3">
+                    <p:dataList value="#{wordTagManager.wordTags}" var="vWord" rendered="#{wordTagManager.wordTags.size() >0}">
+                        #{vWord.value} - #{vWord.tag}
+                    </p:dataList>
+                    <p:panel id="pnlSelectionOptions">
+                        <h:outputText value="Categorias gramaticales:" />
+                        <p:selectManyCheckbox>
+                            <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
+                            <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
+                            <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
+                            <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
+                        </p:selectManyCheckbox>
+                        <h:outputText value="Ancho de ventana:" />
+                        <p:spinner max="5" min="2" value="2" />
+                        <p:commandButton action="#{wordTagManager.prepareWordSelection()}" value="Obtener lista de palabras" update="selctionTextPanel" />
+                    </p:panel>
+                    <p:dataList value="#{wordTagManager.wordSelections}" var="vWord" rendered="#{wordTagManager.wordSelections.size() > 0}">
+                        #{vWord.value} - #{vWord.rank}
+                    </p:dataList>
+                </p:panelGrid>
+            </p:panel>
+            <p:commandButton action="#{wordTagManager.cancelSelectedSelection()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton action="#{wordTagManager.initSelection()}" icon="ui-icon-gear" id="btnSelection" update="selctionTextPanel" value="Seleccionar" />
+            <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
         </h:form>
     </ui:define>
 </ui:composition>

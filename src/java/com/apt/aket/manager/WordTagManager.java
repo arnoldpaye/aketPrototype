@@ -1,12 +1,15 @@
 package com.apt.aket.manager;
 
 import com.apt.aket.data.DataStoreManager;
-import com.apt.aket.model.Text;
+import com.apt.aket.model.WordSelection;
 import com.apt.aket.model.WordTag;
+import com.apt.textrank.Util;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,7 +35,17 @@ import org.openlogics.cjb.jsf.controller.DefaultManager;
 public class WordTagManager extends DefaultManager<WordTag> {
 
     static Logger log = Logger.getLogger(WordTagManager.class);
-    private List<WordTag> words;
+    private List<WordTag> wordTags;
+    private List<WordSelection> wordSelections;
+    private double[][] adjacencyMatrix;
+
+    public List<WordSelection> getWordSelections() {
+        return wordSelections;
+    }
+
+    public double[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
 
     @Override
     protected List<WordTag> fetchDataFromDataSource() throws Exception {
@@ -60,15 +73,15 @@ public class WordTagManager extends DefaultManager<WordTag> {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<WordTag> getWords() {
-        words = new ArrayList<WordTag>();
+    public List<WordTag> getWordTags() {
+        wordTags = new ArrayList<WordTag>();
         TextManager textManager = JEEContext.getSessionScopedBean(TextManager.class);
         try {
             DataStore dataStore = DataStoreManager.getDataStore();
             dataStore.select(getStatementReader().getStatement("getWordTagsByText"), textManager.getSelected().getTxtId(), WordTag.class, new MappedResultVisitor<WordTag>() {
                 @Override
                 public void visit(WordTag wordTag, DataStore ds, ResultSet rs) throws SQLException {
-                    words.add(wordTag);
+                    wordTags.add(wordTag);
                 }
             });
         } catch (SQLException sqle) {
@@ -76,7 +89,31 @@ public class WordTagManager extends DefaultManager<WordTag> {
         } catch (IOException ioe) {
             log.error("IOException " + ioe.getMessage());
         } finally {
-            return words;
+            return wordTags;
         }
+    }
+
+    public void prepareWordSelection() {
+        wordSelections = Util.filterPOS(wordTags);
+        adjacencyMatrix = Util.buildAdjacencyMatrix(wordSelections);
+    }
+
+    public void initSelection() {
+        if (wordSelections == null || wordSelections.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe obtener la lista de palabras primero."));
+        } else {
+            double[] pr = Util.pageRank(adjacencyMatrix);
+            for (int i = 0; i < pr.length; i++) {
+                wordSelections.get(i).setRank(pr[i]);
+            }
+            Collections.sort(wordSelections);
+        }
+
+    }
+
+    public String cancelSelectedSelection() {
+        wordTags = null;
+        wordSelections = null;
+        return "/index?faces-redirect=true";
     }
 }
