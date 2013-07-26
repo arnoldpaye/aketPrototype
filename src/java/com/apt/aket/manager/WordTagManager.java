@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -95,6 +94,9 @@ public class WordTagManager extends DefaultManager<WordTag> {
 
     public void prepareWordSelection() {
         wordSelections = Util.filterPOS(wordTags);
+        for (int i = 0; i < wordSelections.size(); i++) {
+            System.out.println(i + " " + wordSelections.get(i).getValue());
+        }
         adjacencyMatrix = Util.buildAdjacencyMatrix(wordSelections);
     }
 

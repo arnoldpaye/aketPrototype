@@ -9,7 +9,7 @@
     <ui:define name="title">Nuevo Texto</ui:define>
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgNewText" showDetail="true" showSummary="false" closable="true" />
-        <h:form enctype="multipart/form-data" id="newTextForm">
+        <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="newTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="Titulo"/>
                 <p:inputText id="txtTitle" value="#{text.txtTitle}" style="width: 400px" />

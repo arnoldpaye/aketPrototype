@@ -10,11 +10,9 @@
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgSelectionText" showDetail="true" showSummary="false" closable="true" />
         <h:form id="selectionTextForm">
-            <p:panel id="selctionTextPanel">
+            <p:panel id="selectionTextPanel">
                 <p:panelGrid columns="3">
-                    <p:dataList value="#{wordTagManager.wordTags}" var="vWord" rendered="#{wordTagManager.wordTags.size() >0}">
-                        #{vWord.value} - #{vWord.tag}
-                    </p:dataList>
+                    <p:inputTextarea autoResize="false" cols="80" id="txtSelectedText" rows="17" value="#{textManager.selected.txtText}" />
                     <p:panel id="pnlSelectionOptions">
                         <h:outputText value="Categorias gramaticales:" />
                         <p:selectManyCheckbox>
@@ -25,7 +23,7 @@
                         </p:selectManyCheckbox>
                         <h:outputText value="Ancho de ventana:" />
                         <p:spinner max="5" min="2" value="2" />
-                        <p:commandButton action="#{wordTagManager.prepareWordSelection()}" value="Obtener lista de palabras" update="selctionTextPanel" />
+                        <p:commandButton action="#{textManager.stuff()}" value="Obtener lista de palabras" update="selectionTextPanel" />
                     </p:panel>
                     <p:dataList value="#{wordTagManager.wordSelections}" var="vWord" rendered="#{wordTagManager.wordSelections.size() > 0}">
                         #{vWord.value} - #{vWord.rank}
@@ -33,7 +31,7 @@
                 </p:panelGrid>
             </p:panel>
             <p:commandButton action="#{wordTagManager.cancelSelectedSelection()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton action="#{wordTagManager.initSelection()}" icon="ui-icon-gear" id="btnSelection" update="selctionTextPanel" value="Seleccionar" />
+            <p:commandButton action="#{wordTagManager.initSelection()}" icon="ui-icon-gear" id="btnSelection" update="selectionTextPanel" value="Seleccionar" />
             <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
         </h:form>
     </ui:define>

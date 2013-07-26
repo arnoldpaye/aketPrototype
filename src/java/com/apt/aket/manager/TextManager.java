@@ -3,7 +3,8 @@ package com.apt.aket.manager;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Text;
 import com.apt.aket.model.WordTag;
-import com.apt.nlp.Language;
+import com.apt.textrank.Language;
+import com.apt.textrank.TextRank;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -288,5 +289,18 @@ public class TextManager extends DefaultManager<Text> {
     public String cancelSelectedClassified() {
         wordTags = null;
         return "/index?faces-redirect=true";
+    }
+
+    public void stuff() {
+        TextRank textRank = new TextRank();
+        try {
+            if (selected != null) {
+                textRank.init(selected.getTxtText());
+            }
+        } catch (IOException ioe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+        }
     }
 }

@@ -44,11 +44,16 @@ public class Util {
     public static List<WordSelection> filterPOS(List<WordTag> wordTags) {
         Set<WordSelection> setWordSelection = new HashSet<WordSelection>();
         List<WordSelection> wordSelections = new ArrayList<WordSelection>();
-        for (WordTag wordTag: wordTags) {
-            setWordSelection.add(new WordSelection(wordTag.getValue().toUpperCase(), Double.valueOf(0)));
-        }
-        for (WordSelection wordSelection : setWordSelection) {
-            wordSelections.add(wordSelection);
+        if (wordTags != null && wordTags.size() > 0) {
+            for (WordTag wordTag : wordTags) {
+                // Nouns, verbs and adjectives
+                if (isNoun(wordTag.getTag()) || isVerb(wordTag.getTag()) || isAdjective(wordTag.getTag())) {
+                    setWordSelection.add(new WordSelection(wordTag.getValue().toUpperCase(), Double.valueOf(0)));
+                }
+            }
+            for (WordSelection wordSelection : setWordSelection) {
+                wordSelections.add(wordSelection);
+            }
         }
         return wordSelections;
     }
@@ -123,7 +128,7 @@ public class Util {
         }
         return pr;
     }
-    
+
     /**
      * Naive algorithm to check whether the iteration converges
      *
@@ -139,5 +144,17 @@ public class Util {
             }
         }
         return true;
+    }
+
+    public static boolean isNoun(String tag) {
+        return tag.startsWith("NC");
+    }
+
+    public static boolean isVerb(String tag) {
+        return tag.startsWith("V");
+    }
+
+    public static boolean isAdjective(String tag) {
+        return tag.startsWith("AQ");
     }
 }

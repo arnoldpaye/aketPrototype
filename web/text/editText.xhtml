@@ -9,7 +9,7 @@
     <ui:define name="title">Editar Texto</ui:define>
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgEditText" showDetail="true" showSummary="false" closable="true" />
-        <h:form enctype="multipart/form-data" id="editTextForm">
+        <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="editTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="Titulo"/>
                 <p:inputText id="txtTitle" value="#{textManager.selected.txtTitle}" style="width: 400px" />

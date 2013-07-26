@@ -1,4 +1,4 @@
-package com.apt.nlp;
+package com.apt.textrank;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,9 +9,9 @@ import org.tartarus.snowball.ext.spanishStemmer;
 
 /**
  * @project aketPrototype
- * @package com.apt.nlp
+ * @package com.apt.textrank
  * @class Language.java (UTF-8)
- * @date 19/07/2013
+ * @date 25/07/2013
  * @author Arnold Paye
  */
 public class Language {
@@ -20,6 +20,8 @@ public class Language {
     public static Tokenizer tokenizer = null;
     public static PosTagger tagger = null;
     public static spanishStemmer stemmer = null;
+    
+    public final static int TOKEN_LENGTH_LIMIT = 50;
 
     public void loadResources(String path) throws IOException {
         splitter = new SentenceDetector((new File(path, "SpanishSent.bin.gz")).getPath());
@@ -62,5 +64,36 @@ public class Language {
 
     public String[] tagTokens(String[] tokenList) {
         return tagger.tag(tokenList);
+    }
+    
+    public String scrubToken(String token) {
+        //TODO: in Util?
+        String scrubbed = token;
+        if (scrubbed.length() > TOKEN_LENGTH_LIMIT) {
+            scrubbed = scrubbed.substring(0, TOKEN_LENGTH_LIMIT);
+        }
+        return scrubbed;
+    }
+    
+    public String stemToken(String token) {
+        stemmer.setCurrent(token);
+        stemmer.stem();
+        return stemmer.getCurrent();
+    }
+    
+    public String getNodeKey(String token, String pos) {
+        return pos.substring(0, 2) + stemToken(scrubToken(token)).toLowerCase();
+    }
+    
+    public boolean isRelevant(String pos) {
+        return isNoun(pos) || isAdjective(pos);
+    }
+    
+    public boolean isNoun(String pos) {
+        return pos.startsWith("NC");
+    }
+    
+    public boolean isAdjective(String pos) {
+        return pos.startsWith("AQ");
     }
 }
