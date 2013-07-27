@@ -21,7 +21,7 @@ public class TextRank {
     public final static int MAX_NGRAM_LENGTH = 5;
     private Map<NGram, MetricVector> metricSpace;
 
-    public void init(String text) throws IOException {
+    public Map<NGram, MetricVector> init(String text) throws IOException {
         metricSpace = new HashMap<NGram, MetricVector>();
         Language language = Language.buildLanguage(System.getProperty("catalina.home") + "/resourcesNLP");
         ArrayList<Sentence> sentences = new ArrayList<Sentence>();
@@ -102,14 +102,15 @@ public class TextRank {
 //        log.debug("Results");
 //        log.debug(metricSpace.toString());
         // Render results
-        TreeSet<MetricVector> keyPhraseList = new TreeSet<MetricVector>(metricSpace.values());
-        StringBuilder stringBuilder = new StringBuilder();
-        for (MetricVector mv : keyPhraseList) {
-            if (mv.getMetric() >= MIN_NORMALIZED_RANK) {
-                stringBuilder.append(mv.render()).append('\t').append(mv.getNodeValue().text).append('\n');
-            }
-        }
-        log.info("ANSWER");
-        log.info(stringBuilder.toString());
+//        TreeSet<MetricVector> keyPhraseList = new TreeSet<MetricVector>(metricSpace.values());
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (MetricVector mv : keyPhraseList) {
+//            if (mv.getMetric() >= MIN_NORMALIZED_RANK) {
+//                stringBuilder.append(mv.render()).append('\t').append(mv.getNodeValue().text).append('\n');
+//            }
+//        }
+//        log.info("ANSWER");
+//        log.info(stringBuilder.toString());
+        return metricSpace;
     }
 }

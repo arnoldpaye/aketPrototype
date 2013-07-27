@@ -1,18 +1,20 @@
 package com.apt.aket.manager;
 
 import com.apt.aket.data.DataStoreManager;
+import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Text;
-import com.apt.aket.model.WordTag;
-import com.apt.textrank.Language;
+import com.apt.textrank.MetricVector;
+import com.apt.textrank.NGram;
 import com.apt.textrank.TextRank;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,7 +23,6 @@ import org.apache.log4j.Logger;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.DSDescriptor;
-import org.openlogics.cjb.jee.jdbc.StatementReader;
 import org.openlogics.cjb.jee.util.JEEContext;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
 import org.primefaces.model.UploadedFile;
@@ -41,8 +42,9 @@ public class TextManager extends DefaultManager<Text> {
     static Logger log = Logger.getLogger(TextManager.class);
     private UploadedFile txtFile;
     private UploadedFile pdfFile;
-    private List<WordTag> wordTags = null;
+    private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
 
+    // Getters and setters******************************************************
     public UploadedFile getTxtFile() {
         return txtFile;
     }
@@ -59,14 +61,15 @@ public class TextManager extends DefaultManager<Text> {
         this.pdfFile = pdfFile;
     }
 
-    public List<WordTag> getWordTags() {
-        return wordTags;
+    public List<KeyWordSelection> getKeyWordSelectionList() {
+        return keyWordSelectionList;
     }
 
-    public void setWordTags(List<WordTag> wordTags) {
-        this.wordTags = wordTags;
+    public void setKeyWordSelectionList(List<KeyWordSelection> keyWordSelectionList) {
+        this.keyWordSelectionList = keyWordSelectionList;
     }
 
+    //**************************************************************************
     @Override
     protected List<Text> fetchDataFromDataSource() {
         log.debug("Enter fetchDataFromDataSource method");
@@ -113,7 +116,6 @@ public class TextManager extends DefaultManager<Text> {
                 return "/";
             }
         }
-
     }
 
     public String editSelected() throws FileNotFoundException, IOException, SQLException {
@@ -216,91 +218,28 @@ public class TextManager extends DefaultManager<Text> {
             text.setTxtText("");
         }
     }
-
-    /**
-     * Classify selected's text.
-     */
-    public void classifySelected() {
-        log.info("Texto a ser clasificado:---------------------------------------------\n" + selected.getTxtText());
-        List<WordTag> words = new ArrayList<WordTag>();
-        try {
-            if (selected != null) {
-                Language language = Language.buildLanguage(System.getProperty("catalina.home") + "/resourcesNLP");
-                // Split raw text in sentences.
-                String[] sentences = language.splitParagraph(selected.getTxtText());
-                // Tokenize and tag each sentence
-                for (String sentence : sentences) {
-                    String[] tokens = language.tokenizeSentence(sentence);
-                    String[] tags = language.tagTokens(tokens);
-                    for (int i = 0; i < tokens.length; i++) {
-                        words.add(new WordTag(selected.getTxtId(), tokens[i], tags[i]));
-                    }
-
-                }
-                // Create the output text.
-                wordTags = words;
-            }
-        } catch (IOException ioe) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, ioe.getMessage()));
-        }
-
-    }
-
-    /**
-     * Insert in the database the word-tag of selected's text.
-     *
-     * @return
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws SQLException
-     */
-    public String saveSelectedClassified() throws FileNotFoundException, IOException, SQLException {
-        if (wordTags == null || wordTags.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "No existen palabras clasificadas."));
-            return "/";
-        } else {
-            DataStore dataStore = DataStoreManager.getDataStore();
-            dataStore.setAutoCommit(false);
-            PreparedStatement statement = null;
-            StatementReader reader = getStatementReader();
-            try {
-                dataStore.execute(getStatementReader().getStatement("deleteWordTag"), selected);
-                // Insert each tag into database.
-                for (WordTag wordTag : wordTags) {
-                    statement = dataStore.addBatch(reader.getStatement("insertWordTag"), statement, wordTag);
-                }
-                if (statement != null) {
-                    dataStore.executeBatch(statement);
-                }
-                dataStore.execute(getStatementReader().getStatement("classifyText"), selected);
-                dataStore.commit();
-                return "/index?faces-redirect=true";
-            } catch (SQLException sqle) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, sqle.getMessage()));
-                dataStore.rollBack();
-                return "/";
-            } finally {
-                statement.close();
-                wordTags = null;
-            }
-        }
-    }
-
-    public String cancelSelectedClassified() {
-        wordTags = null;
-        return "/index?faces-redirect=true";
-    }
-
-    public void stuff() {
+    
+    public void selectSelected() {
         TextRank textRank = new TextRank();
         try {
             if (selected != null) {
-                textRank.init(selected.getTxtText());
+                Map<NGram, MetricVector> metricSpace = textRank.init(selected.getTxtText());
+                TreeSet<MetricVector> keyPraseList = new TreeSet<MetricVector>(metricSpace.values());
+                for (MetricVector metricVector : keyPraseList) {
+                    if (metricVector.getMetric() >= TextRank.MIN_NORMALIZED_RANK) {
+                        keyWordSelectionList.add(new KeyWordSelection(metricVector.getNodeValue().getText(), metricVector.getMetric()));
+                    }
+                }
             }
         } catch (IOException ioe) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
         }
+    }
+    
+    public String cancelSelectSelected() {
+        keyWordSelectionList.clear();
+        return "/index?faces-redirect=true";
     }
 }

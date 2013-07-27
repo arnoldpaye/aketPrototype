@@ -1,12 +1,5 @@
 package com.apt.textrank;
 
-import com.apt.aket.model.WordSelection;
-import com.apt.aket.model.WordTag;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * @project aketPrototype
  * @package com.apt.textrank
@@ -15,48 +8,6 @@ import java.util.Set;
  * @author Arnold Paye
  */
 public class Util {
-
-    /**
-     * Buid adjacency matrix of wordtags.
-     *
-     * @param words
-     * @return
-     */
-    public static double[][] buildAdjacencyMatrix(List<WordSelection> wordSelections) {
-        int size = wordSelections.size();
-        double[][] graph = new double[size][size];
-        // TODO: build graph in fuction of correlation.
-        for (int i = 0; i < graph.length - 2; i++) {
-            graph[i][i + 1] = 1;
-            graph[i + 1][i] = 1;
-            graph[i][i + 2] = 1;
-            graph[i + 2][i] = 1;
-        }
-        return graph;
-    }
-
-    /**
-     * Filter part-of-speech type.
-     *
-     * @param words
-     * @return
-     */
-    public static List<WordSelection> filterPOS(List<WordTag> wordTags) {
-        Set<WordSelection> setWordSelection = new HashSet<WordSelection>();
-        List<WordSelection> wordSelections = new ArrayList<WordSelection>();
-        if (wordTags != null && wordTags.size() > 0) {
-            for (WordTag wordTag : wordTags) {
-                // Nouns, verbs and adjectives
-                if (isNoun(wordTag.getTag()) || isVerb(wordTag.getTag()) || isAdjective(wordTag.getTag())) {
-                    setWordSelection.add(new WordSelection(wordTag.getValue().toUpperCase(), Double.valueOf(0)));
-                }
-            }
-            for (WordSelection wordSelection : setWordSelection) {
-                wordSelections.add(wordSelection);
-            }
-        }
-        return wordSelections;
-    }
 
     /**
      * Create the transition probability matrix Assumptions: A is a square

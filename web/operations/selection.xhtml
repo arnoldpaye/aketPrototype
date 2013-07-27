@@ -6,32 +6,32 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core">
-    <ui:define name="title">Seleccion de palabras</ui:define>
+    <ui:define name="title">Selecci&oacute;n de palabras</ui:define>
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgSelectionText" showDetail="true" showSummary="false" closable="true" />
         <h:form id="selectionTextForm">
             <p:panel id="selectionTextPanel">
-                <p:panelGrid columns="3">
-                    <p:inputTextarea autoResize="false" cols="80" id="txtSelectedText" rows="17" value="#{textManager.selected.txtText}" />
-                    <p:panel id="pnlSelectionOptions">
-                        <h:outputText value="Categorias gramaticales:" />
-                        <p:selectManyCheckbox>
-                            <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
-                            <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
-                            <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
-                            <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
-                        </p:selectManyCheckbox>
-                        <h:outputText value="Ancho de ventana:" />
-                        <p:spinner max="5" min="2" value="2" />
-                        <p:commandButton action="#{textManager.stuff()}" value="Obtener lista de palabras" update="selectionTextPanel" />
-                    </p:panel>
-                    <p:dataList value="#{wordTagManager.wordSelections}" var="vWord" rendered="#{wordTagManager.wordSelections.size() > 0}">
-                        #{vWord.value} - #{vWord.rank}
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="1">
+                        <p:inputTextarea autoResize="false" cols="80" id="txtSelectedText" rows="17" value="#{textManager.selected.txtText}" />
+                        <p:panel>
+                            <h:outputText value="Categorias gramaticales:" />
+                            <p:selectManyCheckbox>
+                                <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
+                                <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
+                                <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
+                                <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
+                            </p:selectManyCheckbox>
+                            <p:commandButton value="Construir grafo" update="selectionTextPanel" />
+                        </p:panel>
+                    </p:panelGrid>
+                    <p:dataList value="#{textManager.keyWordSelectionList}" var="vKeyword" rendered="#{textManager.keyWordSelectionList.size() > 0}">
+                        #{vKeyword.value} - #{vKeyword.rank}
                     </p:dataList>
                 </p:panelGrid>
             </p:panel>
-            <p:commandButton action="#{wordTagManager.cancelSelectedSelection()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
-            <p:commandButton action="#{wordTagManager.initSelection()}" icon="ui-icon-gear" id="btnSelection" update="selectionTextPanel" value="Seleccionar" />
+            <p:commandButton action="#{textManager.cancelSelectSelected()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
+            <p:commandButton action="#{textManager.selectSelected()}" icon="ui-icon-gear" id="btnSelection" update="selectionTextPanel" value="Seleccionar" />
             <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
         </h:form>
     </ui:define>

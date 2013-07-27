@@ -7,7 +7,7 @@ package com.apt.aket.model;
  * @date 22/07/2013
  * @author Arnold Paye
  */
-public class WordSelection implements Comparable<WordSelection> {
+public class KeyWordSelection implements Comparable<KeyWordSelection> {
 
     private String value;
     private Double rank;
@@ -28,13 +28,13 @@ public class WordSelection implements Comparable<WordSelection> {
         this.rank = rank;
     }
 
-    public WordSelection(String value, Double rank) {
+    public KeyWordSelection(String value, Double rank) {
         this.value = value;
         this.rank = rank;
     }
 
     @Override
-    public int compareTo(WordSelection t) {
+    public int compareTo(KeyWordSelection t) {
         if (this.rank > t.rank) {
             return 0;
         } else {
