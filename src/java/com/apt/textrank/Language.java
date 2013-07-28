@@ -1,5 +1,6 @@
 package com.apt.textrank;
 
+import com.apt.Util;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Language {
 
     public void loadResources(String path) throws IOException {
         splitter = new SentenceDetector((new File(path, "SpanishSent.bin.gz")).getPath());
-        tokenizer = new Tokenizer((new File(path, "SpanishTok.bin.gz")).getPath());
+        tokenizer = new Tokenizer((new File(path, "SpanishTokChunk.bin.gz")).getPath()); //TODO: tok or tokchunk
         tagger = new PosTagger((new File(path, "SpanishPOS.bin.gz")).getPath());
         stemmer = new spanishStemmer();
     }
@@ -60,7 +61,12 @@ public class Language {
      * @return
      */
     public String[] tokenizeSentence(String sentence) {
-        return tokenizer.tokenize(sentence);
+        String[] tokenList = tokenizer.tokenize(sentence);
+        String[] tokenListClean = new String[tokenList.length];
+        for (int i = 0; i < tokenList.length; i++) {
+            tokenListClean[i] = Util.deletePuntuationSigns(tokenList[i]);
+        }
+        return tokenListClean;
     }
 
     public String[] tagTokens(String[] tokenList) {

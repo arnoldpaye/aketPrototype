@@ -1,4 +1,4 @@
-package com.apt.textrank;
+package com.apt;
 
 /**
  * @project aketPrototype
@@ -8,6 +8,25 @@ package com.apt.textrank;
  * @author Arnold Paye
  */
 public class Util {
+    
+    /**
+     * Validate the keyword based in the following format:
+     * keyword1;keyword2;keyword3 and so on.
+     * @param keywords
+     * @return 
+     */
+    public static boolean validateKeywordsText(String keywords) {
+        return true;
+    }
+    
+    public static String deletePuntuationSigns(String text) {
+        text = text.replace(".","");
+        text = text.replace(",","");
+        text = text.replace("(","");
+        text = text.replace(")","");
+        text = text.replace(";","");
+        return text;
+    }
 
     /**
      * Create the transition probability matrix Assumptions: A is a square

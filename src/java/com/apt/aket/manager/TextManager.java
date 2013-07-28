@@ -1,5 +1,6 @@
 package com.apt.aket.manager;
 
+import com.apt.Util;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Text;
@@ -123,6 +124,9 @@ public class TextManager extends DefaultManager<Text> {
         if (text.getTxtTitle().trim().isEmpty() || text.getTxtAuthor().trim().isEmpty() || text.getTxtCode().trim().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
             return "/";
+        } else if (!text.getTxtKeywordsMac().trim().isEmpty() && !Util.validateKeywordsText(text.getTxtKeywordsMac().trim())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Las palabras clave deben estar separadas por punto y coma (;)."));
+            return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
             dataStore.setAutoCommit(false);
@@ -140,7 +144,10 @@ public class TextManager extends DefaultManager<Text> {
 
     public String editSelected() throws FileNotFoundException, IOException, SQLException {
         if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty() || selected.getTxtCode().isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "codigo, Titulo y Autor son requeridos."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
+            return "/";
+        } else if (!selected.getTxtText().isEmpty() && !Util.validateKeywordsText(selected.getTxtKeywordsMac().trim())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Las palabras clave deben estar separadas por punto y coma (;)."));
             return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
@@ -161,7 +168,6 @@ public class TextManager extends DefaultManager<Text> {
         DataStore dataStore = DataStoreManager.getDataStore();
         dataStore.setAutoCommit(false);
         try {
-            dataStore.execute(getStatementReader().getStatement("deleteWordTag"), selected);
             dataStore.execute(getStatementReader().getStatement("deleteText"), selected);
             dataStore.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Texto eliminado."));
