@@ -1,7 +1,9 @@
 package com.apt.textrank;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.TreeMap;
 import org.apache.commons.math.stat.descriptive.SummaryStatistics;
 import org.apache.log4j.Logger;
@@ -20,14 +22,20 @@ public class Graph extends TreeMap<String, Node> {
     public final static double KEYWORD_REDUCTION_FACTOR = 0.8D;
     public final static double TEXTRANK_DAMPING_FACTOR = 0.85D;
     public final static double STANDARD_ERROR_THRESHOLD = 0.005D;
+    private List<Sentence> sentenceList;
     private SummaryStatistics distStat;
     private Node[] nodeList;
+
+    public List<Sentence> getSentenceList() {
+        return sentenceList;
+    }
 
     public SummaryStatistics getDistStat() {
         return distStat;
     }
 
     public Graph() {
+        sentenceList = new ArrayList<Sentence>();
         distStat = new SummaryStatistics();
     }
 
@@ -104,6 +112,21 @@ public class Graph extends TreeMap<String, Node> {
             for (Node internalNode : node.getEdges()) {
                 stringBuilder.append('\t').append(internalNode.toString()).append('\n');
             }
+        }
+        return stringBuilder.toString();
+    }
+    
+    public String renderHtml() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Node node : values()) {
+            stringBuilder.append("<h3>");
+            stringBuilder.append(node.getNodeValueText()).append("-");
+            stringBuilder.append(((KeyWord)node.getNodeValue()).getPos());
+            stringBuilder.append("</h3>");
+            for (Node internalNode : node.getEdges()) {
+                stringBuilder.append("(").append(internalNode.getNodeValueText()).append(")");
+            }
+            stringBuilder.append("</ br>");
         }
         return stringBuilder.toString();
     }

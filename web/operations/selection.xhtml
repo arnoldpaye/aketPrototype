@@ -15,19 +15,24 @@
                     <p:panelGrid columns="1">
                         <p:inputTextarea autoResize="false" cols="80" id="txtSelectedText" rows="17" value="#{textManager.selected.txtText}" />
                         <p:panel>
-                            <h:outputText value="Categorias gramaticales:" />
-                            <p:selectManyCheckbox>
-                                <f:selectItem itemLabel="Determinante" itemValue="Determinante" />
-                                <f:selectItem itemLabel="Sustantivo" itemValue="Sustantivo" />
-                                <f:selectItem itemLabel="Verbo" itemValue="Verbo" />
-                                <f:selectItem itemLabel="Pronombre" itemValue="Pronombre" />
+                            <h:outputText value="Categor&iacute;as gramaticales:" />
+                            <p:selectManyCheckbox value="#{textManager.posFilterList}">
+                                <f:selectItem itemLabel="Sustantivo" itemValue="NC" />
+                                <f:selectItem itemLabel="Verbo" itemValue="V" />
+                                <f:selectItem itemLabel="Adjetivo" itemValue="AQ" />
+                                <f:selectItem itemLabel="Pronombre" itemValue="PP" />
                             </p:selectManyCheckbox>
-                            <p:commandButton value="Construir grafo" update="selectionTextPanel" />
+                            <p:commandButton action="#{textManager.buildGraph()}" value="Construir grafo" update="selectionTextPanel" />
                         </p:panel>
                     </p:panelGrid>
-                    <p:dataList value="#{textManager.keyWordSelectionList}" var="vKeyword" rendered="#{textManager.keyWordSelectionList.size() > 0}">
-                        #{vKeyword.value} - #{vKeyword.rank}
-                    </p:dataList>
+                    <p:outputPanel id="graphPanel" rendered="#{!textManager.switchDisplayGraph}">
+                        <h:outputLabel value="#{textManager.graph.renderHtml()}" escape="false" />
+                    </p:outputPanel>
+                    <p:outputPanel id="KeyWordsPanel" rendered="#{textManager.switchDisplayGraph}">
+                        <p:dataList value="#{textManager.keyWordSelectionList}" var="vKeyword" rendered="#{textManager.keyWordSelectionList.size() > 0}">
+                            #{vKeyword.value} - #{vKeyword.rank}
+                        </p:dataList>
+                    </p:outputPanel>
                 </p:panelGrid>
             </p:panel>
             <p:commandButton action="#{textManager.cancelSelectSelected()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />

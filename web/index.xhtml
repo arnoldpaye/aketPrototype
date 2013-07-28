@@ -37,12 +37,12 @@
                     <p:commandLink action="text/editText?faces-redirect=true" value="Editar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
-                    <p:spacer width="10" />
-                    <p:commandLink action="operations/classification?faces-redirect=true" value="Clasificaci&oacute;n">
+<!--                    <p:spacer width="10" />
+                    <p:commandLink action="operations/classification?faces-redirect=true" disabled="true" value="Clasificaci&oacute;n">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
-                    </p:commandLink>
+                    </p:commandLink>-->
                     <p:spacer width="10" />
-                    <p:commandLink action="operations/selection?faces-redirect=true" disabled="#{not vText.txtTextClassified}" value="Selecci&oacute;n">
+                    <p:commandLink action="operations/selection?faces-redirect=true" value="Selecci&oacute;n">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                 </p:column>

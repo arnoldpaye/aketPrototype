@@ -1,5 +1,6 @@
 package com.apt.textrank;
 
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -32,7 +33,7 @@ public class Sentence {
         return nodeList;
     }
 
-    public void mapTokens(Language language, Graph graph) {
+    public void mapTokens(Language language, Graph graph, List<String> postFilterList) {
         tokenList = language.tokenizeSentence(text);
         String[] tagList = language.tagTokens(tokenList);
 //        log.debug(text);
@@ -46,7 +47,7 @@ public class Sentence {
             String pos = tagList[i];
             String token = tokenList[i];
             log.debug("token: " + tokenList[i] + " pos tag: " + pos);
-            if (language.isRelevant(pos)) {
+            if (language.isRelevant(pos, postFilterList)) {
                 log.debug("isRelevant: " + token + "->" + pos);
                 String key = language.getNodeKey(token, pos);
                 KeyWord keyWord = new KeyWord(token, pos);

@@ -3,6 +3,7 @@ package com.apt.aket.manager;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Text;
+import com.apt.textrank.Graph;
 import com.apt.textrank.MetricVector;
 import com.apt.textrank.NGram;
 import com.apt.textrank.TextRank;
@@ -40,11 +41,18 @@ import org.primefaces.model.UploadedFile;
 public class TextManager extends DefaultManager<Text> {
 
     static Logger log = Logger.getLogger(TextManager.class);
+    private boolean switchDisplayGraph;
     private UploadedFile txtFile;
     private UploadedFile pdfFile;
+    private Graph graph;
     private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
+    private List<String> posFilterList;
 
     // Getters and setters******************************************************
+    public boolean isSwitchDisplayGraph() {
+        return switchDisplayGraph;
+    }
+
     public UploadedFile getTxtFile() {
         return txtFile;
     }
@@ -61,12 +69,24 @@ public class TextManager extends DefaultManager<Text> {
         this.pdfFile = pdfFile;
     }
 
+    public Graph getGraph() {
+        return graph;
+    }
+
     public List<KeyWordSelection> getKeyWordSelectionList() {
         return keyWordSelectionList;
     }
 
     public void setKeyWordSelectionList(List<KeyWordSelection> keyWordSelectionList) {
         this.keyWordSelectionList = keyWordSelectionList;
+    }
+
+    public List<String> getPosFilterList() {
+        return posFilterList;
+    }
+
+    public void setPosFilterList(List<String> posFilterList) {
+        this.posFilterList = posFilterList;
     }
 
     //**************************************************************************
@@ -218,18 +238,47 @@ public class TextManager extends DefaultManager<Text> {
             text.setTxtText("");
         }
     }
-    
+
+    public void buildGraph() {
+        TextRank textRank = new TextRank();
+        String path = System.getProperty("catalina.home") + "/resourcesNLP";
+        try {
+            if (posFilterList == null || posFilterList.isEmpty()) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe seleccionar las categorias gramaticales."));
+            } else {
+                if (selected != null) {
+                    graph = textRank.buildGraph(selected.getTxtText(), path, posFilterList);
+                    switchDisplayGraph = false;
+                }
+            }
+
+        } catch (IOException ioe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+        }
+    }
+
     public void selectSelected() {
         TextRank textRank = new TextRank();
+        String path = System.getProperty("catalina.home") + "/resourcesNLP";
         try {
             if (selected != null) {
-                Map<NGram, MetricVector> metricSpace = textRank.init(selected.getTxtText());
-                TreeSet<MetricVector> keyPraseList = new TreeSet<MetricVector>(metricSpace.values());
-                for (MetricVector metricVector : keyPraseList) {
-                    if (metricVector.getMetric() >= TextRank.MIN_NORMALIZED_RANK) {
-                        keyWordSelectionList.add(new KeyWordSelection(metricVector.getNodeValue().getText(), metricVector.getMetric()));
+                if (graph != null) {
+                    keyWordSelectionList.clear();
+                    Graph copyGraph = graph; // The structure of graph change within the process
+                    Map<NGram, MetricVector> metricSpace = textRank.init(copyGraph, path);
+                    TreeSet<MetricVector> keyPraseList = new TreeSet<MetricVector>(metricSpace.values());
+                    for (MetricVector metricVector : keyPraseList) {
+                        if (metricVector.getMetric() >= TextRank.MIN_NORMALIZED_RANK) {
+                            keyWordSelectionList.add(new KeyWordSelection(metricVector.getNodeValue().getText(), metricVector.getMetric()));
+                        }
                     }
+                    switchDisplayGraph = true;
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe construir el grafo."));
                 }
+
             }
         } catch (IOException ioe) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
@@ -237,8 +286,9 @@ public class TextManager extends DefaultManager<Text> {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
         }
     }
-    
+
     public String cancelSelectSelected() {
+        graph = null;
         keyWordSelectionList.clear();
         return "/index?faces-redirect=true";
     }

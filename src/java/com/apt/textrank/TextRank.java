@@ -3,6 +3,7 @@ package com.apt.textrank;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import org.apache.log4j.Logger;
@@ -19,22 +20,23 @@ public class TextRank {
     static Logger log = Logger.getLogger(TextRank.class);
     public final static double MIN_NORMALIZED_RANK = 0.05;
     public final static int MAX_NGRAM_LENGTH = 5;
-    private Map<NGram, MetricVector> metricSpace;
 
-    public Map<NGram, MetricVector> init(String text) throws IOException {
-        metricSpace = new HashMap<NGram, MetricVector>();
-        Language language = Language.buildLanguage(System.getProperty("catalina.home") + "/resourcesNLP");
-        ArrayList<Sentence> sentences = new ArrayList<Sentence>();
+    public Graph buildGraph(String tex, String path, List<String> posFilterList) throws IOException {
+        log.debug("POS_FILTER_LIST " + posFilterList);
+        Language language = Language.buildLanguage(path);
         Graph graph = new Graph();
-        Graph ngramSubgraph;
-        // Pass 1: construc a graph from PoS tag*********************************************************
-        for (String splitText : language.splitParagraph(text)) {
-//            log.debug("Sentence->" + splitText);
+        for (String splitText : language.splitParagraph(tex)) {
             Sentence sentence = new Sentence(splitText);
-            sentence.mapTokens(language, graph);
-            sentences.add(sentence);
-            log.debug("sentence: " + sentence.getText());
+            sentence.mapTokens(language, graph,posFilterList);
+            graph.getSentenceList().add(sentence);
         }
+        return graph;
+    }
+
+    public Map<NGram, MetricVector> init(Graph graph, String path) throws IOException {
+        Map<NGram, MetricVector> metricSpace = new HashMap<NGram, MetricVector>();
+        Language language = Language.buildLanguage(path);
+        Graph ngramSubgraph;
         log.debug(graph.toString());
         log.info("\t\t\t" + "CONSTRUCT_GRAPH");
         // Pass 2: run TextRank to determine keywords****************************************************
@@ -43,7 +45,7 @@ public class TextRank {
         graph.runTextRank();
         graph.sortResults(maxResults);
         log.debug("GraphRankThreshold " + graph.getRankThreshold());
-        ngramSubgraph = NGram.collectNGrams(language, sentences, graph.getRankThreshold());
+        ngramSubgraph = NGram.collectNGrams(language, graph.getSentenceList(), graph.getRankThreshold());
 //        log.debug(graph.toString());
         log.debug(ngramSubgraph.toString());
         log.info("\t\t\t" + "BASIC_TEXTRANK");

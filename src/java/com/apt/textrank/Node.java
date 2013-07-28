@@ -89,4 +89,8 @@ public class Node implements Comparable<Node> {
             return this.getNodeValue().text.compareTo(that.getNodeValue().text);
         }
     }
+    
+    public String getNodeValueText() {
+        return nodeValue.getText();
+    }
 }

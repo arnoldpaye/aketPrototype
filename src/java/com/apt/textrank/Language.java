@@ -2,6 +2,7 @@ package com.apt.textrank;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import opennlp.tools.lang.spanish.PosTagger;
 import opennlp.tools.lang.spanish.SentenceDetector;
 import opennlp.tools.lang.spanish.Tokenizer;
@@ -87,6 +88,10 @@ public class Language {
     
     public boolean isRelevant(String pos) {
         return isNoun(pos) || isAdjective(pos);
+    }
+    
+    public boolean isRelevant(String pos, List<String> posFilterList) {
+        return posFilterList.contains(pos);
     }
     
     public boolean isNoun(String pos) {
