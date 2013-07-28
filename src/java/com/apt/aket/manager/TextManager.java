@@ -120,8 +120,8 @@ public class TextManager extends DefaultManager<Text> {
     public String insertItem() throws FileNotFoundException, IOException, SQLException {
         log.debug("Enter insertItem method");
         Text text = JEEContext.getRequestScopedBean(Text.class);
-        if (text.getTxtTitle().trim().isEmpty() || text.getTxtAuthor().trim().isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Titulo y Autor son requeridos."));
+        if (text.getTxtTitle().trim().isEmpty() || text.getTxtAuthor().trim().isEmpty() || text.getTxtCode().trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
             return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
@@ -139,8 +139,8 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public String editSelected() throws FileNotFoundException, IOException, SQLException {
-        if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Titulo y Autor son requeridos."));
+        if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty() || selected.getTxtCode().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "codigo, Titulo y Autor son requeridos."));
             return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
@@ -225,6 +225,7 @@ public class TextManager extends DefaultManager<Text> {
         Text text = JEEContext.getRequestScopedBean(Text.class);
         if (text != null) {
             text.setTxtTitle("");
+            text.setTxtCode("");
             text.setTxtAuthor("");
             text.setTxtText("");
         }
@@ -234,6 +235,7 @@ public class TextManager extends DefaultManager<Text> {
         Text text = selected;
         if (text != null) {
             text.setTxtTitle("");
+            text.setTxtCode("");
             text.setTxtAuthor("");
             text.setTxtText("");
         }

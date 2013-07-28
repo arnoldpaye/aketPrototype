@@ -17,14 +17,14 @@ public class Text {
 
     @Column("txt_id")
     private int txtId;
+    @Column("txt_code")
+    private String txtCode;
     @Column("txt_title")
     private String txtTitle;
     @Column("txt_author")
     private String txtAuthor;
     @Column("txt_text")
     private String txtText;
-    @Column("txt_text_classified")
-    private boolean txtTextClassified;
     @Column("txt_keywords_mac")
     private String txtKeywordsMac;
     @Column("txt_keywords_textrank")
@@ -36,6 +36,14 @@ public class Text {
 
     public void setTxtId(int txtId) {
         this.txtId = txtId;
+    }
+
+    public String getTxtCode() {
+        return txtCode;
+    }
+
+    public void setTxtCode(String txtCode) {
+        this.txtCode = txtCode;
     }
 
     public String getTxtTitle() {
@@ -60,14 +68,6 @@ public class Text {
 
     public void setTxtText(String txtText) {
         this.txtText = txtText;
-    }
-
-    public boolean isTxtTextClassified() {
-        return txtTextClassified;
-    }
-
-    public void setTxtTextClassified(boolean txtTextClassified) {
-        this.txtTextClassified = txtTextClassified;
     }
 
     public String getTxtKeywordsMac() {

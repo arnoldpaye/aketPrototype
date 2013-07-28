@@ -2,37 +2,23 @@
 <statements>
     <st id ="getAllTexts">
         SELECT 
-        txt_id, txt_title, txt_author, txt_text, txt_text_classified,
+        txt_id, txt_code, txt_title, txt_author, txt_text,
         txt_keywords_mac, txt_keywords_textrank
         FROM text;
     </st>
     <st id="insertText">
-        INSERT INTO text(txt_title, txt_author, txt_text, txt_text_classified, txt_keywords_mac)
-        VALUES (#{txtTitle}, #{txtAuthor}, #{txtText}, #{txtTextClassified}, #{txtKeywordsMac});
+        INSERT INTO text(txt_code, txt_title, txt_author, txt_text, txt_keywords_mac)
+        VALUES (#{txtCode}, #{txtTitle}, #{txtAuthor}, #{txtText}, #{txtKeywordsMac});
     </st>
     <st id="editText">
         UPDATE text
         SET
-        txt_title=#{txtTitle}, txt_author=#{txtAuthor}, txt_text=#{txtText},
-        txt_keywords_mac = #{txtKeywordsMac}
+        txt_code = #{txtCode}, txt_title=#{txtTitle}, txt_author=#{txtAuthor}, 
+        txt_text=#{txtText}, txt_keywords_mac = #{txtKeywordsMac}
         WHERE txt_id = #{txtId};
     </st>
     <st id="deleteText">
         DELETE FROM text
         WHERE txt_id = #{txtId};
-    </st>
-    <st id="classifyText">
-        UPDATE text
-        SET
-        txt_text_classified = TRUE
-        WHERE txt_id = #{txtId};
-    </st>
-    <st id="insertWordTag">
-        INSERT INTO word_tag(wtg_txt_id, wtg_value, wtg_tag)
-        VALUES (#{textId}, #{value}, #{tag});
-    </st>
-    <st id="deleteWordTag">
-        DELETE FROM word_tag
-        WHERE wtg_txt_id = #{txtId};
     </st>
 </statements>

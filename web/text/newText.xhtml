@@ -11,8 +11,10 @@
         <p:messages autoUpdate="true" id="msgNewText" showDetail="true" showSummary="false" closable="true" />
         <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="newTextForm">
             <p:panelGrid columns="2">
-                <h:outputText value="Titulo"/>
+                <h:outputText value="T&iacute;tulo"/>
                 <p:inputText id="txtTitle" value="#{text.txtTitle}" style="width: 400px" />
+                <h:outputText value="C&oacute;digo"/>
+                <p:inputText id="txtCode" value="#{text.txtCode}" style="width: 400px" />
                 <h:outputText value="Autor" />
                 <p:inputText id="txtAuthor" value="#{text.txtAuthor}" style="width: 400px" />
                 <h:outputText value="Palabras clave" />
