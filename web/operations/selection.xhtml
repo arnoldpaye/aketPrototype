@@ -37,7 +37,7 @@
             </p:panel>
             <p:commandButton action="#{textManager.cancelSelectSelected()}" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
             <p:commandButton action="#{textManager.selectSelected()}" icon="ui-icon-gear" id="btnSelection" update="selectionTextPanel" value="Seleccionar" />
-            <p:commandButton icon="ui-icon-disk" id="btnSave" value="Guardar" />
+            <p:commandButton action="#{textManager.saveSelectSelected()}" icon="ui-icon-disk" id="btnSave" value="Guardar" />
         </h:form>
     </ui:define>
 </ui:composition>

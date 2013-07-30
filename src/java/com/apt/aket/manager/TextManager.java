@@ -295,6 +295,32 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    public String saveSelectSelected() {
+        if (keyWordSelectionList.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe realizar la seleccion de palabras clave."));
+            return "/";
+        } else {
+            try {
+                String keyWordsText = "";
+                for (KeyWordSelection keyWordSelection : keyWordSelectionList) {
+                    keyWordsText += keyWordSelection.getValue().trim().toUpperCase() + ";";
+                }
+                selected.setTxtKeywordsTextRank(keyWordsText);
+                DataStore dataStore = DataStoreManager.getDataStore();
+                dataStore.setAutoCommit(false);
+                dataStore.execute(getStatementReader().getStatement("updateKeyWords"), selected);
+                dataStore.commit();
+                return "/index?faces-redirect=true";
+            } catch (IOException ioe) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+                return "/";
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+                return "/";
+            }
+        }
+    }
+
     public String cancelSelectSelected() {
         graph = null;
         keyWordSelectionList.clear();

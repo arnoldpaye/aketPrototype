@@ -33,5 +33,14 @@
             <to-view-id>/operations/classification.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/operations/selection.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{textManager.saveSelectSelected()}</from-action>
+            <from-outcome>/</from-outcome>
+            <to-view-id>/operations/selection.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

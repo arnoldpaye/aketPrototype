@@ -21,4 +21,9 @@
         DELETE FROM text
         WHERE txt_id = #{txtId};
     </st>
+    <st id="updateKeyWords">
+        UPDATE text
+        SET txt_keywords_textrank = #{txtKeywordsTextRank}
+        WHERE txt_id=#{txtId};
+    </st>
 </statements>
