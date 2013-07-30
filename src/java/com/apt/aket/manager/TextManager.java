@@ -2,6 +2,7 @@ package com.apt.aket.manager;
 
 import com.apt.Util;
 import com.apt.aket.data.DataStoreManager;
+import com.apt.aket.model.Evaluation;
 import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Text;
 import com.apt.textrank.Graph;
@@ -48,6 +49,9 @@ public class TextManager extends DefaultManager<Text> {
     private Graph graph;
     private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
     private List<String> posFilterList;
+    private double precision;
+    private double recall;
+    private double fMeasure;
 
     // Getters and setters******************************************************
     public boolean isSwitchDisplayGraph() {
@@ -88,6 +92,18 @@ public class TextManager extends DefaultManager<Text> {
 
     public void setPosFilterList(List<String> posFilterList) {
         this.posFilterList = posFilterList;
+    }
+
+    public double getPrecision() {
+        return precision;
+    }
+
+    public double getRecall() {
+        return recall;
+    }
+
+    public double getfMeasure() {
+        return fMeasure;
     }
 
     //**************************************************************************
@@ -325,5 +341,30 @@ public class TextManager extends DefaultManager<Text> {
         graph = null;
         keyWordSelectionList.clear();
         return "/index?faces-redirect=true";
+    }
+
+    public void evaluation() {
+        precision = 0.1D;
+        recall = 0.2D;
+        fMeasure = 0.5D;
+    }
+
+    public void saveEvaluation() {
+        if (selected != null) {
+            Evaluation evaluation = new Evaluation(selected.getTxtId(), precision, recall, fMeasure);
+            try {
+                EvaluationManager evaluationManager = new EvaluationManager();
+                evaluationManager.insertItem(evaluation);
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+            } catch (IOException ioe) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+            }
+        }
+
+
     }
 }

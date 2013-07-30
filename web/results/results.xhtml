@@ -7,5 +7,22 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Resultados</ui:define>
     <ui:define name="content">
+        <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.data}" var="vEvaluation">
+            <p:column headerText="Id">
+                <h:outputText value="#{vEvaluation.evId}" />
+            </p:column>
+            <p:column headerText="Texto">
+                <h:outputText value="#{vEvaluation.txtTitle}" />
+            </p:column>
+            <p:column headerText="Precisi&oacute;n">
+                <h:outputText value="#{vEvaluation.evPrecision}" />
+            </p:column>
+            <p:column headerText="Exhaustividad">
+                <h:outputText value="#{vEvaluation.evRecall}" />
+            </p:column>
+            <p:column headerText="Valor-F">
+                <h:outputText value="#{vEvaluation.evFMeasure}" />
+            </p:column>
+        </p:dataTable>
     </ui:define>
 </ui:composition>

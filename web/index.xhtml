@@ -40,20 +40,34 @@
                     <p:commandLink action="text/editText?faces-redirect=true" value="Editar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
-<!--                    <p:spacer width="10" />
-                    <p:commandLink action="operations/classification?faces-redirect=true" disabled="true" value="Clasificaci&oacute;n">
-                        <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
-                    </p:commandLink>-->
                     <p:spacer width="10" />
                     <p:commandLink action="operations/selection?faces-redirect=true" value="Selecci&oacute;n">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
+                    <p:spacer width="10" />
+                    <p:commandLink action="#{textManager.evaluation}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
+                        <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
+                    </p:commandLink>
                 </p:column>
             </p:dataTable>
+            <!-- Delete Dialog -->
             <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
                 <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
                 <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
             </p:confirmDialog>
+            <!-- Evaluation Dialog -->
+            <p:dialog id="dlgEvaluationId" modal="true" widgetVar="dlgEvaluation">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Precision" />
+                    <p:outputLabel value="#{textManager.precision}" />
+                    <h:outputText value="Exhaustividad" />
+                    <p:outputLabel value="#{textManager.recall}" />
+                    <h:outputText value="Valor-F" />
+                    <h:outputLabel value="#{textManager.fMeasure}" />
+                </p:panelGrid>
+                <p:commandButton onclick="dlgEvaluation.hide()" icon="ui-icon-cancel" value="Cancelar" />
+                <p:commandButton action="#{textManager.saveEvaluation()}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide()" value="Guardar" />
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>
