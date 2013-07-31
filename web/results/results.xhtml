@@ -2,27 +2,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition
     template="../base-template.xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Resultados</ui:define>
     <ui:define name="content">
-        <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.data}" var="vEvaluation">
-            <p:column headerText="Id">
-                <h:outputText value="#{vEvaluation.evId}" />
-            </p:column>
-            <p:column headerText="Texto">
-                <h:outputText value="#{vEvaluation.txtTitle}" />
-            </p:column>
-            <p:column headerText="Precisi&oacute;n">
-                <h:outputText value="#{vEvaluation.evPrecision}" />
-            </p:column>
-            <p:column headerText="Exhaustividad">
-                <h:outputText value="#{vEvaluation.evRecall}" />
-            </p:column>
-            <p:column headerText="Valor-F">
-                <h:outputText value="#{vEvaluation.evFMeasure}" />
-            </p:column>
-        </p:dataTable>
+        <p:messages autoUpdate="true" id="msgEvaluation" showDetail="true" showSummary="false" closable="true" />
+        <h:form id="mainForm">
+            <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.data}" var="vEvaluation">
+                <p:column style="width: 30px">
+                    <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteEvaluation.show()" update=":mainForm">
+                        <f:setPropertyActionListener value="#{vEvaluation}" target="#{evaluationManager.selected}" />
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Id">
+                    <h:outputText value="#{vEvaluation.evId}" />
+                </p:column>
+                <p:column headerText="Texto">
+                    <h:outputText value="#{vEvaluation.txtTitle}" />
+                </p:column>
+                <p:column headerText="Precisi&oacute;n" style="text-align: right;">
+                    <h:outputText value="#{vEvaluation.evPrecision}" />
+                    <f:facet name="footer">
+                        #{evaluationManager.precisionMean}
+                    </f:facet>
+                </p:column>
+                <p:column headerText="Exhaustividad" style="text-align: right;">
+                    <h:outputText value="#{vEvaluation.evRecall}" />
+                    <f:facet name="footer">
+                        #{evaluationManager.recallMean}
+                    </f:facet>
+                </p:column>
+                <p:column headerText="Valor-F" style="text-align: right;">
+                    <h:outputText value="#{vEvaluation.evFMeasure}" />
+                    <f:facet name="footer">
+                        #{evaluationManager.FMeasureMean}
+                    </f:facet>
+                </p:column>
+            </p:dataTable>
+            <!-- Delete Dialog -->
+            <p:confirmDialog header="Eliminar Evaluacion"  message="¿Desea eliminar la evaluacion seleccionada?" severity="alert" widgetVar="dlgDeleteEvaluation">
+                <p:commandButton value="Si" oncomplete="dlgDeleteEvaluation.hide()" update=":mainForm" actionListener="#{evaluationManager.deleteSelected()}" />
+                <p:commandButton value="No" onclick="dlgDeleteEvaluation.hide()" />
+            </p:confirmDialog>
+        </h:form>
     </ui:define>
 </ui:composition>

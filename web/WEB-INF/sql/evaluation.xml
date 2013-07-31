@@ -5,8 +5,16 @@
         e.ev_id, t.txt_title, e.ev_precision, e.ev_recall, e.ev_fmeasure
         FROM evaluation e INNER JOIN text t ON e.ev_txt_id = t.txt_id;
     </st>
+    <st id="deleteLastEvaluation">
+        DELETE FROM evaluation
+        WHERE ev_txt_id = #{evTxtId};
+    </st>
     <st id="insertEvaluation">
         INSERT INTO evaluation(ev_txt_id, ev_precision, ev_recall, ev_fmeasure)
-         VALUES (#{evTxtId}, #{evRecall}, #{evPrecision}, #{evFMeasure});
+        VALUES (#{evTxtId}, #{evPrecision}, #{evRecall}, #{evFMeasure});
+    </st>
+    <st id="deleteEvaluation">
+        DELETE FROM evaluation
+        WHERE ev_id = #{evId};
     </st>
 </statements>

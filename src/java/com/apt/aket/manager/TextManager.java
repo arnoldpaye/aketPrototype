@@ -22,6 +22,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.apache.commons.math.util.MathUtils;
 import org.apache.log4j.Logger;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
@@ -344,9 +345,14 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public void evaluation() {
-        precision = 0.1D;
-        recall = 0.2D;
-        fMeasure = 0.5D;
+        if (selected != null) {
+            String[] keyWordMac = selected.getTxtKeywordsMac().split(";");
+            String[] keyWordTextRank = selected.getTxtKeywordsTextRank().split(";");
+            double[] e = Util.evaluate(keyWordMac, keyWordTextRank);
+            precision = MathUtils.round(e[0], 2);
+            recall = MathUtils.round(e[1], 2);
+            fMeasure = MathUtils.round(e[2], 2);
+        }
     }
 
     public void saveEvaluation() {
@@ -355,7 +361,7 @@ public class TextManager extends DefaultManager<Text> {
             try {
                 EvaluationManager evaluationManager = new EvaluationManager();
                 evaluationManager.insertItem(evaluation);
-                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
             } catch (SQLException sqle) {
@@ -364,7 +370,5 @@ public class TextManager extends DefaultManager<Text> {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
             }
         }
-
-
     }
 }

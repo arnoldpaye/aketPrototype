@@ -1,5 +1,9 @@
 package com.apt;
 
+import java.text.Collator;
+import java.util.Locale;
+import org.apache.log4j.Logger;
+
 /**
  * @project aketPrototype
  * @package com.apt.textrank
@@ -8,23 +12,26 @@ package com.apt;
  * @author Arnold Paye
  */
 public class Util {
-    
+
+    static Logger log = Logger.getLogger(Util.class);
+
     /**
      * Validate the keyword based in the following format:
      * keyword1;keyword2;keyword3 and so on.
+     *
      * @param keywords
-     * @return 
+     * @return
      */
     public static boolean validateKeywordsText(String keywords) {
         return true;
     }
-    
+
     public static String deletePuntuationSigns(String text) {
-        text = text.replace(".","");
-        text = text.replace(",","");
-        text = text.replace("(","");
-        text = text.replace(")","");
-        text = text.replace(";","");
+        text = text.replace(".", "");
+        text = text.replace(",", "");
+        text = text.replace("(", "");
+        text = text.replace(")", "");
+        text = text.replace(";", "");
         return text;
     }
 
@@ -126,5 +133,42 @@ public class Util {
 
     public static boolean isAdjective(String tag) {
         return tag.startsWith("AQ");
+    }
+
+    public static double[] evaluate(String[] keyWordMac, String[] keyWordTextRank) {
+        System.out.println("Set of relevant items: " + keyWordMac.length);
+//        for (String s : keyWordMac) {
+//            System.out.println(s);
+//        }
+        System.out.println("Set of items retrieved: " + keyWordTextRank.length);
+//        for (String s : keyWordTextRank) {
+//            System.out.println(s);
+//        }
+        int itemsCounterEquals = 0;
+        Collator collator = Collator.getInstance(new Locale("es", "ES"));
+        collator.setStrength(Collator.PRIMARY);
+        for (String s1 : keyWordMac) {
+            for (String s2 : keyWordTextRank) {
+                if (collator.compare(s1, s2) == 0) {
+                    System.out.println(s1 + " is equals to " + s2);
+                    itemsCounterEquals++;
+                }
+            }
+        }
+        System.out.println("itemsCounterEquals: " + itemsCounterEquals);
+        int a = itemsCounterEquals;
+        int b = keyWordMac.length - itemsCounterEquals;
+        int c = keyWordTextRank.length - itemsCounterEquals;
+
+
+
+        double[] e = new double[3];
+        // precision************************************************************
+        e[0] = (double) a / (a + c) * 100;
+        // recall***************************************************************
+        e[1] = (double) a / (a + b) * 100;
+        // f-measure************************************************************
+        e[2] = 2 * (e[0] * e[1]) / (e[0] + e[1]);
+        return e;
     }
 }
