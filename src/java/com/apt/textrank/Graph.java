@@ -55,6 +55,7 @@ public class Graph extends TreeMap<String, Node> {
                 distStat.addValue(Math.abs(node.getRank() - rank));
             }
             double standardError = distStat.getStandardDeviation() / Math.sqrt((double) distStat.getN());
+//            System.out.println("iteration: " + k + " error: " + standardError);
             log.info("iteration: " + k + " error: " + standardError);
             for (int i = 0; i < nodeList.length; i++) {
                 nodeList[i].setRank(rankList[i]);
@@ -73,6 +74,8 @@ public class Graph extends TreeMap<String, Node> {
         for (Node node : this.values()) {
             nodeList[i++] = node;
         }
+//        System.out.println("RUN_TEXT_RANK " + nodeList.length);
+//        System.out.println("MAX_ITERATIONS " + maxIterations);
         iterateGraph(maxIterations);
     }
 
@@ -107,8 +110,9 @@ public class Graph extends TreeMap<String, Node> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');
+        int i = 0;
         for (Node node : values()) {
-            stringBuilder.append(node.toString()).append('\n');
+            stringBuilder.append("(").append(i++).append(")").append(node.toString()).append('\n');
             for (Node internalNode : node.getEdges()) {
                 stringBuilder.append('\t').append(internalNode.toString()).append('\n');
             }

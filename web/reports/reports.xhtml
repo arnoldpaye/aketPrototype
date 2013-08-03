@@ -7,5 +7,6 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Reportes</ui:define>
     <ui:define name="content">
+        <p:lineChart legendPosition="e" maxY="100" minY="0" title="LinearChart" value="#{reportManager.linearModel}" />
     </ui:define>
 </ui:composition>

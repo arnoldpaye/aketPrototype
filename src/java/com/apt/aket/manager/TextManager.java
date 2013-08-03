@@ -49,7 +49,7 @@ public class TextManager extends DefaultManager<Text> {
     private UploadedFile pdfFile;
     private Graph graph;
     private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
-    private List<String> posFilterList;
+    private List<String> posFilterList = new ArrayList<String>();
     private double precision;
     private double recall;
     private double fMeasure;
@@ -126,6 +126,8 @@ public class TextManager extends DefaultManager<Text> {
         } catch (IOException ioe) {
             log.error("IOException in fetchDataFromDataSource method->" + ioe.getMessage());
         } finally {
+            posFilterList.add("AQ");
+            posFilterList.add("NC");
             return data;
         }
     }
