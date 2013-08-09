@@ -135,8 +135,8 @@ public class Util {
         return tag.startsWith("AQ");
     }
 
-    public static double[] evaluate(String[] keyWordMac, String[] keyWordTextRank) {
-        System.out.println("Set of relevant items: " + keyWordMac.length);
+    public static double[] evaluate(String[] keyWord, String[] keyWordTextRank) {
+        System.out.println("Set of relevant items: " + keyWord.length);
 //        for (String s : keyWordMac) {
 //            System.out.println(s);
 //        }
@@ -147,7 +147,7 @@ public class Util {
         int itemsCounterEquals = 0;
         Collator collator = Collator.getInstance(new Locale("es", "ES"));
         collator.setStrength(Collator.PRIMARY);
-        for (String s1 : keyWordMac) {
+        for (String s1 : keyWord) {
             for (String s2 : keyWordTextRank) {
                 if (collator.compare(s1, s2) == 0) {
                     System.out.println(s1 + " is equals to " + s2);
@@ -157,7 +157,7 @@ public class Util {
         }
         System.out.println("itemsCounterEquals: " + itemsCounterEquals);
         int a = itemsCounterEquals;
-        int b = keyWordMac.length - itemsCounterEquals;
+        int b = keyWord.length - itemsCounterEquals;
         int c = keyWordTextRank.length - itemsCounterEquals;
 
 

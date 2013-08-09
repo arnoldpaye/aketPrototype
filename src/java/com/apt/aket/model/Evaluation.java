@@ -10,21 +10,28 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  * @author Arnold Paye
  */
 public class Evaluation {
-
     @Column("ev_id")
     private int evId;
-    @Column("ev_txt_id")
-    private int evTxtId;
-    @Column("txt_title")
-    private String txtTitle;
+    @Column("ev_kw_id")
+    private int evKwId;
     @Column("ev_precision")
     private double evPrecision;
     @Column("ev_recall")
     private double evRecall;
     @Column("ev_fmeasure")
     private double evFMeasure;
+    
+    public Evaluation() {
+        
+    }
+    
+    public Evaluation(int evKwId, double evPrecision, double evRecall, double evFMeasure) {
+        this.evKwId = evKwId;
+        this.evPrecision = evPrecision;
+        this.evRecall = evRecall;
+        this.evFMeasure = evFMeasure;
+    }
 
-    //Getters and setters*******************************************************
     public int getEvId() {
         return evId;
     }
@@ -33,20 +40,12 @@ public class Evaluation {
         this.evId = evId;
     }
 
-    public int getEvTxtId() {
-        return evTxtId;
+    public int getEvKwId() {
+        return evKwId;
     }
 
-    public String getTxtTitle() {
-        return txtTitle;
-    }
-
-    public void setTxtTitle(String txtTitle) {
-        this.txtTitle = txtTitle;
-    }
-
-    public void setEvTxtId(int evTxtId) {
-        this.evTxtId = evTxtId;
+    public void setEvKwId(int evKwId) {
+        this.evKwId = evKwId;
     }
 
     public double getEvPrecision() {
@@ -72,15 +71,6 @@ public class Evaluation {
     public void setEvFMeasure(double evFMeasure) {
         this.evFMeasure = evFMeasure;
     }
-
-    //**************************************************************************
-    public Evaluation() {
-    }
-
-    public Evaluation(int evTxtId, double evPrecision, double evRecall, double evFMeasure) {
-        this.evTxtId = evTxtId;
-        this.evPrecision = evPrecision;
-        this.evRecall = evRecall;
-        this.evFMeasure = evFMeasure;
-    }
+    
+    
 }

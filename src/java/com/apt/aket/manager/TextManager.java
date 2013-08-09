@@ -1,5 +1,6 @@
 package com.apt.aket.manager;
 
+import com.apt.Util;
 import com.apt.aket.data.CommonResultHandler;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Evaluation;
@@ -51,9 +52,9 @@ public class TextManager extends DefaultManager<Text> {
     private Graph graph;
     private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
     private List<String> posFilterList;
-    private double precision;
-    private double recall;
-    private double fMeasure;
+    private Evaluation evaluationMarc21;
+    private Evaluation evaluationRddu;
+    private Evaluation evaluationExpert;
     // Getters and setters******************************************************
 
     public boolean isSwitchDisplayGraph() {
@@ -96,16 +97,16 @@ public class TextManager extends DefaultManager<Text> {
         this.posFilterList = posFilterList;
     }
 
-    public double getPrecision() {
-        return precision;
+    public Evaluation getEvaluationMarc21() {
+        return evaluationMarc21;
     }
 
-    public double getRecall() {
-        return recall;
+    public Evaluation getEvaluationRddu() {
+        return evaluationRddu;
     }
 
-    public double getfMeasure() {
-        return fMeasure;
+    public Evaluation getEvaluationExpert() {
+        return evaluationExpert;
     }
     //**************************************************************************
 
@@ -133,7 +134,7 @@ public class TextManager extends DefaultManager<Text> {
                         }
                     } catch (SQLException sqle) {
                         throw sqle;
-                    }finally {
+                    } finally {
                         data.add(text);
                     }
                 }
@@ -372,30 +373,49 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public void evaluation() {
-//        if (selected != null) {
-//            String[] keyWordMac = selected.getTxtKeywordsMac().split(";");
-//            String[] keyWordTextRank = selected.getTxtKeywordsTextRank().split(";");
-//            double[] e = Util.evaluate(keyWordMac, keyWordTextRank);
-//            precision = MathUtils.round(e[0], 2);
-//            recall = MathUtils.round(e[1], 2);
-//            fMeasure = MathUtils.round(e[2], 2);
-//        }
+        if (selected != null) {
+            String[] keyWorkdTextRank = selected.getTxtTextRank().split(";");
+            // MARC21
+            if (!selected.getKwMarc21().getKwValue().trim().isEmpty()) {
+                String[] keyWordMarc21 = selected.getKwMarc21().getKwValue().split(";");
+                double[] eMarc21 = Util.evaluate(keyWordMarc21, keyWorkdTextRank);
+                evaluationMarc21 = new Evaluation(selected.getKwMarc21().getKwId(), eMarc21[0], eMarc21[1], eMarc21[2]);
+            }
+            // RDDU
+            if (!selected.getKwRddu().getKwValue().trim().isEmpty()) {
+                String[] keyWordRddu = selected.getKwRddu().getKwValue().split(";");
+                double[] eRddu = Util.evaluate(keyWordRddu, keyWorkdTextRank);
+                evaluationRddu = new Evaluation(selected.getKwRddu().getKwId(), eRddu[0], eRddu[1], eRddu[2]);
+            }
+            // EXPERT
+            if (!selected.getKwExpert().getKwValue().trim().isEmpty()) {
+                String[] keyWordExpert = selected.getKwExpert().getKwValue().split(";");
+                double[] eExpert = Util.evaluate(keyWordExpert, keyWorkdTextRank);
+                evaluationExpert = new Evaluation(selected.getKwExpert().getKwId(), eExpert[0], eExpert[1], eExpert[2]);
+            }
+        }
+    }
+    
+    public void cancelEvaluation() {
+        evaluationMarc21 = null;
+        evaluationRddu = null;
+        evaluationExpert = null;
     }
 
     public void saveEvaluation() {
-        if (selected != null) {
-            Evaluation evaluation = new Evaluation(selected.getTxtId(), precision, recall, fMeasure);
-            try {
-                EvaluationManager evaluationManager = new EvaluationManager();
-                evaluationManager.insertItem(evaluation);
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
-            } catch (IOException ioe) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
-            } catch (SQLException sqle) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
-            } catch (Exception e) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
-            }
-        }
+//        if (selected != null) {
+//            Evaluation evaluation = new Evaluation(selected.getTxtId(), precision, recall, fMeasure);
+//            try {
+//                EvaluationManager evaluationManager = new EvaluationManager();
+//                evaluationManager.insertItem(evaluation);
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+//            } catch (IOException ioe) {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+//            } catch (SQLException sqle) {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+//            } catch (Exception e) {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+//            }
+//        }
     }
 }

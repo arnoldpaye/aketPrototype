@@ -45,7 +45,7 @@
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="#{textManager.evaluation}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
+                    <p:commandLink action="#{textManager.evaluation}" disabled="#{vText.txtTextRank == null or vText.txtTextRank.trim().isEmpty()}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                 </p:column>
@@ -57,15 +57,40 @@
             </p:confirmDialog>
             <!-- Evaluation Dialog -->
             <p:dialog id="dlgEvaluationId" modal="true" widgetVar="dlgEvaluation">
-                <p:panelGrid columns="2">
-                    <h:outputText value="Precision" />
-                    <p:outputLabel value="#{textManager.precision}" />
-                    <h:outputText value="Exhaustividad" />
-                    <p:outputLabel value="#{textManager.recall}" />
-                    <h:outputText value="Valor-F" />
-                    <h:outputLabel value="#{textManager.fMeasure}" />
-                </p:panelGrid>
-                <p:commandButton onclick="dlgEvaluation.hide()" icon="ui-icon-cancel" value="Cancelar" />
+                <p:panel header="MARC 21">
+                    <p:panelGrid columns="2" rendered="#{textManager.evaluationMarc21 != null}">
+                        <h:outputText value="Precision" />
+                        <p:outputLabel value="#{textManager.evaluationMarc21.evPrecision}" />
+                        <h:outputText value="Exhaustividad" />
+                        <p:outputLabel value="#{textManager.evaluationMarc21.evRecall}" />
+                        <h:outputText value="Valor-F" />
+                        <h:outputLabel value="#{textManager.evaluationMarc21.evFMeasure}" />
+                    </p:panelGrid>
+                    <h:outputText rendered="#{textManager.evaluationMarc21 == null}" value="Sin resultado." />
+                </p:panel>
+                <p:panel header="RDDU">
+                    <p:panelGrid columns="2" rendered="#{textManager.evaluationRddu != null}">
+                        <h:outputText value="Precision" />
+                        <p:outputLabel value="#{textManager.evaluationRddu.evPrecision}" />
+                        <h:outputText value="Exhaustividad" />
+                        <p:outputLabel value="#{textManager.evaluationRddu.evRecall}" />
+                        <h:outputText value="Valor-F" />
+                        <h:outputLabel value="#{textManager.evaluationRddu.evFMeasure}" />
+                    </p:panelGrid>
+                    <h:outputText rendered="#{textManager.evaluationRddu == null}" value="Sin resultado." />
+                </p:panel>
+                <p:panel header="EXPERTO">
+                    <p:panelGrid columns="2" rendered="#{textManager.evaluationExpert != null}">
+                        <h:outputText value="Precision" />
+                        <p:outputLabel value="#{textManager.evaluationExpert.evPrecision}" />
+                        <h:outputText value="Exhaustividad" />
+                        <p:outputLabel value="#{textManager.evaluationExpert.evRecall}" />
+                        <h:outputText value="Valor-F" />
+                        <h:outputLabel value="#{textManager.evaluationExpert.evFMeasure}" />
+                    </p:panelGrid>
+                    <h:outputText rendered="#{textManager.evaluationExpert == null}" value="Sin resultado." />
+                </p:panel>
+                <p:commandButton action="#{textManager.cancelEvaluation()}" oncomplete="dlgEvaluation.hide()" icon="ui-icon-cancel" value="Cancelar" />
                 <p:commandButton action="#{textManager.saveEvaluation()}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide()" value="Guardar" />
             </p:dialog>
         </h:form>
