@@ -10,12 +10,13 @@
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgEvaluation" showDetail="true" showSummary="false" closable="true" />
         <h:form id="mainForm">
-            <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.data}" var="vEvaluation">
-                <p:column style="width: 30px">
-                    <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteEvaluation.show()" update=":mainForm">
-                        <f:setPropertyActionListener value="#{vEvaluation}" target="#{evaluationManager.selected}" />
-                    </p:commandButton>
-                </p:column>
+            <p:selectOneMenu value="#{evaluationManager.keywordSource}">
+                <f:selectItem itemValue="1" itemLabel="MARC21"/>
+                <f:selectItem itemValue="2" itemLabel="RDDU"/>
+                <f:selectItem itemValue="3" itemLabel="EXPERTO"/>
+                <p:ajax update=":mainForm" event="change" listener="#{evaluationManager.loadEvaluations()}" />
+            </p:selectOneMenu>
+            <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.evaluations}" var="vEvaluation">
                 <p:column headerText="Id">
                     <h:outputText value="#{vEvaluation.evId}" />
                 </p:column>

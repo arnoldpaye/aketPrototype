@@ -91,7 +91,7 @@
                     <h:outputText rendered="#{textManager.evaluationExpert == null}" value="Sin resultado." />
                 </p:panel>
                 <p:commandButton action="#{textManager.cancelEvaluation()}" oncomplete="dlgEvaluation.hide()" icon="ui-icon-cancel" value="Cancelar" />
-                <p:commandButton action="#{textManager.saveEvaluation()}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide()" value="Guardar" />
+                <p:commandButton action="#{textManager.saveEvaluation()}" disabled="#{textManager.evaluationMarc21 == null and textManager.evaluationRddu == null and textManager.evaluationExpert == null}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide()" value="Guardar" />
             </p:dialog>
         </h:form>
     </ui:define>

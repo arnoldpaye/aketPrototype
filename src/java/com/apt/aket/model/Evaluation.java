@@ -1,5 +1,6 @@
 package com.apt.aket.model;
 
+import org.apache.commons.math.util.MathUtils;
 import org.openlogics.cjb.jdbc.annotation.Column;
 
 /**
@@ -10,21 +11,23 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  * @author Arnold Paye
  */
 public class Evaluation {
+
     @Column("ev_id")
     private int evId;
     @Column("ev_kw_id")
     private int evKwId;
+    @Column("txt_title")
+    private String txtTitle;
     @Column("ev_precision")
     private double evPrecision;
     @Column("ev_recall")
     private double evRecall;
     @Column("ev_fmeasure")
     private double evFMeasure;
-    
+
     public Evaluation() {
-        
     }
-    
+
     public Evaluation(int evKwId, double evPrecision, double evRecall, double evFMeasure) {
         this.evKwId = evKwId;
         this.evPrecision = evPrecision;
@@ -48,8 +51,16 @@ public class Evaluation {
         this.evKwId = evKwId;
     }
 
+    public String getTxtTitle() {
+        return txtTitle;
+    }
+
+    public void setTxtTitle(String txtTitle) {
+        this.txtTitle = txtTitle;
+    }
+
     public double getEvPrecision() {
-        return evPrecision;
+        return MathUtils.round(evPrecision, 2);
     }
 
     public void setEvPrecision(double evPrecision) {
@@ -57,7 +68,7 @@ public class Evaluation {
     }
 
     public double getEvRecall() {
-        return evRecall;
+        return MathUtils.round(evRecall, 2);
     }
 
     public void setEvRecall(double evRecall) {
@@ -65,12 +76,10 @@ public class Evaluation {
     }
 
     public double getEvFMeasure() {
-        return evFMeasure;
+        return MathUtils.round(evFMeasure, 2);
     }
 
     public void setEvFMeasure(double evFMeasure) {
         this.evFMeasure = evFMeasure;
     }
-    
-    
 }

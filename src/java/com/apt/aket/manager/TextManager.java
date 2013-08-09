@@ -403,19 +403,26 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public void saveEvaluation() {
-//        if (selected != null) {
-//            Evaluation evaluation = new Evaluation(selected.getTxtId(), precision, recall, fMeasure);
-//            try {
-//                EvaluationManager evaluationManager = new EvaluationManager();
-//                evaluationManager.insertItem(evaluation);
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
-//            } catch (IOException ioe) {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
-//            } catch (SQLException sqle) {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
-//            } catch (Exception e) {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
-//            }
-//        }
+        if (selected != null) {
+            try {
+                EvaluationManager evaluationManager = new EvaluationManager();
+                if (evaluationMarc21 != null) {
+                    evaluationManager.insertItem(evaluationMarc21);
+                }
+                if (evaluationRddu != null) {
+                    evaluationManager.insertItem(evaluationRddu);
+                }
+                if (evaluationExpert != null) {
+                    evaluationManager.insertItem(evaluationExpert);
+                }
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+            } catch (IOException ioe) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+            }
+        }
     }
 }
