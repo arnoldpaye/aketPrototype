@@ -12,13 +12,17 @@
         <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="newTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="T&iacute;tulo"/>
-                <p:inputText id="txtTitle" value="#{text.txtTitle}" style="width: 700px" />
+                <p:inputText id="txtTitle" style="width: 700px" value="#{text.txtTitle}" />
                 <h:outputText value="C&oacute;digo"/>
-                <p:inputText id="txtCode" value="#{text.txtCode}" style="width: 100px" />
+                <p:inputText id="txtCode" style="width: 100px" value="#{text.txtCode}" />
                 <h:outputText value="Autor" />
-                <p:inputText id="txtAuthor" value="#{text.txtAuthor}" style="width: 700px" />
-                <h:outputText value="Palabras clave" />
-                <p:inputText id="txtKeywordsMac" value="#{text.txtKeywordsMac}" style="width: 700px" />
+                <p:inputText id="txtAuthor" style="width: 700px" value="#{text.txtAuthor}" />
+                <h:outputText value="Palabras clave MARC21" />
+                <p:inputText id="kwMarc21" style="width: 700px" value="#{text.kwMarc21.kwValue}" />
+                <h:outputText value="Palabras clave RDDU" />
+                <p:inputText id="kwRddu" style="width: 700px" value="#{text.kwRddu.kwValue}" />
+                <h:outputText value="Palabras clave EXPERTO" />
+                <p:inputText id="kwExpert" style="width: 700px" value="#{text.kwExpert.kwValue}" />
             </p:panelGrid>
             <p:panelGrid columns="2" >
                 <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="17" value="#{text.txtText}" />

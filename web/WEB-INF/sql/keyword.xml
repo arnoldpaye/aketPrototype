@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+    <st id="insertKeyword">
+        INSERT INTO keyword(kw_txt_id, kw_value, kw_source)
+        VALUES (#{kwTxtId}, #{kwValue}, #{kwSource});
+    </st>
+    <st id="updateKeyword">
+        UPDATE keyword
+        SET kw_value=#{kwValue}
+        WHERE kw_id = #{kwId};
+    </st>
+    <st id="getKeyword">
+        SELECT kw_id, kw_txt_id, kw_value, kw_source
+        FROM keyword
+        WHERE kw_txt_id = #{txtId};
+    </st>
+    <st id="deleteKeyword">
+        DELETE FROM keyword
+        WHERE kw_txt_id = #{txtId};
+    </st>
+</statements>

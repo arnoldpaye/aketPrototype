@@ -20,7 +20,7 @@ public class Graph extends TreeMap<String, Node> {
     static Logger log = Logger.getLogger(Graph.class);
     public final static double INCLUSIVE_COEFF = 0.25D;
     public final static double KEYWORD_REDUCTION_FACTOR = 0.8D;
-    public final static double TEXTRANK_DAMPING_FACTOR = 0.85D;
+    public final static double TEXTRANK_DAMPING_FACTOR = 0.56D;
     public final static double STANDARD_ERROR_THRESHOLD = 0.005D;
     private List<Sentence> sentenceList;
     private SummaryStatistics distStat;
@@ -74,6 +74,13 @@ public class Graph extends TreeMap<String, Node> {
         for (Node node : this.values()) {
             nodeList[i++] = node;
         }
+//        System.out.println("length " + nodeList.length);
+//        for (Node node : nodeList) {
+//            System.out.println("node: " + node.getNodeValueText());
+//            for (Node n : node.getEdges()) {
+//                System.out.println("\tnode: " + n.getNodeValueText());
+//            }
+//        }
 //        System.out.println("RUN_TEXT_RANK " + nodeList.length);
 //        System.out.println("MAX_ITERATIONS " + maxIterations);
         iterateGraph(maxIterations);
@@ -92,6 +99,10 @@ public class Graph extends TreeMap<String, Node> {
                 }
             }
         });
+//        System.out.println("SORT BY RANK");
+//        for (Node node : nodeList) {
+//            System.out.println("node: " + node.getNodeValueText() + " " + node.getRank());
+//        }
         distStat.clear();
         for (int i = 0; i < nodeList.length; i++) {
             Node node = nodeList[i];
@@ -100,6 +111,10 @@ public class Graph extends TreeMap<String, Node> {
                 distStat.addValue(node.getRank());
             }
         }
+//        System.out.println("MARKED");
+//        for (Node node : nodeList) {
+//            System.out.println("node: " + node.getNodeValueText() + " " + node.getRank() + " " + node.isMarked());
+//        }
     }
 
     public double getRankThreshold() {
@@ -110,22 +125,32 @@ public class Graph extends TreeMap<String, Node> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('\n');
-        int i = 0;
-        for (Node node : values()) {
-            stringBuilder.append("(").append(i++).append(")").append(node.toString()).append('\n');
-            for (Node internalNode : node.getEdges()) {
-                stringBuilder.append('\t').append(internalNode.toString()).append('\n');
+//        for (Node node : values()) {
+//            stringBuilder.append("(").append(i++).append(")").append(node.toString()).append('\n');
+//            for (Node internalNode : node.getEdges()) {
+//                stringBuilder.append('\t').append(internalNode.toString()).append('\n');
+//            }
+//        }
+        if (nodeList != null) {
+            for (Node node : nodeList) {
+                stringBuilder.append(node.getNodeValueText() + " " + node.getRank()).append('\n');
+                for (Node n : node.getEdges()) {
+                    stringBuilder.append('\t' + n.getNodeValueText() + " " + n.getRank()).append('\n');
+                }
             }
+        } else {
+            stringBuilder.append("Graph don't have edges.");
         }
+
         return stringBuilder.toString();
     }
-    
+
     public String renderHtml() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Node node : values()) {
             stringBuilder.append("<h3>");
             stringBuilder.append(node.getNodeValueText()).append("-");
-            stringBuilder.append(((KeyWord)node.getNodeValue()).getPos());
+            stringBuilder.append(((KeyWord) node.getNodeValue()).getPos());
             stringBuilder.append("</h3>");
             for (Node internalNode : node.getEdges()) {
                 stringBuilder.append("(").append(internalNode.getNodeValueText()).append(")");

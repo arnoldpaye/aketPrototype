@@ -25,10 +25,11 @@ public class Text {
     private String txtAuthor;
     @Column("txt_text")
     private String txtText;
-    @Column("txt_keywords_mac")
-    private String txtKeywordsMac;
-    @Column("txt_keywords_textrank")
-    private String txtKeywordsTextRank;
+    @Column("txt_textrank")
+    private String txtTextRank;
+    private Keyword kwMarc21 = new Keyword();
+    private Keyword kwRddu = new Keyword();
+    private Keyword kwExpert = new Keyword();
 
     public int getTxtId() {
         return txtId;
@@ -70,19 +71,35 @@ public class Text {
         this.txtText = txtText;
     }
 
-    public String getTxtKeywordsMac() {
-        return txtKeywordsMac;
+    public String getTxtTextRank() {
+        return txtTextRank;
     }
 
-    public void setTxtKeywordsMac(String txtKeywordsMac) {
-        this.txtKeywordsMac = txtKeywordsMac;
+    public void setTxtTextRank(String txtTextRank) {
+        this.txtTextRank = txtTextRank;
     }
 
-    public String getTxtKeywordsTextRank() {
-        return txtKeywordsTextRank;
+    public Keyword getKwMarc21() {
+        return kwMarc21;
     }
 
-    public void setTxtKeywordsTextRank(String txtKeywordsTextRank) {
-        this.txtKeywordsTextRank = txtKeywordsTextRank;
+    public void setKwMarc21(Keyword kwMarc21) {
+        this.kwMarc21 = kwMarc21;
+    }
+
+    public Keyword getKwRddu() {
+        return kwRddu;
+    }
+
+    public void setKwRddu(Keyword kwRddu) {
+        this.kwRddu = kwRddu;
+    }
+
+    public Keyword getKwExpert() {
+        return kwExpert;
+    }
+
+    public void setKwExpert(Keyword kwExpert) {
+        this.kwExpert = kwExpert;
     }
 }

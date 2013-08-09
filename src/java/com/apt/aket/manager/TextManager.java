@@ -1,9 +1,10 @@
 package com.apt.aket.manager;
 
-import com.apt.Util;
+import com.apt.aket.data.CommonResultHandler;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Evaluation;
 import com.apt.aket.model.KeyWordSelection;
+import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
 import com.apt.textrank.Graph;
 import com.apt.textrank.MetricVector;
@@ -22,11 +23,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.apache.commons.math.util.MathUtils;
 import org.apache.log4j.Logger;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.DSDescriptor;
+import org.openlogics.cjb.jee.jdbc.StatementReader;
 import org.openlogics.cjb.jee.util.JEEContext;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
 import org.primefaces.model.UploadedFile;
@@ -49,12 +50,12 @@ public class TextManager extends DefaultManager<Text> {
     private UploadedFile pdfFile;
     private Graph graph;
     private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
-    private List<String> posFilterList = new ArrayList<String>();
+    private List<String> posFilterList;
     private double precision;
     private double recall;
     private double fMeasure;
-
     // Getters and setters******************************************************
+
     public boolean isSwitchDisplayGraph() {
         return switchDisplayGraph;
     }
@@ -106,8 +107,8 @@ public class TextManager extends DefaultManager<Text> {
     public double getfMeasure() {
         return fMeasure;
     }
-
     //**************************************************************************
+
     @Override
     protected List<Text> fetchDataFromDataSource() {
         log.debug("Enter fetchDataFromDataSource method");
@@ -117,8 +118,24 @@ public class TextManager extends DefaultManager<Text> {
             log.info("DataStore select" + getStatementReader().getStatement("getAllTexts"));
             dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
                 @Override
-                public void visit(Text text, DataStore dataStore, ResultSet resultSet) {
-                    data.add(text);
+                public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
+                    try {
+                        KeywordManager keywordManager = new KeywordManager();
+                        List<Keyword> keywordList = keywordManager.getKeywords(dataStore, text);
+                        for (Keyword keyword : keywordList) {
+                            if (keyword.getKwSource() == 1) {
+                                text.setKwMarc21(keyword);
+                            } else if (keyword.getKwSource() == 2) {
+                                text.setKwRddu(keyword);
+                            } else {
+                                text.setKwExpert(keyword);
+                            }
+                        }
+                    } catch (SQLException sqle) {
+                        throw sqle;
+                    }finally {
+                        data.add(text);
+                    }
                 }
             });
         } catch (SQLException sqle) {
@@ -126,8 +143,8 @@ public class TextManager extends DefaultManager<Text> {
         } catch (IOException ioe) {
             log.error("IOException in fetchDataFromDataSource method->" + ioe.getMessage());
         } finally {
-            posFilterList.add("AQ");
-            posFilterList.add("NC");
+//            posFilterList.add("AQ");
+//            posFilterList.add("NC");
             return data;
         }
     }
@@ -143,14 +160,19 @@ public class TextManager extends DefaultManager<Text> {
         if (text.getTxtTitle().trim().isEmpty() || text.getTxtAuthor().trim().isEmpty() || text.getTxtCode().trim().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
             return "/";
-        } else if (!text.getTxtKeywordsMac().trim().isEmpty() && !Util.validateKeywordsText(text.getTxtKeywordsMac().trim())) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Las palabras clave deben estar separadas por punto y coma (;)."));
-            return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
             dataStore.setAutoCommit(false);
             try {
-                dataStore.execute(getStatementReader().getStatement("insertText"), text);
+                int txtId = dataStore.select(getStatementReader().getStatement("insertText"), text, new CommonResultHandler.IntegerHandler());
+                // Insert keywords
+                KeywordManager keywordManager = new KeywordManager();
+                Keyword keyword1 = new Keyword(txtId, text.getKwMarc21().getKwValue().trim(), 1);
+                Keyword keyword2 = new Keyword(txtId, text.getKwRddu().getKwValue().trim(), 2);
+                Keyword keyword3 = new Keyword(txtId, text.getKwExpert().getKwValue().trim(), 3);
+                keywordManager.insertItem(dataStore, keyword1);
+                keywordManager.insertItem(dataStore, keyword2);
+                keywordManager.insertItem(dataStore, keyword3);
                 dataStore.commit();
                 return "/index?faces-redirect=true";
             } catch (SQLException sqle) {
@@ -165,14 +187,15 @@ public class TextManager extends DefaultManager<Text> {
         if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty() || selected.getTxtCode().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
             return "/";
-        } else if (!selected.getTxtText().isEmpty() && !Util.validateKeywordsText(selected.getTxtKeywordsMac().trim())) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Las palabras clave deben estar separadas por punto y coma (;)."));
-            return "/";
         } else {
             DataStore dataStore = DataStoreManager.getDataStore();
             dataStore.setAutoCommit(false);
             try {
                 dataStore.execute(getStatementReader().getStatement("editText"), selected);
+                KeywordManager keywordManager = new KeywordManager();
+                keywordManager.updateItem(dataStore, selected.getKwMarc21());
+                keywordManager.updateItem(dataStore, selected.getKwRddu());
+                keywordManager.updateItem(dataStore, selected.getKwExpert());
                 dataStore.commit();
                 return "/index?faces-redirect=true";
             } catch (SQLException sqle) {
@@ -187,6 +210,7 @@ public class TextManager extends DefaultManager<Text> {
         DataStore dataStore = DataStoreManager.getDataStore();
         dataStore.setAutoCommit(false);
         try {
+            dataStore.execute(new StatementReader("sql/keyword.xml").getStatement("deleteKeyword"), selected);
             dataStore.execute(getStatementReader().getStatement("deleteText"), selected);
             dataStore.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Texto eliminado."));
@@ -301,6 +325,7 @@ public class TextManager extends DefaultManager<Text> {
                             keyWordSelectionList.add(new KeyWordSelection(metricVector.getNodeValue().getText(), metricVector.getMetric()));
                         }
                     }
+//                    System.out.println("keyWordSelectionList length : " + keyWordSelectionList.size());
                     switchDisplayGraph = true;
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe construir el grafo."));
@@ -324,7 +349,7 @@ public class TextManager extends DefaultManager<Text> {
                 for (KeyWordSelection keyWordSelection : keyWordSelectionList) {
                     keyWordsText += keyWordSelection.getValue().trim().toUpperCase() + ";";
                 }
-                selected.setTxtKeywordsTextRank(keyWordsText);
+                selected.setTxtTextRank(keyWordsText);
                 DataStore dataStore = DataStoreManager.getDataStore();
                 dataStore.setAutoCommit(false);
                 dataStore.execute(getStatementReader().getStatement("updateKeyWords"), selected);
@@ -347,14 +372,14 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public void evaluation() {
-        if (selected != null) {
-            String[] keyWordMac = selected.getTxtKeywordsMac().split(";");
-            String[] keyWordTextRank = selected.getTxtKeywordsTextRank().split(";");
-            double[] e = Util.evaluate(keyWordMac, keyWordTextRank);
-            precision = MathUtils.round(e[0], 2);
-            recall = MathUtils.round(e[1], 2);
-            fMeasure = MathUtils.round(e[2], 2);
-        }
+//        if (selected != null) {
+//            String[] keyWordMac = selected.getTxtKeywordsMac().split(";");
+//            String[] keyWordTextRank = selected.getTxtKeywordsTextRank().split(";");
+//            double[] e = Util.evaluate(keyWordMac, keyWordTextRank);
+//            precision = MathUtils.round(e[0], 2);
+//            recall = MathUtils.round(e[1], 2);
+//            fMeasure = MathUtils.round(e[2], 2);
+//        }
     }
 
     public void saveEvaluation() {

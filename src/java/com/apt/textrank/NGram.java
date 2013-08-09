@@ -74,17 +74,27 @@ public class NGram extends NodeValue {
         Graph graph = new Graph();
         LinkedList<Integer> tokenSpan = new LinkedList<Integer>();
         for (Sentence sentence : sentenceList) {
+//            System.out.println("Sentence >>> " + sentence.getText());
+//            for (Node node : sentence.getNodeList()) {
+//                if (node != null) {
+//                    System.out.println("node: " + node.getNodeValueText() + " " + node.getRank());
+//                    for (Node n : node.getEdges()) {
+//                        System.out.println("\tn: " + n.getNodeValueText() + " " + n.getRank());
+//                    }
+//                }
+//            }
             boolean spanMarked = false;
             double maxRank = 0.0D;
             tokenSpan.clear();
             for (int i = 0; i < sentence.getNodeList().length; i++) {
                 //log.debug("sentence " + i + " is null " + (sentence.getNodeList()[i] == null));
                 if (sentence.getNodeList()[i] == null) {
-                    log.debug("sentence: " + sentence.getNodeList()[i] + " " + spanMarked + " " + tokenSpan.size());
                     if (spanMarked && (tokenSpan.size() > 0)) {
                         if ((tokenSpan.size() > 1) || ((maxRank >= rankThreshold) && language.isNoun(((KeyWord) sentence.getNodeList()[tokenSpan.get(0)].getNodeValue()).getPos()))) {
+                            System.out.println("DBG tokenSpan: " + tokenSpan.toString());
                             NGram gram = buildNGram(graph, sentence, tokenSpan, maxRank);
                             log.debug("emit " + gram.text + " @ " + gram.getCount() + " span " + gram.lenght);
+//                            System.out.println("emit " + gram.text + " @ " + gram.getCount() + " span " + gram.lenght);
                         }
                     }
                     tokenSpan.clear();

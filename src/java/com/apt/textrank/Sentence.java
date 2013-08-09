@@ -40,6 +40,11 @@ public class Sentence {
 //        for (int i = 0; i < tokenList.length; i++) {
 //            log.debug(tokenList[i] + " " + tagList[i]);
 //        }
+//        System.out.println("DBG Sentence: " + text);
+//        System.out.println("DBG length: " + tokenList.length);
+//        for (int i = 0; i < tokenList.length; i++) {
+//            System.out.println("DBG " + i + ": " + tokenList[i] + " " + tagList[i]);
+//        }
         int numberOfTokens = tokenList.length;
         Node lastNode = null;
         nodeList = new Node[numberOfTokens];
@@ -48,6 +53,7 @@ public class Sentence {
             String token = tokenList[i];
             log.debug("token: " + tokenList[i] + " pos tag: " + pos);
             if (language.isRelevant(pos, postFilterList)) {
+//                System.out.println("DBG is relevant: " + i);
                 log.debug("isRelevant: " + token + "->" + pos);
                 String key = language.getNodeKey(token, pos);
                 KeyWord keyWord = new KeyWord(token, pos);
@@ -57,7 +63,19 @@ public class Sentence {
                 }
                 lastNode = node;
                 nodeList[i] = node;
+//                System.out.println("DBG " + i + ": " + node.getNodeValueText());
+//                for (Node n : node.getEdges()) {
+//                    System.out.println("DBG\t\t" + n.getNodeValueText());
+//                }
             }
         }
+//        for (int i = 0; i < nodeList.length; i++) {
+//            if (nodeList[i] != null) {
+//                System.out.println("DBG " + i + ": " + nodeList[i].getNodeValueText());
+//                for (Node node : nodeList[i].getEdges()) {
+//                    System.out.println("DBG\t\t" + node.getNodeValueText());
+//                }
+//            }
+//        }
     }
 }

@@ -17,18 +17,27 @@ import org.apache.log4j.Logger;
 public class TextRank {
 
     static Logger log = Logger.getLogger(TextRank.class);
+//    public final static double MIN_NORMALIZED_RANK = 0.05; // original
     public final static double MIN_NORMALIZED_RANK = 0.05;
+//    public final static int MAX_NGRAM_LENGTH = 5; // original
     public final static int MAX_NGRAM_LENGTH = 5;
 
-    public Graph buildGraph(String tex, String path, List<String> posFilterList) throws IOException {
+    public Graph buildGraph(String text, String path, List<String> posFilterList) throws IOException {
         log.debug("POS_FILTER_LIST " + posFilterList);
         Language language = Language.buildLanguage(path);
         Graph graph = new Graph();
-        for (String splitText : language.splitParagraph(tex)) {
+        for (String splitText : language.splitParagraph(text)) {
             Sentence sentence = new Sentence(splitText);
-            sentence.mapTokens(language, graph,posFilterList);
+            sentence.mapTokens(language, graph, posFilterList);
             graph.getSentenceList().add(sentence);
         }
+//        System.out.println(graph.size());
+//        for (Node node : graph.values()) {
+//            System.out.println("DBG " + node.getNodeValueText());
+//            for (Node edge : node.getEdges()) {
+//                System.out.println("DBG\t\t" + edge.getNodeValueText());
+//            }
+//        }
         return graph;
     }
 
@@ -41,18 +50,31 @@ public class TextRank {
         // Pass 2: run TextRank to determine keywords****************************************************
         int maxResults = (int) Math.round((double) graph.size() * Graph.KEYWORD_REDUCTION_FACTOR);
 //        log.debug("maxResults: " + maxResults);
+//        System.out.println("maxResults: " + maxResults);
         graph.runTextRank();
+//        System.out.println("results: " + graph.toString());
         graph.sortResults(maxResults);
         log.debug("GraphRankThreshold " + graph.getRankThreshold());
+//        System.out.println("GraphRankThreshold " + graph.getRankThreshold());
+//        System.out.println("GraphRankThreshold: " + graph.getRankThreshold());
         ngramSubgraph = NGram.collectNGrams(language, graph.getSentenceList(), graph.getRankThreshold());
+//        for (Node node : ngramSubgraph.values()) {
+//            System.out.println("node: " + node.getNodeValueText() + " " + node.getRank());
+//            for (Node n : node.getEdges()) {
+//                System.out.println("\tn: " + n.getNodeValueText() + " " + n.getRank());
+//            }
+//        }
+//        System.out.println("ngramSubgraph " + ngramSubgraph.toString());
 //        log.debug(graph.toString());
         log.debug(ngramSubgraph.toString());
+//        System.out.println("ngramSubgraph: " + ngramSubgraph.toString());
         log.info("\t\t\t" + "BASIC_TEXTRANK");
         // Pass 3: lemmatize selected keywords and phrases************************************************
         Graph synSetSubGraph = new Graph();
         // TODO: use WordNet?
         synSetSubGraph = SynsetLink.pruneGraph(synSetSubGraph, graph);
         // Augment the graph with n-grams adde as nodes
+//        System.out.println("graph before: " + graph.toString());
         for (Node node : ngramSubgraph.values()) {
             NGram gram = (NGram) node.getNodeValue();
             if (gram.getLenght() < MAX_NGRAM_LENGTH) {
@@ -62,6 +84,7 @@ public class TextRank {
                 }
             }
         }
+//        System.out.println("graph after: " + graph.toString());
 //        log.debug("Graph\n");
 //        log.debug(graph.toString());
 //        log.debug("NGramSubGraph\n");

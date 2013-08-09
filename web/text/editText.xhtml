@@ -12,13 +12,17 @@
         <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="editTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="T&iacute;tulo"/>
-                <p:inputText id="txtTitle" value="#{textManager.selected.txtTitle}" style="width: 700px" />
+                <p:inputText id="txtTitle" style="width: 700px" value="#{textManager.selected.txtTitle}" />
                 <h:outputText value="C&oacute;digo"/>
-                <p:inputText id="txtCode" value="#{textManager.selected.txtCode}" style="width: 100px" />
+                <p:inputText id="txtCode" style="width: 100px" value="#{textManager.selected.txtCode}" />
                 <h:outputText value="Autor" />
-                <p:inputText id="txtAuthor" value="#{textManager.selected.txtAuthor}" style="width: 700px" />
-                <h:outputText value="Palabras clave" />
-                <p:inputText id="txtKeywordsMac" value="#{textManager.selected.txtKeywordsMac}" style="width: 700px" />
+                <p:inputText id="txtAuthor" style="width: 700px" value="#{textManager.selected.txtAuthor}" />
+                <h:outputText value="Palabras clave MARC21" />
+                <p:inputText id="kwMarc21" style="width: 700px" value="#{textManager.selected.kwMarc21.kwValue}" />
+                <h:outputText value="Palabras clave RDDU" />
+                <p:inputText id="kwRddu" style="width: 700px" value="#{textManager.selected.kwRddu.kwValue}" />
+                <h:outputText value="Palabras clave EXPERTO" />
+                <p:inputText id="kwExpert" style="width: 700px" value="#{textManager.selected.kwExpert.kwValue}" />
             </p:panelGrid>
             <p:panelGrid columns="2" >
                 <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="17" value="#{textManager.selected.txtText}" />

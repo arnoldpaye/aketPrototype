@@ -45,7 +45,7 @@
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="#{textManager.evaluation}" disabled="#{(vText.txtKeywordsMac == null or vText.txtKeywordsMac.trim().isEmpty()) or (vText.txtKeywordsTextRank == null or vText.txtKeywordsTextRank.trim().isEmpty())}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
+                    <p:commandLink action="#{textManager.evaluation}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                 </p:column>
