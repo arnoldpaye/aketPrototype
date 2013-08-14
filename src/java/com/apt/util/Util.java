@@ -1,4 +1,4 @@
-package com.apt;
+package com.apt.util;
 
 import java.text.Collator;
 import java.util.Locale;

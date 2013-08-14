@@ -148,10 +148,9 @@ public class Graph extends TreeMap<String, Node> {
     public String renderHtml() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Node node : values()) {
-            stringBuilder.append("<h3>");
-            stringBuilder.append(node.getNodeValueText()).append("-");
-            stringBuilder.append(((KeyWord) node.getNodeValue()).getPos());
-            stringBuilder.append("</h3>");
+            stringBuilder.append("<h4>");
+            stringBuilder.append(node.getNodeValueText());
+            stringBuilder.append("</h4>");
             for (Node internalNode : node.getEdges()) {
                 stringBuilder.append("(").append(internalNode.getNodeValueText()).append(")");
             }

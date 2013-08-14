@@ -1,6 +1,7 @@
 package com.apt.aket.manager;
 
-import com.apt.Util;
+import com.apt.util.NodeJson;
+import com.apt.util.Util;
 import com.apt.aket.data.CommonResultHandler;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Evaluation;
@@ -10,7 +11,10 @@ import com.apt.aket.model.Text;
 import com.apt.textrank.Graph;
 import com.apt.textrank.MetricVector;
 import com.apt.textrank.NGram;
+import com.apt.textrank.Node;
 import com.apt.textrank.TextRank;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +28,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.apache.catalina.connector.Request;
 import org.apache.log4j.Logger;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
@@ -31,6 +36,7 @@ import org.openlogics.cjb.jee.jdbc.DSDescriptor;
 import org.openlogics.cjb.jee.jdbc.StatementReader;
 import org.openlogics.cjb.jee.util.JEEContext;
 import org.openlogics.cjb.jsf.controller.DefaultManager;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -295,12 +301,31 @@ public class TextManager extends DefaultManager<Text> {
         TextRank textRank = new TextRank();
         String path = System.getProperty("catalina.home") + "/resourcesNLP";
         try {
+            RequestContext requestContext = RequestContext.getCurrentInstance();
             if (posFilterList == null || posFilterList.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe seleccionar las categorias gramaticales."));
             } else {
                 if (selected != null) {
                     graph = textRank.buildGraph(selected.getTxtText(), path, posFilterList);
+                    List<NodeJson> graphNodes = new ArrayList<NodeJson>();
+                    int i = 0;
+                    for (Node node : graph.values()) {
+                        NodeJson nodeJson = new NodeJson(node.getKey(), node.getNodeValueText());
+                        
+                        for (Node n : node.getEdges()) {
+                            nodeJson.getNodeList().add(new NodeJson(n.getKey(), n.getNodeValueText()));
+                        }
+                        graphNodes.add(nodeJson);
+                        if (++i == 10) break;
+                    }
+                    // Create json data
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    String jsonData = gson.toJson(graphNodes);
+                    System.out.println("jsonData " + jsonData);
+                    requestContext.addCallbackParam("graphData", jsonData);
+
                     switchDisplayGraph = false;
+
                 }
             }
 
@@ -355,6 +380,8 @@ public class TextManager extends DefaultManager<Text> {
                 dataStore.setAutoCommit(false);
                 dataStore.execute(getStatementReader().getStatement("updateKeyWords"), selected);
                 dataStore.commit();
+                graph = null;
+                keyWordSelectionList.clear();
                 return "/index?faces-redirect=true";
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
@@ -395,7 +422,7 @@ public class TextManager extends DefaultManager<Text> {
             }
         }
     }
-    
+
     public void cancelEvaluation() {
         evaluationMarc21 = null;
         evaluationRddu = null;

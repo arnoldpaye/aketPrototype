@@ -1,6 +1,6 @@
 package com.apt.textrank;
 
-import com.apt.Util;
+import com.apt.util.Util;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
