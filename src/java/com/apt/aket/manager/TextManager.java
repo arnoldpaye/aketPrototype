@@ -9,8 +9,6 @@ import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
 import com.apt.textrank.Graph;
-import com.apt.textrank.MetricVector;
-import com.apt.textrank.NGram;
 import com.apt.textrank.Node;
 import com.apt.textrank.TextRank;
 import com.google.gson.Gson;
@@ -22,13 +20,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.apache.catalina.connector.Request;
 import org.apache.log4j.Logger;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
@@ -298,25 +293,29 @@ public class TextManager extends DefaultManager<Text> {
     }
 
     public void buildGraph() {
-        TextRank textRank = new TextRank();
-        String path = System.getProperty("catalina.home") + "/resourcesNLP";
         try {
+            TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
             RequestContext requestContext = RequestContext.getCurrentInstance();
+            posFilterList = new ArrayList<String>();
+            posFilterList.add("NC");
+            posFilterList.add("AQ");
             if (posFilterList == null || posFilterList.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe seleccionar las categorias gramaticales."));
             } else {
                 if (selected != null) {
-                    graph = textRank.buildGraph(selected.getTxtText(), path, posFilterList);
+                    graph = textRank.buildGraph(selected.getTxtText(), posFilterList);
                     List<NodeJson> graphNodes = new ArrayList<NodeJson>();
                     int i = 0;
                     for (Node node : graph.values()) {
-                        NodeJson nodeJson = new NodeJson(node.getKey(), node.getNodeValueText());
-                        
+                        NodeJson nodeJson = new NodeJson(node.getKey(), node.getNodeValue().getText());
+
                         for (Node n : node.getEdges()) {
-                            nodeJson.getNodeList().add(new NodeJson(n.getKey(), n.getNodeValueText()));
+                            nodeJson.getNodeList().add(new NodeJson(n.getKey(), n.getNodeValue().getText()));
                         }
                         graphNodes.add(nodeJson);
-                        if (++i == 10) break;
+                        if (++i == 10) {
+                            break;
+                        }
                     }
                     // Create json data
                     Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -331,27 +330,26 @@ public class TextManager extends DefaultManager<Text> {
 
         } catch (IOException ioe) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+            System.err.println("IOException: " + ioe.getMessage());
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+            System.err.println("Exception: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void selectSelected() {
-        TextRank textRank = new TextRank();
-        String path = System.getProperty("catalina.home") + "/resourcesNLP";
         try {
+            TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
+
             if (selected != null) {
                 if (graph != null) {
                     keyWordSelectionList.clear();
                     Graph copyGraph = graph; // The structure of graph change within the process
-                    Map<NGram, MetricVector> metricSpace = textRank.init(copyGraph, path);
-                    TreeSet<MetricVector> keyPraseList = new TreeSet<MetricVector>(metricSpace.values());
-                    for (MetricVector metricVector : keyPraseList) {
-                        if (metricVector.getMetric() >= TextRank.MIN_NORMALIZED_RANK) {
-                            keyWordSelectionList.add(new KeyWordSelection(metricVector.getNodeValue().getText(), metricVector.getMetric()));
-                        }
+                    List<com.apt.textrank.Keyword> keywordList = textRank.init(copyGraph);
+                    for (com.apt.textrank.Keyword keyword : keywordList) {
+                        keyWordSelectionList.add(new KeyWordSelection(keyword.getText(), keyword.getRank()));
                     }
-//                    System.out.println("keyWordSelectionList length : " + keyWordSelectionList.size());
                     switchDisplayGraph = true;
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe construir el grafo."));

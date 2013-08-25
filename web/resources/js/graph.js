@@ -4,7 +4,8 @@ function drawGraph(xhr, status, args) {
         var g = new Graph();
         var arr = JSON.parse(data);
         for (i = 0; i < arr.length; i++) {
-            g.addNode(arr[i].id, {label: arr[i].label});
+            //g.addNode(arr[i].id, {label: arr[i].label});
+            g.addNode(arr[i].label);
         }
         for (i = 0; i < arr.length; i++) {
             for (j = 0; j < arr[i].nodeList.length; j++) {
