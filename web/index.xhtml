@@ -7,6 +7,9 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Inicio</ui:define>
+    <ui:define name="resources">
+        <h:outputStylesheet library="css" name="styles.css" />
+    </ui:define>
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" closable="true" />
         <h:form id="mainForm">
@@ -15,16 +18,20 @@
                     <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
                 </p:toolbarGroup>
             </p:toolbar>
-            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="7" scrollable="true" value="#{textManager.data}" var="vText">
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" scrollable="true" value="#{textManager.data}" var="vText">
                 <p:column style="width: 30px">
-                    <p:commandButton icon="ui-icon-circle-close" oncomplete="dlgDeleteText.show()" update=":mainForm">
+                    <p:commandButton icon="ui-icon-circle-close" id="btnDeleteText" oncomplete="dlgDeleteText.show()" update=":mainForm">
                         <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
                     </p:commandButton>
+                    <p:tooltip for="btnDeleteText" value="Eliminar" />
                 </p:column>
-                <p:column headerText="Id" style="width: 50px">
-                    <h:outputText value="#{vText.txtId}" />
+                <p:column style="width: 30px">
+                    <p:commandButton action="#{textManager.loadKeywords}" icon="ui-icon-note" id="btnKeywords" oncomplete="dlgKeywords.show()" update=":mainForm">
+                        <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}"/>
+                    </p:commandButton>
+                    <p:tooltip for="btnKeywords" value="Palabras Clave" />
                 </p:column>
-                <p:column headerText="C&oacute;digo">
+                <p:column headerText="C&oacute;digo" style="width: 100px">
                     <h:outputText value="#{vText.txtCode}" />
                 </p:column>
                 <p:column headerText="T&iacute;tulo" sortBy="#{vText.txtTitle}">
@@ -48,6 +55,7 @@
                     <p:commandLink action="#{textManager.evaluation}" disabled="#{vText.txtTextRank == null or vText.txtTextRank.trim().isEmpty()}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
+                    <p:spacer width="10" />
                 </p:column>
             </p:dataTable>
             <!-- Delete Dialog -->
@@ -55,8 +63,33 @@
                 <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
                 <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
             </p:confirmDialog>
+            <!-- Keywords Dialog -->
+            <p:dialog header="Palabras Clave" id="dlgKeywordsId" modal="true" widgetVar="dlgKeywords">
+                <p:panelGrid columns="4" columnClasses="alignTop,alignTop,alignTop,alignTop">
+                    <p:panel header="MARC 21">
+                        <p:dataList value="#{textManager.keywordMarc21List}" var="vKeywordMarc21">
+                            <p:outputLabel value="#{vKeywordMarc21.value}" style="font-size: 0.7em; padding: 4px" />
+                        </p:dataList>
+                    </p:panel>
+                    <p:panel header="RDDU">
+                        <p:dataList value="#{textManager.keywordRdduList}" var="vKeywordRddu">
+                            <p:outputLabel value="#{vKeywordRddu.value}" style="font-size: 0.7em; padding: 4px" />
+                        </p:dataList>
+                    </p:panel>
+                    <p:panel header="EXPERTO">
+                        <p:dataList value="#{textManager.keywordExpertList}" var="vKeywordExpert">
+                            <p:outputLabel value="#{vKeywordExpert.value}" style="font-size: 0.7em; padding: 4px" />
+                        </p:dataList>
+                    </p:panel>
+                    <p:panel header="TEXTRANK">
+                        <p:dataList value="#{textManager.keywordTextRankList}" var="vKeywordTextRank">
+                            <p:outputLabel value="#{vKeywordTextRank.value}" style="font-size: 0.7em; padding: 4px" />
+                        </p:dataList>
+                    </p:panel>
+                </p:panelGrid>
+            </p:dialog>
             <!-- Evaluation Dialog -->
-            <p:dialog id="dlgEvaluationId" modal="true" widgetVar="dlgEvaluation">
+            <p:dialog header="Evaluaci&oacute;n" id="dlgEvaluationId" modal="true" widgetVar="dlgEvaluation">
                 <p:panel header="MARC 21">
                     <p:panelGrid columns="2" rendered="#{textManager.evaluationMarc21 != null}">
                         <h:outputText value="Precision" />

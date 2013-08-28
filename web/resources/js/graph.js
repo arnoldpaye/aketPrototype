@@ -1,6 +1,11 @@
 function drawGraph(xhr, status, args) {
     var data = args.graphData;
     if (data != null) {
+        var render = function(r, n) {
+            var set = r.set().push(
+                r.rect(n.point[0]-30, n.point[1]-13, 60, 44).attr({"fill": "#feb", r : "12px", "stroke-width" : n.distance == 0 ? "3px" : "1px" })).push(
+                r.text(n.point[0], n.point[1] + 10, (n.label || n.id) + "\n(" + (n.distance == undefined ? "Infinity" : n.distance) + ")"));
+        };
         var g = new Graph();
         var arr = JSON.parse(data);
         for (i = 0; i < arr.length; i++) {

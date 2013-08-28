@@ -12,6 +12,7 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  */
 public class Evaluation {
 
+    /* Members */
     @Column("ev_id")
     private int evId;
     @Column("ev_kw_id")
@@ -25,16 +26,7 @@ public class Evaluation {
     @Column("ev_fmeasure")
     private double evFMeasure;
 
-    public Evaluation() {
-    }
-
-    public Evaluation(int evKwId, double evPrecision, double evRecall, double evFMeasure) {
-        this.evKwId = evKwId;
-        this.evPrecision = evPrecision;
-        this.evRecall = evRecall;
-        this.evFMeasure = evFMeasure;
-    }
-
+    /* Getters and Setters */
     public int getEvId() {
         return evId;
     }
@@ -80,6 +72,27 @@ public class Evaluation {
     }
 
     public void setEvFMeasure(double evFMeasure) {
+        this.evFMeasure = evFMeasure;
+    }
+
+    /**
+     * Default constructor.
+     */
+    public Evaluation() {
+    }
+
+    /**
+     * Constructor with four parameters.
+     *
+     * @param evKwId
+     * @param evPrecision
+     * @param evRecall
+     * @param evFMeasure
+     */
+    public Evaluation(int evKwId, double evPrecision, double evRecall, double evFMeasure) {
+        this.evKwId = evKwId;
+        this.evPrecision = evPrecision;
+        this.evRecall = evRecall;
         this.evFMeasure = evFMeasure;
     }
 }

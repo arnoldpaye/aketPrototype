@@ -15,6 +15,7 @@ import org.openlogics.cjb.jdbc.annotation.Column;
 @RequestScoped
 public class Text {
 
+    /* Members */
     @Column("txt_id")
     private int txtId;
     @Column("txt_code")
@@ -31,6 +32,7 @@ public class Text {
     private Keyword kwRddu = new Keyword();
     private Keyword kwExpert = new Keyword();
 
+    /* Getters and Setters */
     public int getTxtId() {
         return txtId;
     }

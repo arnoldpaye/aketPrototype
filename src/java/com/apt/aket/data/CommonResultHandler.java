@@ -14,6 +14,9 @@ import org.openlogics.cjb.jdbc.ResultVisitor;
  */
 public class CommonResultHandler {
 
+    /**
+     * Implement a integer handler.
+     */
     public static class IntegerHandler implements ResultVisitor<Integer> {
 
         @Override

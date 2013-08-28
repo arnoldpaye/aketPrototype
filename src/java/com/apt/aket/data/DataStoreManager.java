@@ -18,6 +18,14 @@ import org.openlogics.cjb.jdbc.JdbcDataStore;
  */
 public class DataStoreManager {
 
+    /**
+     * Get a DataStore object from properties file 'aket.properties' in the
+     * server.
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public static DataStore getDataStore() throws FileNotFoundException, IOException {
         InputStream stream = null;
         try {

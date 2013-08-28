@@ -12,10 +12,12 @@ import java.util.List;
  */
 public class NodeJson {
 
+    /* Members */
     private String id;
     private String label;
     private List<NodeJson> nodeList;
 
+    /* Getters and Setters */
     public String getId() {
         return id;
     }

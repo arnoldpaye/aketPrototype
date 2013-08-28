@@ -11,6 +11,7 @@ import org.openlogics.cjb.jdbc.annotation.Column;
  */
 public class Keyword {
 
+    /* Members */
     @Column("kw_id")
     private int kwId;
     @Column("kw_txt_id")
@@ -19,17 +20,8 @@ public class Keyword {
     private String kwValue;
     @Column("kw_source")
     private int kwSource;
-    
-    public Keyword() {
-        
-    }
 
-    public Keyword(int kwTxtId, String kwValue, int kwSource) {
-        this.kwTxtId = kwTxtId;
-        this.kwValue = kwValue;
-        this.kwSource = kwSource;
-    }
-
+    /* Getters and Setters */
     public int getKwId() {
         return kwId;
     }
@@ -59,6 +51,25 @@ public class Keyword {
     }
 
     public void setKwSource(int kwSource) {
+        this.kwSource = kwSource;
+    }
+
+    /**
+     * Default constructor.
+     */
+    public Keyword() {
+    }
+
+    /**
+     * Constructor with two parameters.
+     *
+     * @param kwTxtId
+     * @param kwValue
+     * @param kwSource
+     */
+    public Keyword(int kwTxtId, String kwValue, int kwSource) {
+        this.kwTxtId = kwTxtId;
+        this.kwValue = kwValue;
         this.kwSource = kwSource;
     }
 }

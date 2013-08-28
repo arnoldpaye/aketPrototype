@@ -4,8 +4,8 @@ import com.apt.util.NodeJson;
 import com.apt.util.Util;
 import com.apt.aket.data.CommonResultHandler;
 import com.apt.aket.data.DataStoreManager;
+import com.apt.aket.data.KeywordSelection;
 import com.apt.aket.model.Evaluation;
-import com.apt.aket.model.KeyWordSelection;
 import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
 import com.apt.textrank.Graph;
@@ -46,18 +46,23 @@ import org.primefaces.model.UploadedFile;
 @DSDescriptor("sql/text.xml")
 public class TextManager extends DefaultManager<Text> {
 
+    /* Members */
     static Logger log = Logger.getLogger(TextManager.class);
     private boolean switchDisplayGraph;
     private UploadedFile txtFile;
     private UploadedFile pdfFile;
     private Graph graph;
-    private List<KeyWordSelection> keyWordSelectionList = new ArrayList<KeyWordSelection>();
+    private List<KeywordSelection> keywordSelectionList = new ArrayList<KeywordSelection>();
+    private List<KeywordSelection> keywordMarc21List;
+    private List<KeywordSelection> keywordRdduList;
+    private List<KeywordSelection> keywordExpertList;
+    private List<KeywordSelection> keywordTextRankList;
     private List<String> posFilterList;
     private Evaluation evaluationMarc21;
     private Evaluation evaluationRddu;
     private Evaluation evaluationExpert;
-    // Getters and setters******************************************************
 
+    /* Getters and Setters */
     public boolean isSwitchDisplayGraph() {
         return switchDisplayGraph;
     }
@@ -82,12 +87,28 @@ public class TextManager extends DefaultManager<Text> {
         return graph;
     }
 
-    public List<KeyWordSelection> getKeyWordSelectionList() {
-        return keyWordSelectionList;
+    public List<KeywordSelection> getKeywordSelectionList() {
+        return keywordSelectionList;
     }
 
-    public void setKeyWordSelectionList(List<KeyWordSelection> keyWordSelectionList) {
-        this.keyWordSelectionList = keyWordSelectionList;
+    public List<KeywordSelection> getKeywordMarc21List() {
+        return keywordMarc21List;
+    }
+
+    public List<KeywordSelection> getKeywordRdduList() {
+        return keywordRdduList;
+    }
+
+    public List<KeywordSelection> getKeywordExpertList() {
+        return keywordExpertList;
+    }
+
+    public List<KeywordSelection> getKeywordTextRankList() {
+        return keywordTextRankList;
+    }
+
+    public void setKeywordSelectionList(List<KeywordSelection> keywordSelectionList) {
+        this.keywordSelectionList = keywordSelectionList;
     }
 
     public List<String> getPosFilterList() {
@@ -109,8 +130,11 @@ public class TextManager extends DefaultManager<Text> {
     public Evaluation getEvaluationExpert() {
         return evaluationExpert;
     }
-    //**************************************************************************
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected List<Text> fetchDataFromDataSource() {
         log.debug("Enter fetchDataFromDataSource method");
@@ -151,11 +175,23 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void selectionFeaturePerformed() throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Insert text item into database.
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws SQLException
+     */
     public String insertItem() throws FileNotFoundException, IOException, SQLException {
         log.debug("Enter insertItem method");
         Text text = JEEContext.getRequestScopedBean(Text.class);
@@ -185,6 +221,14 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Edit selected text.
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws SQLException
+     */
     public String editSelected() throws FileNotFoundException, IOException, SQLException {
         if (selected.getTxtTitle().isEmpty() || selected.getTxtAuthor().isEmpty() || selected.getTxtCode().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Codigo, Titulo y Autor son requeridos."));
@@ -208,6 +252,13 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Delete selected text.
+     *
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws SQLException
+     */
     public void deleteSelected() throws FileNotFoundException, IOException, SQLException {
         DataStore dataStore = DataStoreManager.getDataStore();
         dataStore.setAutoCommit(false);
@@ -224,6 +275,11 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Load data from a text file.
+     *
+     * @throws IOException
+     */
     public void loadFromTxt() throws IOException {
         Text text = JEEContext.getRequestScopedBean(Text.class);
         byte[] buffer = new byte[6124];
@@ -248,6 +304,11 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Load data from a text file in edit mode.
+     *
+     * @throws IOException
+     */
     public void loadEditFromTxt() throws IOException {
         Text text = selected;
         byte[] buffer = new byte[6124];
@@ -272,6 +333,9 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Clear form.
+     */
     public void cleanNewTexForm() {
         Text text = JEEContext.getRequestScopedBean(Text.class);
         if (text != null) {
@@ -282,6 +346,9 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Clear form in edit mode.
+     */
     public void cleanEditTexForm() {
         Text text = selected;
         if (text != null) {
@@ -292,6 +359,9 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Build a graph from the selected text.
+     */
     public void buildGraph() {
         try {
             TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
@@ -333,22 +403,23 @@ public class TextManager extends DefaultManager<Text> {
             System.err.println("IOException: " + ioe.getMessage());
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
-            System.err.println("Exception: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
+    /**
+     * After build graph, start the textrank algorithm.
+     */
     public void selectSelected() {
         try {
             TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
 
             if (selected != null) {
                 if (graph != null) {
-                    keyWordSelectionList.clear();
+                    keywordSelectionList.clear();
                     Graph copyGraph = graph; // The structure of graph change within the process
                     List<com.apt.textrank.Keyword> keywordList = textRank.init(copyGraph);
                     for (com.apt.textrank.Keyword keyword : keywordList) {
-                        keyWordSelectionList.add(new KeyWordSelection(keyword.getText(), keyword.getRank()));
+                        keywordSelectionList.add(new KeywordSelection(keyword.getText(), keyword.getRank()));
                     }
                     switchDisplayGraph = true;
                 } else {
@@ -363,15 +434,20 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Save keyword selection set into database.
+     *
+     * @return
+     */
     public String saveSelectSelected() {
-        if (keyWordSelectionList.isEmpty()) {
+        if (keywordSelectionList.isEmpty()) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe realizar la seleccion de palabras clave."));
             return "/";
         } else {
             try {
                 String keyWordsText = "";
-                for (KeyWordSelection keyWordSelection : keyWordSelectionList) {
-                    keyWordsText += keyWordSelection.getValue().trim().toUpperCase() + ";";
+                for (KeywordSelection keywordSelection : keywordSelectionList) {
+                    keyWordsText += keywordSelection.getValue().trim().toUpperCase() + ";";
                 }
                 selected.setTxtTextRank(keyWordsText);
                 DataStore dataStore = DataStoreManager.getDataStore();
@@ -379,7 +455,7 @@ public class TextManager extends DefaultManager<Text> {
                 dataStore.execute(getStatementReader().getStatement("updateKeyWords"), selected);
                 dataStore.commit();
                 graph = null;
-                keyWordSelectionList.clear();
+                keywordSelectionList.clear();
                 return "/index?faces-redirect=true";
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
@@ -391,12 +467,20 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Cancel keyword selection.
+     *
+     * @return
+     */
     public String cancelSelectSelected() {
         graph = null;
-        keyWordSelectionList.clear();
+        keywordSelectionList.clear();
         return "/index?faces-redirect=true";
     }
 
+    /**
+     * Get evaluation values (precision, recall, f-measure).
+     */
     public void evaluation() {
         if (selected != null) {
             String[] keyWorkdTextRank = selected.getTxtTextRank().split(";");
@@ -421,12 +505,18 @@ public class TextManager extends DefaultManager<Text> {
         }
     }
 
+    /**
+     * Cancel evaluation.
+     */
     public void cancelEvaluation() {
         evaluationMarc21 = null;
         evaluationRddu = null;
         evaluationExpert = null;
     }
 
+    /**
+     * Save evaluation into database.
+     */
     public void saveEvaluation() {
         if (selected != null) {
             try {
@@ -441,6 +531,52 @@ public class TextManager extends DefaultManager<Text> {
                     evaluationManager.insertItem(evaluationExpert);
                 }
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+            } catch (IOException ioe) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+            } catch (SQLException sqle) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+            }
+        }
+    }
+
+    /**
+     * Load the keyword list from database.
+     */
+    public void loadKeywords() {
+        if (selected != null) {
+            keywordMarc21List = new ArrayList<KeywordSelection>();
+            keywordRdduList = new ArrayList<KeywordSelection>();
+            keywordExpertList = new ArrayList<KeywordSelection>();
+            keywordTextRankList = new ArrayList<KeywordSelection>();
+            try {
+                // Get keywords from 'Keyword' table
+                KeywordManager keywordManager = new KeywordManager();
+                DataStore dataStore = DataStoreManager.getDataStore();
+                List<Keyword> keywordList = keywordManager.getKeywords(dataStore, selected);
+                for (Keyword keyword : keywordList) {
+                    if (keyword.getKwSource() == 1) { // MARC21
+                        String value = keyword.getKwValue();
+                        for (String key : value.split(";")) {
+                            keywordMarc21List.add(new KeywordSelection(key, Double.NaN));
+                        }
+                    } else if (keyword.getKwSource() == 2) { // RDDU
+                        String value = keyword.getKwValue();
+                        for (String key : value.split(";")) {
+                            keywordRdduList.add(new KeywordSelection(key, Double.NaN));
+                        }
+                    } else if (keyword.getKwSource() == 3) { // EXPERT
+                        String value = keyword.getKwValue();
+                        for (String key : value.split(";")) {
+                            keywordExpertList.add(new KeywordSelection(key, Double.NaN));
+                        }
+                    }
+                }
+                // Get keywords from 'Text' table
+                for (String key : selected.getTxtTextRank().split(";")) {
+                    keywordTextRankList.add(new KeywordSelection(key, Double.NaN));
+                }
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
             } catch (SQLException sqle) {

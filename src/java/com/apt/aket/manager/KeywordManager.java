@@ -1,13 +1,9 @@
 package com.apt.aket.manager;
 
-import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import org.openlogics.cjb.jdbc.DataStore;
@@ -23,6 +19,13 @@ import org.openlogics.cjb.jee.jdbc.StatementReader;
  */
 public class KeywordManager {
 
+    /**
+     * Get all keywords from a selected text.
+     * @param dataStore
+     * @param text
+     * @return
+     * @throws SQLException 
+     */
     public List<Keyword> getKeywords(DataStore dataStore, Text text) throws SQLException {
         final List<Keyword> keywordList = new ArrayList<Keyword>();
         try {
@@ -39,6 +42,12 @@ public class KeywordManager {
         }
     }
 
+    /**
+     * Insert keyword item into database.
+     * @param dataStore
+     * @param keyword
+     * @throws SQLException 
+     */
     public void insertItem(DataStore dataStore, Keyword keyword) throws SQLException {
         try {
             dataStore.execute(new StatementReader("sql/keyword.xml").getStatement("insertKeyword"), keyword);
@@ -46,6 +55,13 @@ public class KeywordManager {
             throw sqle;
         }
     }
+    
+    /**
+     * Update keyword item in database.
+     * @param dataStore
+     * @param keyword
+     * @throws SQLException 
+     */
     public void updateItem(DataStore dataStore, Keyword keyword) throws SQLException {
         try {
             dataStore.execute(new StatementReader("sql/keyword.xml").getStatement("updateKeyword"), keyword);

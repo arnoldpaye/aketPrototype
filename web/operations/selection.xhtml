@@ -36,10 +36,9 @@
                         <p:outputPanel id="graphPanel" rendered="#{!textManager.switchDisplayGraph}" style="width:  50%">
                             <div id="canvas">
                             </div>
-                            <!--<h:outputLabel value="#{textManager.graph.renderHtml()}" escape="false" />-->
                         </p:outputPanel>
-                        <p:outputPanel id="KeyWordsPanel" rendered="#{textManager.switchDisplayGraph}" style="width:  50%">
-                            <p:dataList value="#{textManager.keyWordSelectionList}" var="vKeyword" rendered="#{textManager.keyWordSelectionList.size() > 0}">
+                        <p:outputPanel id="KeywordsPanel" rendered="#{textManager.switchDisplayGraph}" style="width:  50%">
+                            <p:dataList value="#{textManager.keywordSelectionList}" var="vKeyword" rendered="#{textManager.keywordSelectionList.size() > 0}">
                                 #{vKeyword.value} - #{vKeyword.rank}
                             </p:dataList>
                         </p:outputPanel>

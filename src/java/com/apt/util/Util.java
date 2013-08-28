@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
  */
 public class Util {
 
+    /* Members */
     static Logger log = Logger.getLogger(Util.class);
 
     /**

@@ -16,10 +16,7 @@
                 <f:selectItem itemValue="3" itemLabel="EXPERTO"/>
                 <p:ajax update=":mainForm" event="change" listener="#{evaluationManager.loadEvaluations()}" />
             </p:selectOneMenu>
-            <p:dataTable emptyMessage="Sin registros." value="#{evaluationManager.evaluations}" var="vEvaluation">
-                <p:column headerText="Id">
-                    <h:outputText value="#{vEvaluation.evId}" />
-                </p:column>
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" value="#{evaluationManager.evaluations}" var="vEvaluation">
                 <p:column headerText="Texto">
                     <h:outputText value="#{vEvaluation.txtTitle}" />
                 </p:column>
