@@ -51,8 +51,9 @@ public class TextManager extends DefaultManager<Text> {
     private boolean switchDisplayGraph;
     private UploadedFile txtFile;
     private UploadedFile pdfFile;
+    private TextRank textrank;
     private Graph graph;
-    private List<KeywordSelection> keywordSelectionList = new ArrayList<KeywordSelection>();
+    private List<KeywordSelection> keywordSelectionList;
     private List<KeywordSelection> keywordMarc21List;
     private List<KeywordSelection> keywordRdduList;
     private List<KeywordSelection> keywordExpertList;
@@ -105,10 +106,6 @@ public class TextManager extends DefaultManager<Text> {
 
     public List<KeywordSelection> getKeywordTextRankList() {
         return keywordTextRankList;
-    }
-
-    public void setKeywordSelectionList(List<KeywordSelection> keywordSelectionList) {
-        this.keywordSelectionList = keywordSelectionList;
     }
 
     public List<String> getPosFilterList() {
@@ -263,7 +260,17 @@ public class TextManager extends DefaultManager<Text> {
         DataStore dataStore = DataStoreManager.getDataStore();
         dataStore.setAutoCommit(false);
         try {
+            // Delete evaluations
+            dataStore.select(new StatementReader("sql/keyword.xml").getStatement("getKeyword"), selected, Keyword.class, new MappedResultVisitor<Keyword>() {
+                @Override
+                public void visit(Keyword keyword, DataStore ds, ResultSet rs) throws SQLException {
+                    ds.execute(new StatementReader("sql/evaluation.xml").getStatement("deleteEvaluation"), keyword);
+
+                }
+            });
+            // Delete keywords
             dataStore.execute(new StatementReader("sql/keyword.xml").getStatement("deleteKeyword"), selected);
+            // Delete text
             dataStore.execute(getStatementReader().getStatement("deleteText"), selected);
             dataStore.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Texto eliminado."));
@@ -364,7 +371,6 @@ public class TextManager extends DefaultManager<Text> {
      */
     public void buildGraph() {
         try {
-            TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
             RequestContext requestContext = RequestContext.getCurrentInstance();
             posFilterList = new ArrayList<String>();
             posFilterList.add("NC");
@@ -373,14 +379,15 @@ public class TextManager extends DefaultManager<Text> {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe seleccionar las categorias gramaticales."));
             } else {
                 if (selected != null) {
-                    graph = textRank.buildGraph(selected.getTxtText(), posFilterList);
+                    textrank = new TextRank(selected.getTxtText(), System.getProperty("catalina.home") + "/resourcesNLP");
+                    graph = textrank.buildGraph();
                     List<NodeJson> graphNodes = new ArrayList<NodeJson>();
                     int i = 0;
-                    for (Node node : graph.values()) {
-                        NodeJson nodeJson = new NodeJson(node.getKey(), node.getNodeValue().getText());
+                    for (Node node : graph.getNodes().values()) {
+                        NodeJson nodeJson = new NodeJson(node.getId(), node.getValue());
 
                         for (Node n : node.getEdges()) {
-                            nodeJson.getNodeList().add(new NodeJson(n.getKey(), n.getNodeValue().getText()));
+                            nodeJson.getNodeList().add(new NodeJson(n.getId(), n.getValue()));
                         }
                         graphNodes.add(nodeJson);
                         if (++i == 10) {
@@ -411,24 +418,24 @@ public class TextManager extends DefaultManager<Text> {
      */
     public void selectSelected() {
         try {
-            TextRank textRank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
-
             if (selected != null) {
                 if (graph != null) {
-                    keywordSelectionList.clear();
-                    Graph copyGraph = graph; // The structure of graph change within the process
-                    List<com.apt.textrank.Keyword> keywordList = textRank.init(copyGraph);
+                    keywordSelectionList = new ArrayList<KeywordSelection>();
+                    double[] pr = textrank.pageRank(graph);
+                    List<com.apt.textrank.Keyword> keywordList = textrank.getKeywords(pr, graph);
                     for (com.apt.textrank.Keyword keyword : keywordList) {
-                        keywordSelectionList.add(new KeywordSelection(keyword.getText(), keyword.getRank()));
+                        keywordSelectionList.add(new KeywordSelection(keyword.getValue(), keyword.getRank()));
                     }
+
+//                    for (com.apt.textrank.Keyword keyword : keywordList) {
+//                        keywordSelectionList.add(new KeywordSelection(keyword.getText(), keyword.getRank()));
+//                    }
                     switchDisplayGraph = true;
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe construir el grafo."));
                 }
 
             }
-        } catch (IOException ioe) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
         }

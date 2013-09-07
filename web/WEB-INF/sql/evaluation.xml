@@ -4,6 +4,10 @@
         INSERT INTO evaluation(ev_kw_id, ev_precision, ev_recall, ev_fmeasure)
         VALUES (#{evKwId}, #{evPrecision}, #{evRecall}, #{evFMeasure});
     </st>
+    <st id="deleteEvaluation">
+        DELETE FROM evaluation
+        WHERE ev_kw_id = #{kwId};
+    </st>
     <st id="deleteLastEvaluation">
         DELETE FROM evaluation
         WHERE ev_kw_id = #{evKwId};
