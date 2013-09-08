@@ -1,0 +1,71 @@
+INTEGRACIÓN DE SISTEMAS DOMÓTICOS MULTIMEDIA Y COMUNICACIÓN EN EL HOGAR
+
+Domótica es un concepto que se refiere a la integración de las distintas tecnologías
+en el hogar mediante el uso simultáneo de la electricidad, la electrónica, la
+informática y las telecomunicaciones en un único sistema controlado por una
+unidad central, ordenador o teléfonos móviles. Su fin es mejorar la seguridad, el
+confort, la flexibilidad, las comunicaciones, el ahorro energético, etc. Pueden estar
+conectados por medio de redes interiores y exteriores de comunicación, para
+facilitar el control general de los usuarios de los sistemas y ofrecer servicios de
+monitoreo, control remotamente.
+En la actualidad un hogar tiende a ser un sistema dińamico, debido a que sus
+requerimientos han ido evolucionando, a tal punto que en ella se puede encontrar
+sistemas de climatización, juegos de luces, redes telefónicas, riegos automáticos,
+seguridad hogareña e incluso sistemas informáticos, que tratan de facilitar las
+tareas en el hogar ajustándose a las costumbres y necesidades de los habitantes.
+Todos estos nuevos conceptos alejan a las viviendas actuales de la vieja
+concepción de un simple lugar de refugio.
+La domótica bien entendida y realmente útil aporta algo más que un simple
+encender/apagar; aporta control en el momento y en el tiempo mediante
+programación, y en la distancia, de forma remota, desde utilizando un mando hasta
+haciendo una llamada con el móvil, mensajes de texto o a través de una conexión a
+internet.
+Bajo estas especificaciones, el presente trabajo de investigación hace un profundo
+estudio de la domótica: los servicios, beneficios, arquitectura e instalación de los
+sistemas domóticos. Una investigación no sería de completa utilidad si con ella no
+se presenta o se demuestra con una implementación de un prototipo de sistema
+domótico. Para ello se realiza el diseño e implementación de una interfaz de
+sistema domótico. Que trate de cubrir los objetivos de la domótica, todo ello se
+realizara bajo herramientas de software y hardware de fácil y libre acceso,
+herramientas de hardware que existen en nuestro mercado. Además se
+complementa presentado sobre el prototipo el diseño modular y abstracción de un
+sistema construido bajo el lenguaje de programación java y tecnologías de micro
+controladores.
+
+Con la constante evolución de los sistemas informáticos sufridos en los últimos años
+y el sector eléctrico. Aprovechando el uso de estos avances y con la tecnología
+existente, se plantea la idea de centralización de órdenes y funciones de uso
+domestico de un hogar, con el fin de evitar tareas repetidas e incomodas.
+El uso de la domótica con las telecomunicaciones genera nuevas aplicaciones y
+tendencias basadas en la capacidad de procesos de información, seguridad,
+integración, conforty comunicación entre los que habitantes de un hogar. Así
+concebida, un hogar domótico puede ofrecer una amplia gama de aplicaciones en
+áreas tales como:
+- Seguridad
+La base fundamental de la domótica es garantizar de algún modo la seguridad
+interna (fugas de gas, inundaciones, incendios, emergencias de salud..) y la
+externa (robos, ataques...) mediante sistemas tales como simulación de
+presencia o telecontrol de dispositivos.
+- Ahorro
+La optimización del gasto energético o de agua es otro de los pilares básicos
+de la domótica. El buen rendimiento de las instalaciones de climatización, de
+los electrodomésticos o de los sistemas de iluminación mediante diversos
+dispositivos mejora claramente los costes energéticos.
+- Comunicaciones
+Mediante diferentes sistemas, la domótica permite a los/as usuarios/as
+enterarse de las incidencias y controlar diversas funciones a distancia en
+ausencia de presencia.
+- Ocio
+La domótica también contribuye al aprovechamiento de los ratos de ocio
+mediante equipos tecnológicamente avanzados y sistemas audiovisuales.
+- Confort
+La calidad de vida en el hogar puede ser incrementada mediante una gama
+muy amplia de servicios. Por ejemplo, prestaciones como la
+activación/desactivación automática de los sistemas de calefacción o alarma,
+encendido/apagado de luces por control de presencia, riegos automáticos y
+sistemas de comunicación multimedia.
+- Programable
+Los sistemas domóticos proponen formas de programación de acciones sobre
+los eventos que arrojan los dispostivos de acuerdo a las necesidades de los
+habitantes de un hogar. Ajustándose a sus costumbres y automatizando
+tareas repetidas o rutinarias.

@@ -1,0 +1,59 @@
+SISTEMA DE INFORMACION VIA WEB DE CONTROL Y MONITOREO A PROYECTOS SOCIALES CASO: "ATALS ENERGY CONSULTING GROUP"
+
+El proyecto "Sistema de información via web de control y monitoreo a proyectos sociales",
+fue desarrollado para la empresa "Atlas EnergyConsultingGroup", con oficinas en la ciudad
+de La Paz. La empresa da servicios de elaboración de planes de negocios especializados,
+apoyo en el desarrollo de planes acción para la búsqueda de nuevas oportunidades de
+negocio, networking (relaciones y contactos) y eventos sectoriales multidisciplinares, entre
+otros.
+Es por ello que en el presente Proyecto de Grado se pretende generar un núcleo de información
+para que todas las personas involucradas en el trabajo de la empresa puedan acceder de
+manera inmediata a la información y satisfacer las necesidades en lo referente al seguimiento y
+control a proyectos empresariales.
+El presente trabajo de investigación se apoya en teorías demostradas las cuales coadyuvan en
+el proceso, teorías como ingeniería web. El lenguaje de modelado unificado (UML), es una
+herramienta que tiene ventaja de ser bien documentado y la notación orientada a objetos
+más utilizada en la actualidad.
+La formulación, identificara metas y objetivos de la aplicación web. La planificación estimara el
+costo global del proyecto, evaluara riesgos. El análisis establece los requisitos técnicos para la
+aplicación web e identifica los elementos del contenido que se van a incorporar. También se
+definen los requisitos del diseño gráfico (performance) adicionalmente permite identificar las
+necesidades del usuario. La generación de páginas se realizar a través del lenguaje de
+programación PHP y el gestor de base de datos MySQL.
+Los módulos principales del sistema desarrollados son: modulo para el proceso de inicio de
+proyecto, módulo de control y monitoreo, modulo para la generación de informes estadísticos
+diarios el monitoreo del avance y evaluación de cada proyecto en base al método de evaluación
+y control.
+Una vez desarrollado el software se realizaron pruebas de funcionamiento, con las que se pudo
+constatar que el sistema responde a los requerimientos de la institución, posibilitando la
+reducción de tiempo y costo en la administración de información, además de la obtención de
+datos confiables y oportunos.
+
+Hoy en día las organizaciones son cada vez másconsientes de la importancia de
+adecuarse a los cambios tecnológicos de manejo de la información con el objeto de
+realizar una buena toma de decisiones, y alcanzar sus objetivos. Por este motivo se
+van automtizando las distintas necesidades que presenta una empresa con la
+capacidad de proyectarse al futuro.
+Este es el caso de la empresa "ATLAS ENERGY CONSULTING GROUP" que da
+servicios de elaboración de planes de negocios especializados apoyo en el
+desarrollo de planes de acción para la búsqueda de nuevas oportunidades de
+negocio, asesoramiento técnico en la tramitación de documentos para la creación
+de empresas, búsqueda de vías de financiación, preincubación o incubación
+empresarial , planes de lanzamiento, presentación de proyectos en espacios
+públicos-privados, networking (relaciones y contactos) y eventos sectoriales
+multidisciplinares, entre otros.
+A través de la misma se pretende fomentar espacios de intercambio de servicios,
+promoviendo el encuentro de las organizaciones con sus respectivos mercados
+objetivos, y de esta manera lograr crecimiento sostenible de las MyPE's (Medianas
+y pequeñas empresas) que es el principal mercado de la empresa, asimismo
+"ATLAS ENERGY CONSULTING GROUP" es una empresa que brinda servicios
+especializados en relación al desarrollo empresarial es vital hacer un
+seguimiento y monitoreo a estos proyectos para que el flujo de información sea
+de manera oportuna, inmediata y eficaz.
+Es por ello que en el presente Proyecto de Grado se pretende generar un núcleo de
+información para que todas las personas involucradas en el trabajo de la empresa
+puedan acceder de manera inmediata a la información y satisfacer la necesidades
+en lo referente al seguimiento y control a proyectos empresariales. Por el momento
+todo este trabajo se lo desarrolla de manera manual, si se pudiera informatizar
+estos procesos se llegaría a atender más apropiadamente las necesidades de las
+personas involucradas en los proyectos.

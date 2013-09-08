@@ -1,0 +1,58 @@
+ARQUITECTURA DE UN BUS DE SERVICIO EMPRESARIAL
+
+La concepción postmoderna de la construcción de software dio lugar al nacimiento de
+distintos conceptos como arquitectura de software, nuevos paradigmas como SOA y
+finalmente la cima de esta era ESA (Aplicativos de Servicios Empresariales), sin embargo
+un tema controversial que nace es la integración de los procesos comerciales con su
+contraparte tecnológica los Servicios de los aplicativos. El presente trabajo pretende
+formalizar esta relación contraponiendo un concepto base "Bus de Servicio Empresarial".
+En el primer capítulo veremos cómo fue evolucionando la construcción de software desde
+aplicativos monolíticos hasta la arquitectura orientada a servicios, posteriormente
+definiremos conceptos que aparecieron a mediados de la década del 2000.
+Durante el segundo capítulo revisaremos conceptos importantes para la investigación
+como la arquitectura, los patrones de diseño empresarial y la definición de una aplicación
+empresarial.
+En el tercer capítulo diseñaremos la especificación arquitectónica del Bus de servicio
+empresarial, tomando como contexto inicial las necesidades que priman en la integración
+y gestión de los servicios, definiremos la construcción de los componentes asentados en
+un framework base WCF.
+Finalmente describiremos los pros y contras de usar un ESB como herramienta dentro del
+flujo comercial de una organización.
+La percepción que toma la presente investigación es de tesis explicativa sobre un campo
+de estudio "Ecosistemas de aplicativos caóticos", contemplando una serie de factores que
+permiten convertir este en un ambiente totalmente ordenado y flexible.
+
+Actualmente los procesos de producción y gestión de infinidad de organizaciones son
+automatizados, esto con el fin de alcanzar altos niveles de eficiencia y eficacia en los mismos, para
+poder cumplir las expectativas del mercado actual; consecuencia de este hecho es la concepción
+de distintos tipos de sistemas de información que pueden clasificarse en su mayoría como
+servicios empresariales (ej. ERP, CRM, SCM, etc.), cada uno con una estructura y comportamiento
+interno particular - a la cual denominaremos arquitectura posteriormente - misma que será el
+objeto de nuestro estudio.
+Cada servicio empresarial que compone este flujo comercial se considera un beneficio para la
+institución y como parte de la misma infiere en la gestión de sus políticas, mismos que consideran
+temas como la integración de sistemas, mismo que este en función al flujo comercial. Definiremos
+"flujo comercial" como la secuencia de pasos que sigue los procesos de una empresa en su cadena
+de producción, por ejemplo el inicio de registro de recursos insumos, manejo de almacén,
+contabilización de movimientos, registro de la planilla de funcionarios, etc. por mencionar alguno
+de los procesos.
+Cada uno de estos procesos o servicios internos de la empresa está compuesto de una seria de
+pasos, por ejemplo la contabilidad inicia con la identificación de cada uno de los movimientos, la
+generación de asientos contables, la generación de libro diario, generación de reportes analíticos
+de cierre mensuales, etc. A toda esta secuencia de pasos la denominaremos "Lógica Comercial",
+mucho se ha hablado de la misma, una de sus características principales es el cambio constante
+que sufre, motivo por el cual se tiene que realizar nuevas adecuaciones a los sistemas de
+información y/o aplicaciones que son los componenetes responsables de realizar estas tareas.
+Considerando que se tienen un conjunto de servicios, cada uno compuesto a su vez de una serie
+de sistemas de información, la gestión del flujo comercial es una tarea compleja, ya que el control
+de esta no solo implica controlar las tareas criticas de cada uno de los servicios sino también
+evaluar el impacto de los posibles cambios del flujo comercial en todos los sistemas de
+información, comúnmente estas tareas de gestión tienen costos altos en la empresa; ya que
+muchas veces no se cuentan con las herramientas adecuadas para poder medir tanto el impacto
+de estos cambios.
+En la actualidad se han realizados varios estudios sobre el coportamiento de las aplicaciones
+empresariales, desde su arquitectura hasta los patrones que siguen estas. Uno de los temas más
+controversiales es la integración de los sistemas de información, el cómo realizar esta tarea con
+éxito no solo en el buen funcionamiento de los aplicativos si no también con la optimización del
+flujo comercial, ha concebido el concepto de "Bus de Servicios Empresariales" objeto de estudio
+presente trabajo.

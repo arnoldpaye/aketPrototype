@@ -1,0 +1,57 @@
+MODELO DE DIAGNOSTICO Y TRATAMIENTO DE PANCREATITIS AGUDA MEDIANTE LOGICA DIFUSA
+
+La presente tesis plantea un modelo de Sistema Experto a través de la aplicación
+de las técnicas de la Inteligencia Artificial, el cual capta el conocimiento básico que
+permite a una persona desempeñarse como un experto frente a problembas
+complicados, en este caso el Sistema Experto se encarga de diagnosticar
+mediante lógica difusa el tipo de pancreatitis aguda que puede o no presentar un
+paciente. La pancreatitis aguda es una afección que se presenta con frecuencia en
+nuestro media a raíz de que se forman abscesos dentro el páncreas. Se considera
+como objeto de estudio a enfermedades de los órganos que componen la región
+del páncreas.
+Se diseña el Sistema Experto con las siguientes características: los síntomas del
+paciente considerados como variables de entrada, una Base de Hechos que
+almacena los síntomas particulares del paciente, una Base de Conocimientos
+representado por las Reglas de Producción formalizados por la lógica de
+predicados que contienen todo el conocimiento del experto humano, un motor
+de inferencia que utiliza la búsqueda en un árbol And/Or y finalmente las variables de
+salida.
+Posteriormente se realiza la simulación del Sistema Experto a través de un
+prototipo desarrollado en Swi-Prolog que en este caso es intuitivo y fácil de
+emplear por lo que puede ser una opción recomendable, así mismo, se diseñan
+también los casos de prueba que permiten verificar los resultados obtenidos,
+comparándolos con los resultados reales.
+De los resultados obtenidos de las pruebas efectuadas se evalúa el Sistema
+Experto llegándose a la conclusión de que los diagnostico obtenidos tienen un
+grado de confiabilidad que es aceptado por el experto humano.
+
+En la actualidad el avance tecnológico en el área de la medicina incrementa las
+expectativas del ser humano; pero, las diferentes patologías, ya sean infecciosas,
+congénitas, metabólicas adquiridas y aún traumáticas continúan amenazando la
+salud de la población.
+Cuando hablamos de tecnología, tenemos que referirnos a lo que es la Inteligencia
+Artificial (IA), que utiliza las herramientas teóricas y experimentales de las ciencias
+de la computación para estudiar el fenómeno del comportamiento inteligente y el
+desarrollo de sistemas inteligentes, algoritmos y nuevas tecnologías.
+Un método más avanzado para representar el conocimiento, es el Sistema
+Experto. Típicamente está compuesto por varias clases de información
+almacenada. Un Sistema Experto sintetiza nuevo conocimiento a partir de su
+entendimiento del mundo que lo rodea. De esta forma un sistema experto es un
+método de representación y procesamiento del conocimiento, mucho más rico y
+poderoso que un simple programa de computador.
+Un sistema experto puede aplicarse a diferentes áreas y una de ellas es la
+medicina, que tiene distintos campos de estudio como el área de
+Gastroenterología que es muy extensa por las múltiples patologías que se
+presentan. En este caso se pretende diagnosticar las posibilidades reales de tener
+pancreatitis aguda.
+La pancreatitis es el proceso inflamatorio agudo del páncreas que puede
+comprometer por contigüidad estructuras vecinas e incluso desencadenar
+disfunción de órganos regionales o de sistemas orgánicos distantes, posee
+un amplio espectro de gravedad que varía desde un trastorno ligero que responde al
+tratamiento, hasta uno de gravedad extrema que podría comprometer la vida del
+paciente.
+Con estas consideraciones se justifica la realización esta investigación para
+implementar el diseño de un Sistema Experto como herramienta alternativa para el
+diagnostico y tratamiento de Pancreatitis Aguda, con el cual se busca colaborar a
+los profesionales médicos dando un diagnostico y sugiriendo al paciente un
+tratamiento adecuado para su respectiva recuperación.
