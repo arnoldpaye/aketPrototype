@@ -1,13 +1,13 @@
 package com.apt.aket.manager;
 
-import com.apt.util.NodeJson;
-import com.apt.util.Util;
+import com.apt.aket.util.NodeJson;
 import com.apt.aket.data.CommonResultHandler;
 import com.apt.aket.data.DataStoreManager;
 import com.apt.aket.data.KeywordSelection;
 import com.apt.aket.model.Evaluation;
 import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
+import com.apt.aket.util.Util;
 import com.apt.textrank.Graph;
 import com.apt.textrank.Node;
 import com.apt.textrank.TextRank;
@@ -436,6 +436,10 @@ public class TextManager extends DefaultManager<Text> {
                 }
 
             }
+        } catch (FileNotFoundException fnfe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, fnfe.getMessage()));
+        } catch (IOException ioe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
         }
