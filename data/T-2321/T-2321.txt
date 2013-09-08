@@ -1,0 +1,41 @@
+PORTAL WEB DE DIFUSION DE INFORMACION PARA PROMOVER EL TURISMO Y LAS DISTINTAS AREAS "GOBIERNO MUNICIPAL DE GUAQUI"
+
+Debido al avance de la tecnología y las distintas e innovadoras formas de
+comunicación como internet, portales y páginas web ha aumentado la demanda y la
+necesidad de contar con un sistema vía web como en instituciones, empresas,
+universidades y distintas organizaciones, para una mejor promoción y difusión de las
+actividades.
+Por esto, que el municipio de Guaqui demandó un Portal Informativo para poder
+facilitar su trabajo y al mismo tiempo poder informar al usuario interesado de todo lo
+que se realiza dentro y fuera de esta Institución.
+Para el diseño de este portal denominado "Portal Web de Difusión de Información
+para promover el Turismo y las distintas áreas del Gobierno Municipal de Guaqui",
+se trabajó con la metodología OOHDM, que es adecuado para el desarrollo
+hipermedia con páginas Web, dividiéndose en 5 etapas que son: la especificación de
+requerimientos, diseño conceptual, diseño navegacional, diseño de interfaz abstracta
+y la implementación.
+El desarrollo del sistema se lo realizó bajo el lenguaje de programación PHP, MySQL
+para administrar la base de datos, utilizando el servicio Apache Wamp. También
+cabe destacar que se utilizó Macromedia y otros para ayudar a mejorar la
+presentación del Portal Web.
+La medición de la calidad del portal web se realizó a través de cuatro parámetros que
+son: la Usabilidadi, Funcionalidad, Confiabilidad y Eficacia.
+
+El enorme avance de la llamada Autopista de la Información más conocida como
+Internet, hoy en día es un beneficio para las empresas, instituciones, en si cualquiera
+organización que quiera darse a conocer en el mundo, pues no estar en esta red de
+redes induce a pensar el retardo tecnológico de las instituciones.
+La ciudad de La Paz cuenta con hermosos paisajes, que se dan a conocer por los
+medios de comunicación, pero es lamentable que en provincias que tienen recursos
+turísticos estos no sean difundidos adecuadamente, debido tal vez al inadecuado
+manejo de las políticas de desarrollo y fomento turístico. Es el caso e inquietud del
+Gobierno Municipal de Guaqui poder difundir actividades, noticias y promocionar
+lugares turísticos, de esta región, a través del Internet, con el que se pretende
+elevar la imagen de la comunidad, de ser posible a nivel mundial.
+Para tal efecto el presente proyecto plantea la implementación de un portal web, con
+el se busca publicar, mostrar, promover y fomentar el turismo de la región, para que
+así la población puede disponer de información veraz, necesaria y oportuna. Dicho
+proyecto estará elaborado bajo aplicaciones de desarrollo web, como es el OOHDM
+que propone el desarrollo de aplicaciones Hipermedia orientado a objetos para
+sistemas Cliente/servidor y UML es un lenguaje de modelado visual y consistente de
+sistemas orientado a objetos.

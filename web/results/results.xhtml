@@ -16,8 +16,8 @@
                 <f:selectItem itemValue="3" itemLabel="EXPERTO"/>
                 <p:ajax update=":mainForm" event="change" listener="#{evaluationManager.loadEvaluations()}" />
             </p:selectOneMenu>
-            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" value="#{evaluationManager.evaluations}" var="vEvaluation">
-                <p:column headerText="Texto">
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
+                <p:column headerText="Texto" style="width: 1050px">
                     <h:outputText value="#{vEvaluation.txtTitle}" />
                 </p:column>
                 <p:column headerText="Precisi&oacute;n" style="text-align: right;">

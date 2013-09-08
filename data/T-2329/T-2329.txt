@@ -1,0 +1,49 @@
+METODOLOGIA DE DESARROLLO DE HIPERMEDIA ORIENTADA A OBJETOS REFINADA (OOHDM+) APLICADO EN EL DESARROLLO DEL PORTAL WEB DINAMICO CASO: FACULTAD DE AGRONOMÍA UNIVERSIDAD MAYOR DE SAN ANDRES
+
+La aplicación de la nuevas tecnologías de la información en la educación no solo se
+limita a un portal web, si no todo lo contrario se basa en el estudio del contenido que se va
+a mostrar y la forma como poder hacerla más atractiva para los usuarios, siendo este un
+proyecto donde debemos lograr este resultado debemos considerar el uso de
+herramientas modernas tanto para el diseño, análisis e implementación del proyecto.
+Las nuevas tecnologías de la información avanzan como concepto, más rápido que la
+tecnología física con la cual son implementadas, razón por la cual se hace una necesidad
+constante la aplicación de metodologías modernas y acordes con las necesidades de los
+usuarios actuales, integrando tecnologías de web 2.0 para poder hacer efectiva la difusión
+de información institucional y académica.
+La Facultad de Agronomía es una unidad universitaria de la Universidad Mayor de San
+Andrés destinada a la formación de profesionales con mucho conocimiento sobre la
+aplicación de tecnología en el manejo agropecuario y de producción agrícola, razón por la
+cual tiene mucha producción intelectual y que se aplica en los climas diversos de nuestro
+departamento y de nuestro país. Por otro lado la propia facultad se dedida al estudio de
+áreas determinadas del agro los cuales se denominan proyectos de investigación
+destinadas a brindar datos estadísticos y producción intelectual de los mismos.
+La necesidad de difundir información, datos y producción intelectual hace que la facultad
+de agronomía aplique un medio de difusión masivo, permanente en el tiempo y de gran
+alcance, razón por la cual la facultad eligió apoyar el desarrollo de un portal web dinámico
+de la facultad aplicando metodologías modernas y acordes con el ambiente de aplicación.
+El presente proyecto de grado, procura generar una herramienta robusta para la facultad
+de agronomía con un diseño orientado al continuo mejoramiento del portal web.
+
+La aplicación del Internet como medio de difusión masivo dejo ser el único
+propósito de un portal web, ahora es un medio de consulta masiva convirtiendo a
+los portales en especial de entidades académicas en grandes contenedores de
+trabajos de investigación, en medio de contactos con profesionales con
+conocimientos profundos de un determinado tema, razón por la cual la mejora de
+metodologías orientadas al desarrollo de portales web es una necesidad
+emergente de estas necesidades.
+La Facultad de Agronomía de la Universidad Mayor de San Andrés, acreditada a
+la Mercosur tiene varias unidades destinadas a la producción de manuales sobre
+agronomía y producción agropecuaria, también indicar que las practicas que se
+realizan en los distintos tipos de climas del Departamento de La Paz en las
+estaciones experimentales y la producción misma de estas estaciones no son
+difundidas de forma masiva. La investigación no solo se limita a el departamento
+de La Paz también se puede encontrar personal docente con amplios
+conocimientos en el área agronómica con dominio en los distintos climas de todo
+el estado boliviano.
+El presente proyecto trata de clasificar la información institucional de la Facultad
+de Agronomía, los proyectos de investigación, producción, información de las
+estaciones experimentales y los artículos científicos producidos por los docentes
+de la facultad usando una metodología mejorada, orientada al diseño y análisis de
+portales de entidades académicas, al tener varios proyectos en plemo desarrollo
+es necesario transparentar esta información por lo que la difusión de gastos
+también es de vital importancia.

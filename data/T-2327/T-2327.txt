@@ -1,0 +1,59 @@
+SISTEMA DE E-COMMERCE CASO: EMPRESA AHAYO-BOL
+
+El objetivo de este proyecto es implementar un sistema de e-commerce para la empresa
+"Ahayo-Bol". El e-commerce o comercio electrónico signifíca hacer negocios online o
+vender y comprar productos y servicios a través de portales Web. Los productos
+comercializados pueden ser productos físicos o productos digitales. Personalizar y
+automatizar servicios ofrece a los negocios el potencial de incrementar ingresos, bajar
+costos, y establecer fuertes vínculos entre los consumidores y la empresa. Para lograr estos
+beneficios muchas empresas actualmente ingresan al comercio electrónico para:
+promocionar, vender, ofrecer servicios directos, realizar transacciones y pagos, distribuir
+información en forma segura. Exciten diferentes modalidades de comercio electrónico en
+este proyecto usamos, B2C "Business to Consumer" venta de productos finales a un
+consumidor (Tiendas virtuales como Amazon.com).
+En este proyecto se uso la metodología de desarrollo ágil AUP (Proceso Unificado Agil)
+que cuenta con las fases de iniciación, elaboración y construcción del desarrollo de la
+aplicación. En conjunción con la metodología UWE (UML Based Web Engineering -
+Ingeniería Web Basado en UML) que cuenta con los siguientes artefactos: análisis de
+requerimientos (usado en la fase de iniciación), diseño conceptual, diseño navegacional y
+diseño de presentación (usados en la fase de elaboración). Además para medir la calidad
+de la aplicación se hizo uso de la metodología Web QEM que mide la calidad en términos
+de usabilidad, funcionalidad, confiabilidad y eficiencia. Finalmente para se uso el análisis
+constructivo de Costos COCOMO basado en el peso o líneas de código.
+La arquitectura MVC (Modelo Vista Controlador) ayuda al desarrollador a mantener
+separados los aspectos visuales de la lógica del negocio (Ruby on Rails mantiene este
+principio). Ruby es el lenguaje elegido para crear la aplicación en el lado del servidor,
+Rails que es un framework que utiliza la arquitectura MVC y Mysql como gestor de base
+de datos.
+
+El comercio electrónico, también conocido como e-commerce (Electronic Commerce en
+inglés), consiste en la compra y venta de productos a través de medios electrónicos, tales
+como Internet y otras redes informáticas. Originalmente el término se aplicaba a la
+realización de transacciones mediante meidos electrónicos tales como el Intercambio
+electrónico de datos, sin embargo con el advenimiento de la Internet y la World Wide
+Web a mediados de los años 90 comenzó a referirse principalmente a la venta de bienes y
+servicios a través de Internet, usando como forma de pago medios electrónicos, tales como
+las tarjetas de crédito.
+La cantidad de comercio llevada a cabo electrónicamente ha crecido extraordinariamente
+debido a la propagación de Internet. Una gran variedad de comercio se realiza de esta
+manera, estimulando la creación y utilización de innovaciones como la transferencia de
+fondos electrónica, la administración de cadenas de suministro, el marketing en Internet,
+el intercambio electrónico de datos (EDI), sistemas de administración del inventario y los
+sistemas automatizados de recolección de datos.
+La mayor parte del comercio electrónico consiste en la compra y venta de productos o
+servicios entre personal y empresas atreves de sitios web. Actualmente, el comercio
+electrónico presenta el crecimiento más acelerado de la economía. Gracias al costo mínimo
+que implica, hasta la empresa más pequeña puede llegar a clientes de todo el mundo con
+sus productos y mensajes. En la actualidad, más de 250 millones de personas en todo el
+mundo utilizan Internet habitualmente.
+El Internet es información en abundancia. Podemos comprar cualquir cosa, en cualquier
+parte del mundo, con sólo unos cuantos clic del mouse y una tarjeta de crédito, sin
+importar la hora. También tenemos el poder de hacer comparaciones de precio y calidad de
+productos en cuéstión de minutos y tener resultados muy positivos.
+La competencia es más "global" y los precios disminuyen. En todo caso, los más
+beneficiados somo los consumidores. El Comercio electrónico (o e-commerce en ingles),
+es una manera de hacer negocios, vendiendo o comprando productos, información y
+servicios por Internet.
+En este entendido, para aumentar la venta de productos dentro y fuera del país la empresa
+"Ahayo Bol" tiene la necesidad de implementar una aplicación web con todas las
+características mencionadas a principio.
