@@ -1,0 +1,75 @@
+SISTEMA COTAR DE COSTOS DE PRODUCCIÓN NACIONAL TELEVISIVA
+
+Sin la información adecuada, las decisiones no son rápidas ni efectivas, y suelen crear más
+problemas de los que solucionan.
+El desarrollo del sistema COTAR (Costos Televisivos Articulados), con el Índice
+de Calidad de Estrucutra de Diseño (ICED) de 67 porciento, se considera como la variable
+independiente de la ecuación que representa el problema de obtener el costo de un programa de
+televisión de producción nacional, información necesaria para el Departamento de Producción de
+ATB, cuya principal preocupación es establecer los costos en cada una de sus etapas de
+producción, por lo que se aplica el método de costos por órdenes, también necesita obtener datos
+sobre las ganancias del mismo programa y si éstas compensan los gastos, para lo cual se calcula
+el punto de equilibrio económico, utilizando el procedimiento gráfico para facilitar la
+comprensión de la información.
+Para la vida de un programa televisivo, un factor importante es la cantidad de audiencia
+que tiene, esta información es proporcionada por el Rating, siendo un factor importante dentro de
+la ponderación de todo programa, razón por la cual se aplica el método estadístico para el análisis
+descriptivo de datos cualitativos enriqueciendo la posibilidad de aplicación de esta medidad de la
+teleauidiencia.
+Toda la información proporcionada por COTAR, es la variable dependiente de la
+ecuación, con una confiabilidad (R(t)) del 99 porciento, proporciona información que ayuda de
+manera oportuna a la toma de decisiones de gerencia.
+COTAR tiene un Índice de Madurez de Software (IMS) del 80 porciento, valor al que
+contribuye el que se lo desarrolle en Oracle, por su probada seguridad como base de datos,
+performance, portabilidad, y por la facilidad de una futura interfaz con el sistema administrativo
+financiero NAF de actual uso en la compañía.
+Las etapas del sistema están definidas por el análisis estructurado con una funcionalidad
+de 150.49, que responde a las métricas que involucra la producción de un software de calidad.
+
+En la actualidad conceptos como gastos (la inversión necesaria para obtener un producto
+determinado), e ingresos (el dinero u otro elemento que se percibe por cualquier concepto), son
+de uso diario en la economía, desde la simplicidad de un hogar, hasta las grandes empresas
+transnacionales o la macroeconomía de las naciones, que tratan de equilibrar ambos factores para
+mejorar su desarrollo y reducir su pobreza.
+Si bien se puede calcular los gastos efectuados sin necesidad de llevar una Contabilidad
+Formal, el cálculo de costos (conjunto de gastos para obtener o producir un bien o producto), se
+hace un componente indispensable para la toma de Decisiones de Gerencia, las mismas que
+afectarán a la Contabilidad de una empresa.
+En el ámbito de una empresa, el cálculo de costos se complica, por la cantidad de
+parámetros involucrados en la elaboración de un producto, dependiendo de la precisión con la
+que se efectúe esta elección de datos, se podrá calcular un punto de equilibrio (intersección de
+los costos e ingresos en el que la empresa no pierde ni gana por cada producto producido) preciso
+por producto, permitiendo mayor seguridad en la toma de decisiones comerciales, lo cual es
+indispensable en una empresa que debe competir en el mercado.
+Sabemos que la Contabilidad Financiera es regida por normas internacionales y por leyes
+nacionales que determinan el comportamiento jurídico de esta ciencia, a la cual debe apegarse
+toda empresa en su manejo contable. Mientras que la Contabilidad de Costos, o también llamada
+Contabilidad Gerencial, depende de las necesidades internas de la empresa, ya que su función es
+proporcionar la información precisa, confiable y necesaria para la toma de decisiones internas
+que son aplicadas y reflejadas por la Contabilidad Financiera.
+Basados en los datos obtenidos por el cálculo de costos, ya sea este real (tomando en
+cuenta los costos que erogaron para obtener el producto) o proyecto (utilizando algún
+modelo matemático), es que generalmente, las empresas fijan el precio del producto, proyectan
+nuevos, deciden si es conveniente producir mayor o menor cantidad de uno en especial, o por
+último eliminarlo porque producto pérdidas.
+Para el mejor estudio de los costos, las empresas se clasifican en: empresas Comerciales
+(son las que compran y venden productos sin transformarlos), empresas Industriales (que
+transforman materia prima o productos antes de venderlos), y empresas de Servicios (que cubre
+una necesidad social).
+Si bien una empresa televisiva se clasifica dentro de las empresas de servicios, por que
+cubre la necesidad de información, educación y entretenimiento masivo, desde el punto de vista
+de la producción nacional de programas televisivos, ésta debe ser tratada como una empresa
+Industrial cuyo objetivo es producir programas de televisión.
+Para este proyecto de grado, se toma la necesidad de determinar los parámetros adecuados
+para calcular los costos, y el punto de equilibrio en la producción de un programa nacional de
+televisión, desarrollando el sistema COTAR (Costos Televisivos Articulados), dentro de las
+necesidades presentadas por la Gerencia de la empresa Illimani de Comunicaciones S.A. para el
+canal 9 ATB La Paz.
+El sistema COTAR deberá calcular el costo de un programa de producción nacional en
+cualquier momento del proceso, de tal manera que cumpla con las leyes normativas en asuntos
+salariales, contratos, insumos, tanto de ideas como materiales a transformar, depreciación de
+equipo y materiales, y otros parámetros, también debe calcular el punto de equilibrio por
+programa, comparar varios programas entre si, e incluir una ponderación del Rating (análisis
+estadístico que mide la audiencia televisiva por un cierto tiempo previamente determinado en el
+mes de estudio), entregando información adecuada y oportuna para la toma de decisiones de
+gerencia.

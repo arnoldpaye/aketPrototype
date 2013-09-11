@@ -1,0 +1,67 @@
+GESTION DE DISPOSITIVOS DE RED
+
+La creciente integración de computadoras y comunicación dentro de un sistema único, a
+llevado a un sociedad nueva y de rápido crecimiento.
+Esta tendencia de crecer rápidamente es en realidad totalmente universal. Los adelantos
+tecnológicos permiten que las comunicaciones tengan lugar a través de grandes distancias
+cada ves con mayor facilidad.
+Hoy es más la interrelación y la interdependencia de oficinas y lugares de trabajo
+dispersos. Los nuevos conceptos de administración exigen una disponibilidad de los datos
+que cumplan, la persona adecuada debe recibir, la información adecuada, en el momento
+adecuado.
+Esto obliga a solucionar cualquier problema que ocurra inmediatamente en los
+dispositivos de red.
+Para la realización de la presente tesis se hace uso del método científico, en sus etapas
+de análisis, síntesis, inducción, concreción.
+Se plantea la construcción de una herramienta de gestión de red para monitorear los
+dispositivos de red, para la construcción de la herramienta se utilizo de un lenguaje de
+programación(java), además de el paquete de snmp para java, el protocolo de red SNMP.
+
+La administración de redes abarca un amplio número de dispositivos. En general, se
+suelen tratar con muchos datos estadísticos e información sobre el estado de distintas partes
+de la red, y se realizan las acciones necesarias para ocuparse de fallos y otros cambios.
+La técnica más primitiva para la monitorización de una red es hacer "pinging" a los hosts
+críticos; el "pinging" se basa en un datagrama de "echo", que es un tipo de datagrama que
+produce una réplica inmediata cuando llega al destino. La mayoría de las implementaciones
+TCP/IP incluyen un programa (generalmente, llamado "ping") que envía un eco a un host en
+concreto. Si recibimos réplica, sabremos que host se encuentra activo, y que la red que los
+conecta funciona; en caso contrario, sabremos que hay algún error. Mediante "pinging" a un
+razonable número de ciertos hosts, podremos normalmente conocer qué ocurre en la red. Si
+los ping a todos los hosts de una red no dan respuesta, es lógico concluir que la conexión a
+dicha red, no funciona.
+Si sólo uno de los hosts no da respuesta, pero los demás de la misma red responden, es
+razonable concluir que dicho host no funciona.
+El ping es una manera rápida de verificar la conectividad entre host. Se hace desde el
+prompt de Windows (MS-DOS).
+Técnicas más sofisticadas de monitorización necesitan conocer información estadística y
+el estado de varios dispositivos de la red.
+Para ello necesitará llevar la cuenta de varias clases de datagramas, así como de errores de
+varios tipos.
+Este tipo de información será más detallada en los gateway, puesto que el gatewa clasifica
+los datagramas según protocolos e, incluso, él mismo responde a ciertos tipos de
+datagramas. Sin embargo, los bridges e incluso los repetidores con buffer contabilizan los
+datagramas reenviados, errores de interface.
+Para llevar a cabo la monitorización. Usamos un protocolo SGMP y SNMP, ambos
+diseñados para permitirnos recoger información y cambiar  los parámetros de la configuración
+y otras entidades de la red. Podemos ejecutar los correspondientes protocolos en cualquier
+host de nuestra red.
+SGMP está disponible para varios gateway comerciales, así como para sistemas Unix que
+actúan como gatewa. Cualquier implementación SGMP necesita que se proporciones un
+conjunto de datos para que pueda empezar a funcionar, y tienen mecanismos para ir
+añadiendo informaciones que varían de un dispositivo a otro.
+A finales de 1988 apareció una segunda generación del protocolo SGMP cual es SNMP,
+que es ligeramente más sofisticado y necesita más información para trabajar y, para ello, usa
+el llamado MIB (Management Información Base).
+Es así, que estos protocolos persiguen el mismo objetivo: permitirnos recoger información
+crítica de una forma estandarizada. Se ordena la emisión de datagramas UDP desde un
+programa de administración de redes que se encuentra ejecutando en algunos de los hosts de
+red. Generalmente, la interacción es bastante simple, con el intercambio de un par de
+datagramas: una orden y una respuesta.
+La administración de red se lleva a cabo al nivel de IP, por lo que se pueden controlar
+dispositivos que estén conectados en cualquier red accesible desde la Internet, y no
+únicamente aquellos localizados en la propia red local. Evidentemente, si alguno de los
+dispositivos de encaminamiento con el dispositivo remoto a controlar no funciona
+correctamente, no será posible su monitorización ni reconfiguración.
+Un Administrador de red está compuesto por dos elementos: el agente (agent), y el gestor
+(manager). Es una arquitectura cliente-servidor, en la cual el agente desempeña el papel de
+servidor y el gestor hace el de cliente.

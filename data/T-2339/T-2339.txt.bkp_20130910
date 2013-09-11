@@ -1,0 +1,46 @@
+METODOLOGIA PARA LA AUTOMATIZACIÓN DE BASE DE DATOS
+
+El modelado de Bases de Datos, es fundamental para el almacenamiento óptimo
+de la información que manipularan las aplicaciones denominadas: sistemas de
+información
+Si bien las técnicas mencionadas anteriormente son frecuentemente empleadas,
+su proceso presenta un serie de dificultades fundamentalmente para diseñadores
+novatos, es por esa razón que se propone la siguiente metodología denominada:
+EAS-J, la cual es altamente versátil e ideal para ser automatizada
+El grado de normalización depende mucho del diseñador, esto implica "controlar la
+redundancia", aunque lo idal sería tener una base de datos que inclusive se
+encuentre en "quinta forma normal", obviamente con las posibles "dificultades" en
+la generación de reportes y la lentitud de las mismas.
+Diseño conceptual.- es la construcción de un modelo que represente todos los
+datos utilizados en un organización independientemente de las consideraciones
+físicas
+Diseño lógico.- construir un modelo de la organización basados en un modelo de
+datos específicos, relacionar el modelo conceptual con el lógico
+Diseño físico.- generar de cómo va ha ser la implementación de la base de datos
+dependiendo de la el SGBD que se baya ha utilizar también vemos si hay
+redundancia en un modelo de datos
+Primero se debe examinar y reexaminar las relaciones uno a uno en un diseño de
+base de datos
+El proceso debe ser efectuado de manera recursiva a todos los atributos de las
+tablas que se vayan generando.
+
+El incesante crecimiento de la tecnología nos hace pensar e imaginar una forma
+de aprendizaje más efectiva, puesto que la utilización de herramientas
+informáticas se hace necesaria para dirigirlas al campo de la educación
+El modelado de Base de Datos, es fundamental para el almacenamiento "optimo"
+de la información que manipularan las aplicaciones denominadas: sistemas de
+información.
+La motivación de este trabajo radica en la dificultad que tienen los estudiantes que
+cursan la asignatura de base de datos de la carrera de informática de la
+Universidad Mayor de San Andrés.
+Con el presente trabajo, se pretende aportar con esta nueva herramienta de
+aprendizaje, en este caso especial para aprender una nueva metodología (EAS-J)
+inspirado en el modelado ER (Entidad Relación).
+El mundo competitivo en la actualidad, ha definido un nuevo escenario en los
+métodos de estudio obligando en muchos casos, al establecimiento de vínculos
+entre distintas tecnlogías donde el intercambio de información resulta de vital
+importancia, el uso de estas tecnologías es una aproximación de solución a la
+mejor comprensión del tema de interés, Para la elaboración de esta nueva
+metodología EAS-J (Entidad Atributo Semántica-J) se hace uso de esta
+herramienta que aporta la información y se verán en estrecha relación con otras
+metodologías en el área de la informática.

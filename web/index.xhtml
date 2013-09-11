@@ -67,23 +67,23 @@
             <p:dialog header="Palabras Clave" id="dlgKeywordsId" modal="true" widgetVar="dlgKeywords">
                 <p:panelGrid columns="4" columnClasses="alignTop,alignTop,alignTop,alignTop">
                     <p:panel header="MARC 21">
-                        <p:dataList value="#{textManager.keywordMarc21List}" var="vKeywordMarc21">
-                            <p:outputLabel value="#{vKeywordMarc21.value}" style="font-size: 0.7em; padding: 4px" />
+                        <p:dataList type="definition" value="#{textManager.keywordMarc21List}" var="vKeywordMarc21">
+                            <p:outputLabel value="#{vKeywordMarc21.value}" style="font-size: 0.8em; padding: 4px;" />
                         </p:dataList>
                     </p:panel>
                     <p:panel header="RDDU">
-                        <p:dataList value="#{textManager.keywordRdduList}" var="vKeywordRddu">
-                            <p:outputLabel value="#{vKeywordRddu.value}" style="font-size: 0.7em; padding: 4px" />
+                        <p:dataList type="definition" value="#{textManager.keywordRdduList}" var="vKeywordRddu">
+                            <p:outputLabel value="#{vKeywordRddu.value}" style="font-size: 0.8em; padding: 4px" />
                         </p:dataList>
                     </p:panel>
                     <p:panel header="EXPERTO">
-                        <p:dataList value="#{textManager.keywordExpertList}" var="vKeywordExpert">
-                            <p:outputLabel value="#{vKeywordExpert.value}" style="font-size: 0.7em; padding: 4px" />
+                        <p:dataList type="definition" value="#{textManager.keywordExpertList}" var="vKeywordExpert">
+                            <p:outputLabel value="#{vKeywordExpert.value}" style="font-size: 0.8em; padding: 4px" />
                         </p:dataList>
                     </p:panel>
                     <p:panel header="TEXTRANK">
-                        <p:dataList value="#{textManager.keywordTextRankList}" var="vKeywordTextRank">
-                            <p:outputLabel value="#{vKeywordTextRank.value}" style="font-size: 0.7em; padding: 4px" />
+                        <p:dataList type="definition" value="#{textManager.keywordTextRankList}" var="vKeywordTextRank">
+                            <p:outputLabel value="#{vKeywordTextRank.value}" style="font-size: 0.8em; padding: 4px" />
                         </p:dataList>
                     </p:panel>
                 </p:panelGrid>

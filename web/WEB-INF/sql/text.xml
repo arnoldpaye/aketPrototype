@@ -3,7 +3,8 @@
     <st id ="getAllTexts">
         SELECT 
         txt_id, txt_code, txt_title, txt_author, txt_text, txt_textrank
-        FROM text;
+        FROM text
+        ORDER BY txt_id;
     </st>
     <st id="insertText">
         INSERT INTO text(txt_code, txt_title, txt_author, txt_text)
