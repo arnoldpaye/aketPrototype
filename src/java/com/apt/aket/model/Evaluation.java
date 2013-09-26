@@ -25,6 +25,8 @@ public class Evaluation {
     private double evRecall;
     @Column("ev_fmeasure")
     private double evFMeasure;
+    // TODO: Source
+    private String source;
 
     /* Getters and Setters */
     public int getEvId() {
@@ -73,6 +75,14 @@ public class Evaluation {
 
     public void setEvFMeasure(double evFMeasure) {
         this.evFMeasure = evFMeasure;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     /**

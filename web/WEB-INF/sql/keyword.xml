@@ -12,10 +12,25 @@
     <st id="getKeyword">
         SELECT kw_id, kw_txt_id, kw_value, kw_source
         FROM keyword
+        WHERE kw_id = #{evKwId};
+    </st>
+    <st id="getKeywords">
+        SELECT kw_id, kw_txt_id, kw_value, kw_source
+        FROM keyword
         WHERE kw_txt_id = #{txtId};
     </st>
     <st id="deleteKeyword">
         DELETE FROM keyword
         WHERE kw_txt_id = #{txtId};
+    </st>
+    <st id="getKeywordBySource">
+        SELECT * FROM keyword
+        WHERE kw_txt_id = #{kwTxtId} 
+        AND kw_source = #{kwSource};
+    </st>
+    <st id="deleteKeywordBySource">
+        DELETE FROM keyword
+        WHERE kw_txt_id = #{kwTxtId}
+        AND kw_source = #{kwSource};
     </st>
 </statements>

@@ -19,7 +19,10 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -53,15 +56,10 @@ public class TextManager extends DefaultManager<Text> {
     private UploadedFile pdfFile;
     private TextRank textrank;
     private Graph graph;
-    private List<KeywordSelection> keywordSelectionList;
-    private List<KeywordSelection> keywordMarc21List;
-    private List<KeywordSelection> keywordRdduList;
-    private List<KeywordSelection> keywordExpertList;
-    private List<KeywordSelection> keywordTextRankList;
+    private List<KeywordSelection> keywordSelectionList = new ArrayList<KeywordSelection>();
+    private Map<String, List<String>> keywordShow;
     private List<String> posFilterList;
-    private Evaluation evaluationMarc21;
-    private Evaluation evaluationRddu;
-    private Evaluation evaluationExpert;
+    private List<Evaluation> evaluationList = new ArrayList<Evaluation>();
 
     /* Getters and Setters */
     public boolean isSwitchDisplayGraph() {
@@ -92,20 +90,8 @@ public class TextManager extends DefaultManager<Text> {
         return keywordSelectionList;
     }
 
-    public List<KeywordSelection> getKeywordMarc21List() {
-        return keywordMarc21List;
-    }
-
-    public List<KeywordSelection> getKeywordRdduList() {
-        return keywordRdduList;
-    }
-
-    public List<KeywordSelection> getKeywordExpertList() {
-        return keywordExpertList;
-    }
-
-    public List<KeywordSelection> getKeywordTextRankList() {
-        return keywordTextRankList;
+    public Map<String, List<String>> getKeywordShow() {
+        return keywordShow;
     }
 
     public List<String> getPosFilterList() {
@@ -116,16 +102,8 @@ public class TextManager extends DefaultManager<Text> {
         this.posFilterList = posFilterList;
     }
 
-    public Evaluation getEvaluationMarc21() {
-        return evaluationMarc21;
-    }
-
-    public Evaluation getEvaluationRddu() {
-        return evaluationRddu;
-    }
-
-    public Evaluation getEvaluationExpert() {
-        return evaluationExpert;
+    public List<Evaluation> getEvaluationList() {
+        return evaluationList;
     }
 
     /**
@@ -142,23 +120,14 @@ public class TextManager extends DefaultManager<Text> {
             dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
                 @Override
                 public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
-                    try {
-                        KeywordManager keywordManager = new KeywordManager();
-                        List<Keyword> keywordList = keywordManager.getKeywords(dataStore, text);
-                        for (Keyword keyword : keywordList) {
-                            if (keyword.getKwSource() == 1) {
-                                text.setKwMarc21(keyword);
-                            } else if (keyword.getKwSource() == 2) {
-                                text.setKwRddu(keyword);
-                            } else {
-                                text.setKwExpert(keyword);
-                            }
+                    KeywordManager keywordManager = new KeywordManager();
+                    List<Keyword> keywords = keywordManager.getKeywords(dataStore, text);
+                    for (Keyword keyword : keywords) {
+                        if (keyword.getKwSource() == 1) {
+                            text.setKeyword(keyword);
                         }
-                    } catch (SQLException sqle) {
-                        throw sqle;
-                    } finally {
-                        data.add(text);
                     }
+                    data.add(text);
                 }
             });
         } catch (SQLException sqle) {
@@ -202,12 +171,8 @@ public class TextManager extends DefaultManager<Text> {
                 int txtId = dataStore.select(getStatementReader().getStatement("insertText"), text, new CommonResultHandler.IntegerHandler());
                 // Insert keywords
                 KeywordManager keywordManager = new KeywordManager();
-                Keyword keyword1 = new Keyword(txtId, text.getKwMarc21().getKwValue().trim(), 1);
-                Keyword keyword2 = new Keyword(txtId, text.getKwRddu().getKwValue().trim(), 2);
-                Keyword keyword3 = new Keyword(txtId, text.getKwExpert().getKwValue().trim(), 3);
-                keywordManager.insertItem(dataStore, keyword1);
-                keywordManager.insertItem(dataStore, keyword2);
-                keywordManager.insertItem(dataStore, keyword3);
+                Keyword keyword = new Keyword(txtId, text.getKeyword().getKwValue(), 1); // 1-> KOHA SYSTEM
+                keywordManager.insertItem(dataStore, keyword);
                 dataStore.commit();
                 return "/index?faces-redirect=true";
             } catch (SQLException sqle) {
@@ -235,10 +200,10 @@ public class TextManager extends DefaultManager<Text> {
             dataStore.setAutoCommit(false);
             try {
                 dataStore.execute(getStatementReader().getStatement("editText"), selected);
+                //TODO: keywords list
                 KeywordManager keywordManager = new KeywordManager();
-                keywordManager.updateItem(dataStore, selected.getKwMarc21());
-                keywordManager.updateItem(dataStore, selected.getKwRddu());
-                keywordManager.updateItem(dataStore, selected.getKwExpert());
+                Keyword keyword = selected.getKeyword();
+                keywordManager.updateItem(dataStore, keyword);
                 dataStore.commit();
                 return "/index?faces-redirect=true";
             } catch (SQLException sqle) {
@@ -261,7 +226,7 @@ public class TextManager extends DefaultManager<Text> {
         dataStore.setAutoCommit(false);
         try {
             // Delete evaluations
-            dataStore.select(new StatementReader("sql/keyword.xml").getStatement("getKeyword"), selected, Keyword.class, new MappedResultVisitor<Keyword>() {
+            dataStore.select(new StatementReader("sql/keyword.xml").getStatement("getKeywords"), selected, Keyword.class, new MappedResultVisitor<Keyword>() {
                 @Override
                 public void visit(Keyword keyword, DataStore ds, ResultSet rs) throws SQLException {
                     ds.execute(new StatementReader("sql/evaluation.xml").getStatement("deleteEvaluation"), keyword);
@@ -349,6 +314,7 @@ public class TextManager extends DefaultManager<Text> {
             text.setTxtTitle("");
             text.setTxtCode("");
             text.setTxtAuthor("");
+            text.setTxtKeyword("");
             text.setTxtText("");
         }
     }
@@ -362,6 +328,7 @@ public class TextManager extends DefaultManager<Text> {
             text.setTxtTitle("");
             text.setTxtCode("");
             text.setTxtAuthor("");
+            text.setTxtKeyword("");
             text.setTxtText("");
         }
     }
@@ -460,10 +427,22 @@ public class TextManager extends DefaultManager<Text> {
                 for (KeywordSelection keywordSelection : keywordSelectionList) {
                     keyWordsText += keywordSelection.getValue().trim().toUpperCase() + ";";
                 }
-                selected.setTxtTextRank(keyWordsText);
                 DataStore dataStore = DataStoreManager.getDataStore();
                 dataStore.setAutoCommit(false);
-                dataStore.execute(getStatementReader().getStatement("updateKeyWords"), selected);
+                KeywordManager keywordManager = new KeywordManager();
+                EvaluationManager evaluationManager = new EvaluationManager();
+                Keyword keyword = new Keyword();
+                keyword.setKwTxtId(selected.getTxtId());
+                keyword.setKwSource(0);
+                keyword = keywordManager.getKeywordBySource(dataStore, keyword);
+                if (keyword == null) {
+                    keyword = new Keyword(selected.getTxtId(), keyWordsText, 0); // 0 -> TEXTRANK
+                    keywordManager.insertItem(dataStore, keyword);
+                } else {
+                    evaluationManager.deleteEvaluation(keyword);
+                    keywordManager.updateItem(dataStore, keyword);
+
+                }
                 dataStore.commit();
                 graph = null;
                 keywordSelectionList.clear();
@@ -492,26 +471,23 @@ public class TextManager extends DefaultManager<Text> {
     /**
      * Get evaluation values (precision, recall, f-measure).
      */
-    public void evaluation() {
+    public void evaluation() throws FileNotFoundException, SQLException, IOException {
         if (selected != null) {
-            String[] keyWorkdTextRank = selected.getTxtTextRank().split(";");
-            // MARC21
-            if (!selected.getKwMarc21().getKwValue().trim().isEmpty()) {
-                String[] keyWordMarc21 = selected.getKwMarc21().getKwValue().split(";");
-                double[] eMarc21 = Util.evaluate(keyWordMarc21, keyWorkdTextRank);
-                evaluationMarc21 = new Evaluation(selected.getKwMarc21().getKwId(), eMarc21[0], eMarc21[1], eMarc21[2]);
-            }
-            // RDDU
-            if (!selected.getKwRddu().getKwValue().trim().isEmpty()) {
-                String[] keyWordRddu = selected.getKwRddu().getKwValue().split(";");
-                double[] eRddu = Util.evaluate(keyWordRddu, keyWorkdTextRank);
-                evaluationRddu = new Evaluation(selected.getKwRddu().getKwId(), eRddu[0], eRddu[1], eRddu[2]);
-            }
-            // EXPERT
-            if (!selected.getKwExpert().getKwValue().trim().isEmpty()) {
-                String[] keyWordExpert = selected.getKwExpert().getKwValue().split(";");
-                double[] eExpert = Util.evaluate(keyWordExpert, keyWorkdTextRank);
-                evaluationExpert = new Evaluation(selected.getKwExpert().getKwId(), eExpert[0], eExpert[1], eExpert[2]);
+            evaluationList.clear();
+            String[] k = selected.getTxtKeyword().split(";");
+            KeywordManager keywordManager = new KeywordManager();
+            DataStore dataStore = DataStoreManager.getDataStore();
+            List<Keyword> keywordList = keywordManager.getKeywords(dataStore, selected);
+            for (Keyword keyword : keywordList) {
+                double e[] = Util.evaluate(k, keyword.getKwValue().split(";"));
+                Evaluation evaluation = new Evaluation(keyword.getKwId(), e[0], e[1], e[2]);
+                // TODO: Don't hardcode
+                if (keyword.getKwSource() == 1) {
+                    evaluation.setSource("KOHA");
+                } else if (keyword.getKwSource() == 0) {
+                    evaluation.setSource("TEXTRANK");
+                }
+                evaluationList.add(evaluation);
             }
         }
     }
@@ -520,9 +496,7 @@ public class TextManager extends DefaultManager<Text> {
      * Cancel evaluation.
      */
     public void cancelEvaluation() {
-        evaluationMarc21 = null;
-        evaluationRddu = null;
-        evaluationExpert = null;
+        evaluationList.clear();
     }
 
     /**
@@ -532,16 +506,11 @@ public class TextManager extends DefaultManager<Text> {
         if (selected != null) {
             try {
                 EvaluationManager evaluationManager = new EvaluationManager();
-                if (evaluationMarc21 != null) {
-                    evaluationManager.insertItem(evaluationMarc21);
-                }
-                if (evaluationRddu != null) {
-                    evaluationManager.insertItem(evaluationRddu);
-                }
-                if (evaluationExpert != null) {
-                    evaluationManager.insertItem(evaluationExpert);
+                for (Evaluation evaluation : evaluationList) {
+                    evaluationManager.insertItem(evaluation);
                 }
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Evaluacion guardada."));
+                evaluationList.clear();
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
             } catch (SQLException sqle) {
@@ -557,44 +526,32 @@ public class TextManager extends DefaultManager<Text> {
      */
     public void loadKeywords() {
         if (selected != null) {
-            keywordMarc21List = new ArrayList<KeywordSelection>();
-            keywordRdduList = new ArrayList<KeywordSelection>();
-            keywordExpertList = new ArrayList<KeywordSelection>();
-            keywordTextRankList = new ArrayList<KeywordSelection>();
             try {
-                // Get keywords from 'Keyword' table
+                keywordShow = new HashMap<String, List<String>>();
+                List<String> l = new ArrayList<String>();
+                // Original
+                l.addAll(Arrays.asList(selected.getTxtKeyword().split(";")));
+                keywordShow.put("ORIGINAL", l);
+                // Others
                 KeywordManager keywordManager = new KeywordManager();
                 DataStore dataStore = DataStoreManager.getDataStore();
-                List<Keyword> keywordList = keywordManager.getKeywords(dataStore, selected);
-                for (Keyword keyword : keywordList) {
-                    if (keyword.getKwSource() == 1) { // MARC21
-                        String value = keyword.getKwValue();
-                        for (String key : value.split(";")) {
-                            keywordMarc21List.add(new KeywordSelection(key, Double.NaN));
-                        }
-                    } else if (keyword.getKwSource() == 2) { // RDDU
-                        String value = keyword.getKwValue();
-                        for (String key : value.split(";")) {
-                            keywordRdduList.add(new KeywordSelection(key, Double.NaN));
-                        }
-                    } else if (keyword.getKwSource() == 3) { // EXPERT
-                        String value = keyword.getKwValue();
-                        for (String key : value.split(";")) {
-                            keywordExpertList.add(new KeywordSelection(key, Double.NaN));
-                        }
+                List<Keyword> keywords = keywordManager.getKeywords(dataStore, selected);
+                for (Keyword k : keywords) {
+                    l = new ArrayList<String>();
+                    l.addAll(Arrays.asList(k.getKwValue().split(";")));
+                    if (k.getKwSource() == 1) {
+                        keywordShow.put("KOHA", l);
+                    } else if (k.getKwSource() == 0) {
+                        keywordShow.put("TEXTRANK", l);
                     }
-                }
-                // Get keywords from 'Text' table
-                for (String key : selected.getTxtTextRank().split(";")) {
-                    keywordTextRankList.add(new KeywordSelection(key, Double.NaN));
                 }
             } catch (IOException ioe) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
             } catch (SQLException sqle) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
-            } catch (Exception e) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
+
             }
         }
+        System.out.println("DBG " + keywordShow.size());
     }
 }

@@ -1,0 +1,30 @@
+SISTEMA EXPERTO PARA EL DIAGNÓSTICO DE LA PESTE PORCINA CLÁSICA
+
+INTRODUCCIÓN
+La Peste porcina clásica (PPC), también conocida como Cólera Porcino o Fiebre porcina
+clásica, es una de las principales enfermedades víricas que afecta al ganado porcino,
+tanto domestico como salvaje, se caracteriza por lesiones de carácter hemorrágico y de
+curso generalmente fatal en las formas agudas. Fue descrita por vez primera en Ohio
+(EE.UU.) a primeros del siglo XIX, apareciendo en Europa en 1862 la PPC está
+ampliamente distribuida por los diferentes continentes (anexo B), suponiendo en este
+momento una importante amenaza al sistema productivo porcino. Las lesiones
+características descritas para esta enfermedad, se presentan por lo general con cepas de
+alta virulencia, en animales no inmunizados y con más facilidad en lechones que en
+adultos. Pueden existir animales portadores asintomático de gran importancia en la
+eliminación del virus y por lo tanto en la epizootiología de la PPC.
+Actualmente no existe un programa oficial para controlar la PPC en Bolivia por lo cual
+frena el desarrollo en las explotaciones porcinas, debido a que aumenta los costos de
+producción y tiene un impacto económico grande en la comercialización de los animales y
+sus productos. En nuestro país la porcicultura se caracteriza por estar conformado por
+pequeños productores de cerdos con una baja tecnología. Factores que los hacen
+altamente vulnerables a la PPC y que a la vez son altamente susceptibles a la PPC. Por
+otra parte, la dispersión geográfica son factores que dificultan el control de la PPC
+ocasionando un impacto económico grande si no se tiene un buen control sanitario.
+La inteligencia artificial en sus diferentes campos de investigación, centra su estudio
+en el conocimiento humano y los sistemas expertos. Un sistema experto es una
+aplicación informática que simula el comportamiento del experto humano en el sentido de
+que es capaz de decidir situaciones complejas, en un campo restringido.
+Con lo señalado se pretende diseñar un modelo de sistema experto para el
+diagnóstico de la peste porcina clásica que afectan en la crianza de ganado porcino, así
+se contribuirá al desarrollo de la sanidad del ganado porcino, con el fin de prevenir la
+mortalidad de los porcinos y erradir epidemias mejorando el desarrollo ganadero.

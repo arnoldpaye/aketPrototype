@@ -2,20 +2,20 @@
 <statements>
     <st id ="getAllTexts">
         SELECT 
-        txt_id, txt_code, txt_title, txt_author, txt_text, txt_textrank
+        txt_id, txt_code, txt_title, txt_author, txt_keyword, txt_text
         FROM text
         ORDER BY txt_id;
     </st>
     <st id="insertText">
-        INSERT INTO text(txt_code, txt_title, txt_author, txt_text)
-        VALUES (#{txtCode}, #{txtTitle}, #{txtAuthor}, #{txtText})
+        INSERT INTO text(txt_code, txt_title, txt_author, txt_keyword, txt_text)
+        VALUES (#{txtCode}, #{txtTitle}, #{txtAuthor}, #{txtKeyword}, #{txtText})
         RETURNING txt_id;
     </st>
     <st id="editText">
         UPDATE text
         SET
         txt_code = #{txtCode}, txt_title=#{txtTitle}, txt_author=#{txtAuthor}, 
-        txt_text=#{txtText}
+        txt_keyword = #{txtKeyword}, txt_text=#{txtText}
         WHERE txt_id = #{txtId};
     </st>
     <st id="deleteText">

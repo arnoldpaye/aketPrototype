@@ -1,0 +1,47 @@
+COMPARACIÓN Y EVALUACIÓN DE LOS ALGORITMOS DE MAPEADO PERFECT MAPPING Y AFFINE MAPPING
+
+RESUMEN
+La computación grafica ha sido una de las ramas de las ciencias de la computación de mayor
+impacto social y acercamiento al publico. La graficación esta casi siempre asociada con la
+interactividad, por lo que actualmente casi todo sistema o programa interactivo tiene una
+interface grafica. Esto es así no solo en aplicaciones especificas de traficación matemática y
+estadística, sino también como medio de producir representaciones visuales para otros sistemas
+informáticos, como ocurre actualmente en los lenguajes de programación visual, y en los
+sistemas de diseño asistidos.
+Todos estos sistemas, utilizados para fines tan diversos, tienen un fundamento subyacente
+que consiste en una serie de técnicas derivadas de la aplicación computacional.
+Los métodos de mapeo de texturas las cuales son base para añadir realismo a una superficie,
+están pensados en función de facilitar la tarea de modelado, creación de interfaces, realización de
+videojuegos.
+En algunas aplicaciones el modelado, tiene un uso analítico, es decir, a partir de un
+determinado modelo real se obtiene una superficie grafica con mayor realismo. En los juegos y
+consolas es mucho más importante la velocidad de representación, para permitir una gran fluidez
+de juego, más que la precisión en los cálculos.
+Los sistemas que traducen modelos matemáticos a imágenes visuales requieren de métodos
+y algoritmos óptimos, es decir se debe tener un criterio a la hora de utilizar un algoritmo de
+mapeo.
+Este trabajo de tesis propone realizar el estudio de una de las ramas de representación
+grafica: el mapeado de texturas sobre superficies graficas.
+Se presentan las propiedades, particulares y funcionamiento de los algoritmos de mapeo
+para el mapeado de texturas, y se realiza una rigurosa evaluación y comparación sobre los
+mismos para que de esta forma se halle una propuesta de alternativa valida de solución en el
+campo de diseño.
+
+INTRODUCCIÓN
+La Computación Gráfica se constituye en una de las ramas de las Ciencias de la
+Computación de mucho impacto en la sociedad. La graficación esta utilizando medios
+computacionales asociada con la interactividad de los sistemas informáticos con el
+usuario, por lo que actualmente casi todo sistema o programa interactivo cuenta con una
+interfase gráfica. Es así que, no solo se presenta en aplicaciones especificas de
+graficación matemática y estadística, sino también como medio de producir
+presentaciones visuales para otros sistemas informáticos, como ocurre actualmente en
+los lenguajes de programación visual, y en los sistemas de diseños asistidos por un
+ordenador.
+La visualización interactiva de grandes conjuntos de datos es uno de los temas de
+investigación actual en el campo de la informática gráfica. Aunque el diseño de hardware
+gráfico avanza a pasos agigantados también es cierto que cada vez se pretende
+visualizar de forma interactiva escenas con un mayor número de nitidez.
+En este trabajo presentaremos los fundamentos teóricos y los detalles de
+implementación de los algoritmos Perfect Mapping y Affine Mapping. El estudio de estos
+temas es indispensable para comprender la técnica de aplicar textura de cada uno de los
+algoritmos mencionados.

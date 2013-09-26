@@ -1,0 +1,41 @@
+BIBLIOTECA VIRTUAL PARA NIÑOS INVIDENTES (NIVEL PRIMARIO)
+
+RESUMEN
+El presente Proyecto de Grado "Biblioteca Virtual para niños invidentes (nivel primario)", tiene
+como objetivo apoyar a los niños invidentes de primero de primaria en su educación, de manera
+que ésta no sea interrumpida.
+VIRTUALITO, es el nombre de la Biblioteca, tiene como contenido libros digitalizados y
+adaptados curricularmente.
+Fue desarrollado bajo la metodología MOOM (Metodología Orientada a Objetos para
+Desarrollar Software Multimedia) iterativa.
+El proceso de desarrollo fue el siguiente:
+Inicialmente se realizó un análisis sobre las necesidades de los niños.
+Se realizaron adaptaciones curriculares de los libros que son utilizados en escuelas regulares
+(ejemplo: Módulos de la Reforma Educativa).
+Se elaboraron archivos de audio que contienen la narración de los libros.
+Se elaboraron archivos de texto, los cuales fueron enlazados con los archivos de audio.
+De acuerdo a las pruebas realizadas, VIRTUALITO tiene una fácil manejo y comprensión,
+pero deberá ser sometido a pruebas durante todo un año escolar.
+Dentro de las limitaciones de VIRTUALITO, está el hecho de que un niño sordo-ciego no
+podrá utilizarlo.
+
+INTRODUCCIÓN
+La dificultad de adaptación al medio social de las personas con deficiencias visuales o
+invidentes en Bolivia es una realidad nacional bastante preocupante, puesto que retrasa a
+esta población en diferentes áreas tanto económicas como sociales de las cuales una de
+las más importantes es la educación.
+En vista de lo mencionado anteriormente el presente proyecto formular la elaboración
+de una herramienta informática educativa que plantea el desarrollo de una Biblioteca
+Virtual para niños invidentes (Nivel Primario) denominado VIRTUALITO, pretendiendo de
+esta manera, apoyar al sistema educativo y a la integración de niños con deficiencias
+visuales a escuelas regulares, esto implica también una mejor integración a la sociedad
+vidente.
+El presente proyecto mencionará los antecedentes respecto a estudios realizados
+sobre avances tecnológicos y herramientas informáticas que ayudan a personas con
+deficiencias visuales, analizará la problemática de la educación del niño con deficiencias
+visuales o invidentes en Bolivia, justificará de manera clara el por qué del desarrollo del
+proyecto, su objetivo general y objetivos específicos, indicando cuáles son sus alcances y
+cuáles serán los aportes, también describirá conceptos importantes para un mejor
+entendimiento del proyecto, plasmará el análisis y el diseño para el desarrollo de la
+herramienta VIRTUALITO y finalmente planteará las conclusiones y recomendaciones
+necesarias del proyecto.

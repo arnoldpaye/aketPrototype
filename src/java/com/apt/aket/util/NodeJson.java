@@ -44,8 +44,9 @@ public class NodeJson {
 
     /**
      * Constructor with two parameters.
+     *
      * @param id
-     * @param label 
+     * @param label
      */
     public NodeJson(int id, String label) {
         this.id = id;

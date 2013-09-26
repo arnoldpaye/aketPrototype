@@ -7,35 +7,40 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Nuevo Texto</ui:define>
+    <ui:define name="resources">
+        <h:outputStylesheet library="css" name="styles.css" />
+    </ui:define>
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgNewText" showDetail="true" showSummary="false" closable="true" />
         <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="newTextForm">
             <p:panelGrid columns="2">
                 <h:outputText value="T&iacute;tulo"/>
-                <p:inputText id="txtTitle" style="width: 700px" value="#{text.txtTitle}" />
+                <p:inputText id="txtTitle" style="width: 750px" value="#{text.txtTitle}" />
                 <h:outputText value="C&oacute;digo"/>
                 <p:inputText id="txtCode" style="width: 100px" value="#{text.txtCode}" />
                 <h:outputText value="Autor" />
-                <p:inputText id="txtAuthor" style="width: 700px" value="#{text.txtAuthor}" />
-                <h:outputText value="Palabras clave MARC21" />
-                <p:inputText id="kwMarc21" style="width: 700px" value="#{text.kwMarc21.kwValue}" />
-                <h:outputText value="Palabras clave RDDU" />
-                <p:inputText id="kwRddu" style="width: 700px" value="#{text.kwRddu.kwValue}" />
-                <h:outputText value="Palabras clave EXPERTO" />
-                <p:inputText id="kwExpert" style="width: 700px" value="#{text.kwExpert.kwValue}" />
+                <p:inputText id="txtAuthor" style="width: 750px" value="#{text.txtAuthor}" />
+                <h:outputText value="Palabras clave (Fuente Original)" />
+                <p:inputText id="kwMarc21" style="width: 750px" value="#{text.txtKeyword}" />
             </p:panelGrid>
-            <p:panelGrid columns="2" >
-                <p:inputTextarea autoResize="false" cols="80" id="txtText" rows="17" value="#{text.txtText}" />
-                <p:panelGrid columns="2">
-                    <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
-                    <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
-                    <p:commandButton ajax="false" disabled="true" icon="ui-icon-note" value="Importar PDF" />
-                    <p:fileUpload mode="simple" value="#{textManager.pdfFile}" />
-                    <p:commandButton action="#{textManager.cleanNewTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
-                </p:panelGrid>
+            <p:panelGrid columns="2" columnClasses="alignTop,alignTop">
+                <p:panel header="Texto" id="pnlText">
+                    <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="12" style="font-size: 0.9em" value="#{text.txtText}" />
+                    <p:panelGrid columns="2">
+                        <p:commandButton action="#{textManager.loadFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
+                        <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
+                    </p:panelGrid>
+                </p:panel>
+                <p:panel header="Palabras Clave (Otras fuentes)" id="pnlKeywords">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="KOHA" />
+                        <p:inputText style="width: 260px" value="#{text.keyword.kwValue}" />
+                    </p:panelGrid>
+                </p:panel>
             </p:panelGrid>
             <p:commandButton action="/index?faces-redirect=true" icon="ui-icon-cancel" id="btnCancel" value="Cancelar" />
             <p:commandButton action="#{textManager.insertItem()}" ajax="false" icon="ui-icon-disk" id="btnSave" value="Guardar" />
+            <p:commandButton action="#{textManager.cleanNewTexForm()}" ajax="false" icon="ui-icon-trash" value="Limpiar" />
         </h:form>
     </ui:define>
 </ui:composition>

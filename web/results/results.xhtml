@@ -10,39 +10,27 @@
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgEvaluation" showDetail="true" showSummary="false" closable="true" />
         <h:form id="mainForm">
-            <p:selectOneMenu value="#{evaluationManager.keywordSource}">
-                <f:selectItem itemValue="1" itemLabel="MARC21"/>
-                <f:selectItem itemValue="2" itemLabel="RDDU"/>
-                <f:selectItem itemValue="3" itemLabel="EXPERTO"/>
-                <p:ajax update=":mainForm" event="change" listener="#{evaluationManager.loadEvaluations()}" />
-            </p:selectOneMenu>
-            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="20" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
                 <p:column headerText="Texto" style="width: 500px">
                     <h:outputText value="#{vEvaluation.txtTitle}" />
                 </p:column>
+                <p:column headerText="Metodo">
+                    <h:outputText value="#{vEvaluation.source}" />
+                </p:column>
                 <p:column headerText="Precisi&oacute;n" style="text-align: right;">
                     <h:outputText value="#{vEvaluation.evPrecision}" />
-                    <f:facet name="footer">
-                        #{evaluationManager.precisionMean}
-                    </f:facet>
                 </p:column>
                 <p:column headerText="Exhaustividad" style="text-align: right;">
                     <h:outputText value="#{vEvaluation.evRecall}" />
-                    <f:facet name="footer">
-                        #{evaluationManager.recallMean}
-                    </f:facet>
                 </p:column>
                 <p:column headerText="Valor-F" style="text-align: right;">
                     <h:outputText value="#{vEvaluation.evFMeasure}" />
-                    <f:facet name="footer">
-                        #{evaluationManager.FMeasureMean}
-                    </f:facet>
                 </p:column>
             </p:dataTable>
             <!-- Delete Dialog -->
             <p:confirmDialog header="Eliminar Evaluacion"  message="¿Desea eliminar la evaluacion seleccionada?" severity="alert" widgetVar="dlgDeleteEvaluation">
                 <p:commandButton value="Si" oncomplete="dlgDeleteEvaluation.hide()" update=":mainForm" actionListener="#{evaluationManager.deleteSelected()}" />
-                <p:commandButton value="No" onclick="dlgDeleteEvaluation.hide()" />
+                <p:commandButton value="No" onclick="dlgDeleteEvaluation.hide();" />
             </p:confirmDialog>
         </h:form>
     </ui:define>

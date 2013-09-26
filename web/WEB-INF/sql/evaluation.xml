@@ -13,10 +13,9 @@
         WHERE ev_kw_id = #{evKwId};
     </st>
     <st id="getEvaluations">
-        SELECT e.ev_id, t.txt_title, e.ev_precision, e.ev_recall, e.ev_fmeasure
+        SELECT e.ev_id, e.ev_kw_id, t.txt_title, e.ev_precision, e.ev_recall, e.ev_fmeasure
         FROM evaluation e 
         INNER JOIN keyword k ON e.ev_kw_id = k.kw_id
-        INNER JOIN text t ON k.kw_txt_id = t.txt_id
-        WHERE kw_source = #{kwSource};
+        INNER JOIN text t ON k.kw_txt_id = t.txt_id;
     </st>
 </statements>

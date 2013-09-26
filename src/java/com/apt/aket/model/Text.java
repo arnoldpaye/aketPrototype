@@ -24,13 +24,12 @@ public class Text {
     private String txtTitle;
     @Column("txt_author")
     private String txtAuthor;
+    @Column("txt_keyword")
+    private String txtKeyword;
     @Column("txt_text")
     private String txtText;
-    @Column("txt_textrank")
-    private String txtTextRank;
-    private Keyword kwMarc21 = new Keyword();
-    private Keyword kwRddu = new Keyword();
-    private Keyword kwExpert = new Keyword();
+    //TODO: others keywords
+    private Keyword keyword = new Keyword();
 
     /* Getters and Setters */
     public int getTxtId() {
@@ -65,6 +64,14 @@ public class Text {
         this.txtAuthor = txtAuthor;
     }
 
+    public String getTxtKeyword() {
+        return txtKeyword;
+    }
+
+    public void setTxtKeyword(String txtKeyword) {
+        this.txtKeyword = txtKeyword;
+    }
+
     public String getTxtText() {
         return txtText;
     }
@@ -73,35 +80,11 @@ public class Text {
         this.txtText = txtText;
     }
 
-    public String getTxtTextRank() {
-        return txtTextRank;
+    public Keyword getKeyword() {
+        return keyword;
     }
 
-    public void setTxtTextRank(String txtTextRank) {
-        this.txtTextRank = txtTextRank;
-    }
-
-    public Keyword getKwMarc21() {
-        return kwMarc21;
-    }
-
-    public void setKwMarc21(Keyword kwMarc21) {
-        this.kwMarc21 = kwMarc21;
-    }
-
-    public Keyword getKwRddu() {
-        return kwRddu;
-    }
-
-    public void setKwRddu(Keyword kwRddu) {
-        this.kwRddu = kwRddu;
-    }
-
-    public Keyword getKwExpert() {
-        return kwExpert;
-    }
-
-    public void setKwExpert(Keyword kwExpert) {
-        this.kwExpert = kwExpert;
+    public void setKeyword(Keyword keyword) {
+        this.keyword = keyword;
     }
 }

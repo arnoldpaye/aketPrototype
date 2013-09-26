@@ -1,0 +1,41 @@
+SISTEMA DE GESTIÓN DE RIESGOS TECNOLÓGICOS AS/NZ 4360:2004
+
+RESUMEN
+El Riesgo es un concepto científico y utilitario empleado desde el
+Renacimiento, ha adquirido una importancia creciente en una sociedad que ha de tratar
+extensas zonas de incertidumbre creciente con una cultura del riesgo ampliamente
+renovada. El análisis de las convergencias de los conceptos de riesgos en múltiples sectores,
+incluyendo los financieros, sanitarios, técnicos o laborales, conducen a un, Modelo General
+de Gestión de Riesgos de todo tipo.
+El presente trabajo de proyecto de grado titulado "Sistema de Gestión de Riesgos
+Tecnológicos AS/NZ 4360:2004" tiene como objetivo principal realizar un analisis de
+riesgos que puede registrar, analizar y evaluar los riesgos de los procesos mas relevantes de
+una empresa o institución, que solicite dicho análisis.
+El sistema se desarrollo utilizando como gestor de base de datos a PHP y MySql, sobre
+servidor Windows XP y el desarrollo metodológico se baso en el RUP con el modelo UML
+orientado a objetos.
+Para un mejor entendimiento, el presente documento se divide en los siguientes capítulos:
+El capitulo I describe la Introducción, planteamiento del problema, objetivos y
+justificaciones del Proyecto.
+El capítulo II hace una descripción del marco teórico y conceptual, detallando la
+metodología y el estándar utilizados, incluyendo la descripción de la consultora "Yanapti"
+para la que se desarrolló el sistema.
+El capítulo III describe el análisis y diseño del sistema representado por la metodología
+orientada a objetos UML y apoyada por el modelo de procesos RUP.
+El capítulo IV se refiere a la descripción de la seguridad y control del sistema y al
+análisis del costo/beneficio del mismo.
+El capitulo V detalla las conclusiones y recomendaciones que se dejan con la
+implementación del sistema.
+Finalmente para tener la documentación ordenada y completa se tiene una lista de la
+referencia bibliográfica y anexos.
+
+INTRODUCCIÓN
+Actualmente hay un gran número de personas que cuentan con un automóvil, televisor y
+una computadora. La mayoría se considera un usuario experto de aparatos que utiliza todos
+los días, sin prevenir los riesgos a los que se exponen al hacer uso de estos mismos. El
+riesgo afecta a los futuros acontecimientos. El hoy y el ayer están más allá de lo que nos
+puede preocupar, pues ya estamos cosechando lo que sembramos previamente con nuestras
+acciones del pasado. El riesgo implica elección y la incertidumbre que entraña la elección.
+Por lo tanto, el riesgo, es una de las pocas cosas inevitables de la vida.
+Cuando se considera el riesgo en el contexto de la ingeniería del software, el futuro es lo
+que nos preocupa, qué riesgos podrían hacer que nuestro proyecto fracasara, cómo

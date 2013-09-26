@@ -7,6 +7,16 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">Reportes</ui:define>
     <ui:define name="content">
-        <p:lineChart legendPosition="e" maxY="100" minY="0" title="LinearChart" value="#{reportManager.linearModel}" />
+        <p:tabView id="tvReports">
+            <p:tab id="tbPrecision" title="Precision">
+                <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.precisionModel}" />
+            </p:tab>
+            <p:tab id="tbRecall" title="Exhaustividad">
+                <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.recallModel}" />
+            </p:tab>
+            <p:tab id="tbFMeasure" title="Valor-F">
+                <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.fmeasureModel}" />
+            </p:tab>
+        </p:tabView>
     </ui:define>
 </ui:composition>

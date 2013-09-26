@@ -1,0 +1,76 @@
+SISTEMA DE GESTIÓN DE RIESGOS TECNOLÓGICOS AS/NZ 4360:2004
+
+RESUMEN
+El Riesgo es un concepto científico y utilitario ampliamente empleado desde el Renacimiento, ha
+adquirido una importancia creciente en una sociedad que ha de tratar extensas zonas de
+incertidumbre creciente con una altura del riesgo ampliamente renovado. El análisis de las
+convergencias de los conceptos de riesgo en múltiples sectores, incluyendo los financieros,
+sanitarios, técnicos o laborales, conducen a un, Modelo General de Gestión de Riesgos de todo
+tipo.
+El presente trabajo de proyecto de grado titulado "Sitema de Gestión de Riesgos
+Tecnológicos AS/NZ 4360:2004" tiene como objetivo principal realizar un analisis de riesgos
+que pueda registrar, analizar y evaluar los riesgos de los procesos mas relevantes de una empresa
+o institución, que solicite dicho análisis.
+El sistema se desarrollo utilizando como gestor de base de datos a PHP y MySql, sobre
+servidor Windows XP y el desarrollo metodológico se baso en el RUP con el modelo UML
+orientado a objetos.
+Para un mejor entendimiento, el presente documento se divide en los siguientes capítulos:
+El capitulo I describe la Introducción, planteamiento del problema, objetivos y
+justificaciones del Proyecto.
+El capítulo II hace una descripción del marco teórico y conceptual detallando la
+metodología y el estándar utilizados, incluyendo la descripción de la consultora "Yanapti" para
+la que se desarrolló el sistema.
+El capítulo III describe el análisis y diseño del sistema representado por la metodología
+orientada a objetos UML y apoyada por el modelo de procesos RUP.
+El capítulo IV se refiere a la descripción de la seguridad y control del sistema y al análisis
+del costo/beneficio del mismo.
+El capitulo V detalla las conclusiones y recomendaciones que se dejan con la
+implementación del sistema.
+Finalmente para tener la documentación ordenada y completa se tiene una lista de la
+referencia bibliográfica y anexos.
+
+INTRODUCCIÓN
+Actualmente hay un gran número de personas que cuentan con un automóvil, televisor y
+una computadora. La mayoría se considera un usuario experto de aparatos que utiliza
+todos los días, sin prevenir los riesgos a los quee se exponen al hacer uso de estos
+mismos. El riesgo afecta a los futuros acontecimientos. El hoy y el ayer están más allá de
+lo que nos pueda preocupar, pues ya estamos cosechando lo que sembramos
+previamente con nuestras acciones del pasado. El riesgo implica elección y la
+incertidumbre que entraña la elección. Por tanto, el riesgo, es una de las pocas cosas
+inevitables en la vida.
+Cuando se considera el riesgo en el contexto de la ingeniería del software, el futuro
+es lo que nos preocupa, qué riesgos podrían hacer que nuestro proyecto fracasara, cómo
+afectarán los cambios en los requisitos del cliente, en las tecnologías del desarrollo, en los
+ordenadores a las que van dirigidas, el proyecto y todas las entidades relacionadas con
+él, al cumplimiento de la planificación temporal y al éxito en general, qué métodos y
+herramientas deberíamos emplear, cuánta gente debería estar implicada, qué
+importancia hay que darle a la calidad.
+Peter Drucker dijo una vez "Mientras que es inútil intentar eliminar el riesgo y
+cuestionable el poder minimizarlo, es esencial que los riesgos que se tomen sean los
+riesgos adecuados". Antes de poder identificar los "riesgos adecuados" que se pueden
+tomar en un proyecto de software, es importante poder identificar todos los riesgos que
+sean obvios a jefes de proyectos y profesionales del software. Se han producido amplios
+debates sobres la definición adeacuada para riesgos de software, y hay acuerdo común en
+que el riesgo siempre implica dos características:
+- Incertidumbre: El acontecimiento que caracteriza al riesgo puede o no puede
+ocurrir; por ejemplo, no hay riesgos de un 100 por ciento de probabilidad.
+- Pérdida: Si el riesgo se convierte en una realidad, ocurrirán consecuencias no
+deseadas o pérdidas.
+Una de las definiciones de riesgo mas conocida establece: "Un evento o amenaza
+sobre un activo o grupo de activos que puede derivar en daños y/o perdida, constituye
+una falta de conocimiento sobre futuros acontecimientos que puede definir como el efecto
+acumulativo que estos acontecimientos adversos podrían tener sobre los objetivos de la
+actividad planificada".
+Po esta razón la gerencia requiere procedimientos adecuados para controlar sus
+activos más importantes a través de controles que permitan monitorear y alertar aquellos
+factores que pueden ser aprovechados por una amenaza. Existen modelos y estándares
+que permiten definir, registrar y analizar las variables de riesgo y en nivel aceptable de
+riesgo que ha definido la empresa uno de los mas reconocidos en la norma australiana,
+que es un estándar que provee una guía general para el manejo de riesgos. Este
+estándar especifica los elementos del proceso del manejo de los riesgos, pero su
+propósito no es hacer uniformidad en los sistemas de manejo y control de riesgos, es
+genérico e independiente para cualquier sector económico e industrial.
+Por lo anteriormente expuesto se considera que este proyecto es importante porque
+realizará un aporte a las empresas y organizaciones del medio respecto a la forma de
+realizar un control y gestión de riesgos del proyecto que amenazan el plan del proyecto,
+riesgos técnios que amenazan la calidad y planificación temporal del software.

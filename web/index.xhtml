@@ -5,7 +5,8 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="title">Inicio</ui:define>
     <ui:define name="resources">
         <h:outputStylesheet library="css" name="styles.css" />
@@ -48,11 +49,11 @@
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="operations/selection?faces-redirect=true" disabled="#{vText.txtText == null or vText.txtText.trim().isEmpty()}" value="Selecci&oacute;n">
+                    <p:commandLink action="operations/selection?faces-redirect=true" value="Selecci&oacute;n">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
-                    <p:commandLink action="#{textManager.evaluation}" disabled="#{vText.txtTextRank == null or vText.txtTextRank.trim().isEmpty()}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
+                    <p:commandLink action="#{textManager.evaluation}" oncomplete="dlgEvaluation.show()" update=":mainForm:dlgEvaluationId" value="Evaluar">
                         <f:setPropertyActionListener target="#{textManager.selected}" value="#{vText}" />
                     </p:commandLink>
                     <p:spacer width="10" />
@@ -61,70 +62,38 @@
             <!-- Delete Dialog -->
             <p:confirmDialog header="Eliminar Texto"  message="¿Desea eliminar el texto seleccionado?" severity="alert" widgetVar="dlgDeleteText">
                 <p:commandButton value="Si" oncomplete="dlgDeleteText.hide()" update=":mainForm" actionListener="#{textManager.deleteSelected()}" />
-                <p:commandButton value="No" onclick="dlgDeleteText.hide()" />
+                <p:commandButton value="No" onclick="dlgDeleteText.hide();" />
             </p:confirmDialog>
             <!-- Keywords Dialog -->
             <p:dialog header="Palabras Clave" id="dlgKeywordsId" modal="true" widgetVar="dlgKeywords">
-                <p:panelGrid columns="4" columnClasses="alignTop,alignTop,alignTop,alignTop">
-                    <p:panel header="MARC 21">
-                        <p:dataList type="definition" value="#{textManager.keywordMarc21List}" var="vKeywordMarc21">
-                            <p:outputLabel value="#{vKeywordMarc21.value}" style="font-size: 0.8em; padding: 4px;" />
-                        </p:dataList>
-                    </p:panel>
-                    <p:panel header="RDDU">
-                        <p:dataList type="definition" value="#{textManager.keywordRdduList}" var="vKeywordRddu">
-                            <p:outputLabel value="#{vKeywordRddu.value}" style="font-size: 0.8em; padding: 4px" />
-                        </p:dataList>
-                    </p:panel>
-                    <p:panel header="EXPERTO">
-                        <p:dataList type="definition" value="#{textManager.keywordExpertList}" var="vKeywordExpert">
-                            <p:outputLabel value="#{vKeywordExpert.value}" style="font-size: 0.8em; padding: 4px" />
-                        </p:dataList>
-                    </p:panel>
-                    <p:panel header="TEXTRANK">
-                        <p:dataList type="definition" value="#{textManager.keywordTextRankList}" var="vKeywordTextRank">
-                            <p:outputLabel value="#{vKeywordTextRank.value}" style="font-size: 0.8em; padding: 4px" />
-                        </p:dataList>
-                    </p:panel>
+                <p:panelGrid columns="#{textManager.keywordShow.size()}" columnClasses="alignTop,alignTop">
+                    <c:forEach items="#{textManager.keywordShow}" var="vKeywordShow">
+                        <p:panel header="#{vKeywordShow.key}">
+                            <p:dataList value="#{vKeywordShow.value}" var="keyword" type="definition">
+                                <h:outputText value="#{keyword}" />
+                            </p:dataList>
+                        </p:panel>
+                    </c:forEach>
                 </p:panelGrid>
             </p:dialog>
             <!-- Evaluation Dialog -->
             <p:dialog header="Evaluaci&oacute;n" id="dlgEvaluationId" modal="true" widgetVar="dlgEvaluation">
-                <p:panel header="MARC 21">
-                    <p:panelGrid columns="2" rendered="#{textManager.evaluationMarc21 != null}">
-                        <h:outputText value="Precision" />
-                        <p:outputLabel value="#{textManager.evaluationMarc21.evPrecision}" />
-                        <h:outputText value="Exhaustividad" />
-                        <p:outputLabel value="#{textManager.evaluationMarc21.evRecall}" />
-                        <h:outputText value="Valor-F" />
-                        <h:outputLabel value="#{textManager.evaluationMarc21.evFMeasure}" />
-                    </p:panelGrid>
-                    <h:outputText rendered="#{textManager.evaluationMarc21 == null}" value="Sin resultado." />
-                </p:panel>
-                <p:panel header="RDDU">
-                    <p:panelGrid columns="2" rendered="#{textManager.evaluationRddu != null}">
-                        <h:outputText value="Precision" />
-                        <p:outputLabel value="#{textManager.evaluationRddu.evPrecision}" />
-                        <h:outputText value="Exhaustividad" />
-                        <p:outputLabel value="#{textManager.evaluationRddu.evRecall}" />
-                        <h:outputText value="Valor-F" />
-                        <h:outputLabel value="#{textManager.evaluationRddu.evFMeasure}" />
-                    </p:panelGrid>
-                    <h:outputText rendered="#{textManager.evaluationRddu == null}" value="Sin resultado." />
-                </p:panel>
-                <p:panel header="EXPERTO">
-                    <p:panelGrid columns="2" rendered="#{textManager.evaluationExpert != null}">
-                        <h:outputText value="Precision" />
-                        <p:outputLabel value="#{textManager.evaluationExpert.evPrecision}" />
-                        <h:outputText value="Exhaustividad" />
-                        <p:outputLabel value="#{textManager.evaluationExpert.evRecall}" />
-                        <h:outputText value="Valor-F" />
-                        <h:outputLabel value="#{textManager.evaluationExpert.evFMeasure}" />
-                    </p:panelGrid>
-                    <h:outputText rendered="#{textManager.evaluationExpert == null}" value="Sin resultado." />
-                </p:panel>
-                <p:commandButton action="#{textManager.cancelEvaluation()}" oncomplete="dlgEvaluation.hide()" icon="ui-icon-cancel" value="Cancelar" />
-                <p:commandButton action="#{textManager.saveEvaluation()}" disabled="#{textManager.evaluationMarc21 == null and textManager.evaluationRddu == null and textManager.evaluationExpert == null}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide()" value="Guardar" />
+                <p:panelGrid columns="#{textManager.evaluationList.size()}">
+                    <c:forEach items="#{textManager.evaluationList}" var="vEvaluation">
+                        <p:panel header="#{vEvaluation.source}">
+                            <p:panelGrid columns="2">
+                                <h:outputText value="Precision" />
+                                <p:outputLabel value="#{vEvaluation.evPrecision}" />
+                                <h:outputText value="Exhaustividad" />
+                                <p:outputLabel value="#{vEvaluation.evRecall}" />
+                                <h:outputText value="Valor-F" />
+                                <p:outputLabel value="#{vEvaluation.evFMeasure}" />
+                            </p:panelGrid>
+                        </p:panel>
+                    </c:forEach>
+                </p:panelGrid>
+                <p:commandButton action="#{textManager.cancelEvaluation()}" icon="ui-icon-cancel" oncomplete="dlgEvaluation.hide();" value="Cancelar" />
+                <p:commandButton action="#{textManager.saveEvaluation()}" icon="ui-icon-disk" oncomplete="dlgEvaluation.hide();" value="Guardar" />
             </p:dialog>
         </h:form>
     </ui:define>

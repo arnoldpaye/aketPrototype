@@ -1,0 +1,36 @@
+MODELO DIGITAL DE TERRENO PARA LA EVALUACIÓN DEL IMPACTO AMBIENTAL EN PROYECTOS DE ELECTRIFICACIÓN
+
+RESUMEN
+El presente trabajo busca representar en un modelo de simulación, por medio
+de la computadora, las variables existentes en un sistema ambiental natural denominado
+suelo para el análisis y posterior desarrollo de proyectos de generación de energía
+hidroeléctrica de modo que se logre visualizar y prevenir los impactos, con una mejora en
+la toma de decisiones en la evaluación de impactos ambientales. En el presente capitulo
+se revisa los trabajos anteriores, se degine el problema además de los objetivos y se
+delimitan los alcances del estudio.
+
+INTRODUCCIÓN
+La evaluación de impactos ambientales son de gran importancia cuando se aplican a
+sistemas naturales, los que buscan coadyuvar en la conservación de los recursos
+naturales presentes en el ecosistema, que se acaban o se destruyen por medio de la
+contaminación o impactos ambientales, directos o indirectos, producidos, en general por
+proyectos de ingeniería que logran utilidades o energía útil para sobrevivencia del ser
+humano. Por consiguiente es necesario recurrir a nuevas herramientas computacionales
+para una evaluación cuantitativa y cualitativa de los impactos que lleve a mejores
+resultados hasta el momento obtenidos por las técnicas normales.
+El objetivo de la presente investigación es el diseño de un modelo digital con base
+en terrenos tridimensionales, que permita la visualización y predicción de los efectos en el
+suelo para facilitar la toma de decisiones en la evaluación de impactos ambientales, de
+un proyecto de generación hidroeléctrica.
+Los Sistemas de Información Geográfico (SIG) se acoplan a modelos matemáticos,
+la simulación dinámica, simulación numérica y la realidad virtual; de modo que se logre
+recrear el contexto de un sistema medioambiental y poder analizar grandes volúmenes de
+datos que son considerados confusos, subjetivos, no cuantitativos y básicamente no
+apropiados para la predicción precisa y rigurosa. con todos los elementos
+descritos anteriormente, en este trabajo, se pretende desarrollar un prototipo para la
+evaluación y visualización de impactos ambientales, que sea capaz de generar
+información confiable, en cuestioones referidas a la erosión de suelos.
+El proceso de identificación, análisis y la evaluación de impactos debe contar
+necesariamente con un procedimiento legalmente aprobado en la Ley del Medio
+Ambiente de Bolivia (Ley Nº 1333, anexo B) y un enfoque multidisciplinario según Rykiel,
+existentes entre las variables presentes en los recursos naturales.

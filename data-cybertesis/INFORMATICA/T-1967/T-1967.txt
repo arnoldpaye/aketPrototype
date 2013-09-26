@@ -1,0 +1,29 @@
+SISTEMA EXPERTO PARA UNA MESA DE AYUDA
+
+INTRODUCCIÓN
+En este capítulo se describe los antecedentes, el problema, los objetivos que conduce la
+solución a la problemática, hipótesis, los alcances y limitaciones para el desarrollo del
+sistema experto.
+Un sistema experto es un programa de computación basado en conocimiento que
+emula a un experto humano en la resolución de un problema significativo de un área o
+dominio específico.
+Una Mesa de Ayuda es un conjunto de servicios, que de manera integral bien sea a
+través de uno o varios medios de contacto, ofrece la posibilidad de gestionar y solucionar
+todas las posibles incidencias de hardware, software y redes.
+Al desarrollar un sistema experto para mesa de ayuda se pretende establecer un
+centro de atención de diagnóstico oportuno y adecuado a los problemas de soporte
+técnico, permitiendo dar soluciones de manera eficaz.
+En los últimos años se ha producido una vasta proliferación de computadoras de
+mesa, portátiles y redes en todas las organizaciones que a tal punto es difícil imaginar
+instituciones que no cuenten con un equipo de computación.
+La tecnología de la información ha evolucionado debido a su capacidad de
+penetración en todo ámbito de la actividad humana, estas aplicaciones van desde
+programas domésticos hasta aplicaciones empresariales, es en este último donde se va
+perdiendo el control de software, hardware y redes.
+La incorporación de la tecnología informática, creciente, ha puesto en evidencia que
+las instituciones van perdiendo el control de los equipos induciendo que el soporte técnico
+no pueda atender la solicitud de requerimientos técnicos.
+Cada día se expande el crecimiento de los equipos geográficamente lo cual provoca
+que los expertos en soporte técnico no puedan abastecer el campo debido a la amplitud
+geográfica es difícil dar soporte en aquellas aéreas que encuentran alejadas de la
+ciudad, como la parte rural que también cuenta con tecnología.

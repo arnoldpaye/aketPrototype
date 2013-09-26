@@ -1,0 +1,57 @@
+RENOCIMIENTO DE PATRONES EN IMÁGENES DIGITALES DE CROMOSOMAS
+
+RESUMEN
+La clasificación de cromosomas es parte de la citogenética clínica que tiene por objetivo el
+estudio de los cromosomas, su estructura y herencia. El tiempo de análisis que se necesita para la
+clasificación (4 a 5 días) representa un problema respecto a la gran inversión de tiempo. Además,
+el análisis detallado de cada cromosoma presente en un cariotipo induce a cometer errores de
+clasificación. Este trabajo propone el análisis de cromosomas en imágenes digitales que se
+obtendrán por medio de una cámara digital con una resolución de 3072x2304. Luego se realizara
+la clasificación de cromosomas tomando como primer paso el tratamiento de las imágenes con
+respecto a la rotación, traslación y escalación de un cromosoma para que pueda ser evaluado de
+la mejor manera posible. El segundo paso será la presentación de la imagen a la red neuronal
+construida según el modelo de Hopfield la cual realizara la clasificación del cromosoma
+presentando en la imagen.
+
+INTRODUCCIÓN
+Bajo los nombres de Procesamiento Digital de Imágenes y Visión por Computadores se
+integra un amplio rango de procesos de cómputo y representaciones de información
+relacionada con imágenes. El Reconocimiento de Patrones es una teoría general usada
+para clasificar elementos los cuales pueden ser: Fotografías tomadas por una cámara
+digital, imágenes digitales obtenidas de fotografías escaneadas u otros medios.
+El Reconocimiento de patrones se define como la tarea de adivinar, predecir o
+reconocer usando un elemento automático (computador) la naturaleza desconocida de
+una observación, es decir que mediante un computador, dependiendo de las necesidades
+de cada problema, se pueden llegar a reconocer la forma de una cosa, como figuras
+geométricas, donde se puede determinar si el objeto en cuestión es un cuadrado o un
+circulo, reconocer la forma de un rostro humano para determinar de quien se trata,
+reconocer un objeto u objetos de una imagen que se le presente al computador, por
+ejemplo si se tiene dos imágenes donde en una hay dos botellas y en la otra dos latas, el
+computador tendría que reconocer y diferenciar los objetos que se encuentran en cada
+imagen. En la predicción se pueden adelantar hechos o determinar en que se puede
+convertir o llegará a ser un determinado objeto, por ejemplo mediante imágenes de
+células poder predecir si una persona tendrá cáncer o no, tomar decisiones con respecto
+a alguna situación donde se puede predecir que pasará en el futuro. Adivinar es el
+proceso de completar la imagen incompleta de un objeto, el computador puede adivinar a
+que objeto realmente pertenece la imagen.
+Para el reconocimiento de patrones en imágenes se pueden utilizar diferentes
+técnicas y métodos uno de ellos son el de las redes neuronales artificiales que tienen un
+gran potencial para resolver este tipo de problemas ya que las redes neuronales
+artificiales pretenden reproducir mucha de las funciones neuronales de forma artificial
+para llegar a cumplir diversos objetivos los cuales pueden ser: Hacer ver a las máquinas
+en el caso de querer reconocer objetos u oír para reconocer sonidos.
+En la presente tesis se clasificaran cromosomas humanos. Para ello se parte de un
+objeto real, en este caso se manejarán imágenes digitales de cromosomas humanos, y
+se trata de averiguar mediante un computador el tipo de clasificación al que pertenece
+cada cromosoma.
+Actualmente la clasificación de cromosomas se usa para detectar malformaciones y
+enfermedades que se pueden tratar, curar y determinar como se originan dichas
+enfermedades. Es así que se tiene la motivación de hacer el
+tratamiento de imágenes digitales para el reconocimiento de patrones en cromosomas
+humanos haciendo la clasificación de dichos cromosomas realizando para ello un
+prototipo basado en redes neuronales artificiales.
+En el capitulo dos se darán las bases teóricas para la aplicación de redes neuronales
+y tratamiento de imágenes.
+En el capitulo tres se describirán los métodos utilizados. En el capitulo cuatro se
+presenta el modelo Hopfield y como se aplica para el problema de la clasificación.
+En el capitulo cinco se verán los resultados obtenidos y las respectivas conclusiones.

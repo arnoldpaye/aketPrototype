@@ -22,7 +22,7 @@
             <p:panel id="selectionTextPanel">
                 <p:panelGrid columns="2" columnClasses="alignTop,alignTop">
                     <p:panel>
-                        <p:inputTextarea autoResize="false" cols="80" id="txtSelectedText" rows="17" value="#{textManager.selected.txtText}" />
+                        <p:inputTextarea autoResize="false" cols="100" id="txtSelectedText" rows="20" style="font-size: 0.9em" value="#{textManager.selected.txtText}" />
                         <p:panel>
                             <p:commandButton action="#{textManager.buildGraph()}" icon="ui-icon-gear" oncomplete="drawGraph(xhr, status, args);" value="Construir grafo" update="selectionTextPanel" />
                         </p:panel>
@@ -38,14 +38,13 @@
                             </div>
                         </p:outputPanel>
                         <p:outputPanel id="KeywordsPanel" rendered="#{textManager.switchDisplayGraph}" style="width:  50%">
-                            <p:dataList value="#{textManager.keywordSelectionList}" var="vKeyword" rendered="#{textManager.keywordSelectionList.size() > 0}">
+                            <p:dataList value="#{textManager.keywordSelectionList}" var="vKeyword" rendered="#{textManager.keywordSelectionList.size() > 0}" type="definition">
                                 #{vKeyword.value}
                             </p:dataList>
                         </p:outputPanel>
                     </p:panel>
                 </p:panelGrid>
             </p:panel>
-
         </h:form>
     </ui:define>
 </ui:composition>

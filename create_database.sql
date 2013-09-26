@@ -9,8 +9,8 @@ CREATE TABLE text (
 	txt_code varchar(15) NOT NULL,
 	txt_title varchar(300) NOT NULL,
 	txt_author varchar(150) NOT NULL,
-	txt_text text,
-	txt_textrank text
+	txt_keyword text,
+	txt_text text
 )
 ;
 

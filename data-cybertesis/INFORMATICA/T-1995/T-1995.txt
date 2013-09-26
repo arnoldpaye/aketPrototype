@@ -1,0 +1,61 @@
+SISTEMA EXPERTO PARA OPTIMIZAR EL SEGUIMIENTO Y SANCIONES EN PROCESOS UNIVERSITARIOS
+
+RESUMEN
+La falta de conocimiento por parte del estudiante con respecto a un proceso universitario, el
+reglamento del mismo, el seguimiento al proceso, de las partes involucradas, del testimonio
+sobre la falta cometida sobre un conflicto en particular, de las posibles pruebas, las causas y las
+posibles sanciones después de un proceso. Todas estas interrogantes podrían ser parte de
+algunos estudiantes además de suponer que en algún momento se encuentren frente a un proceso
+universitario.
+El presente trabajo tiene el objetivo de colaborar y asesorar mediante el desarrollo de un
+sistema experto para dar seguimiento a un proceso universitario instaurado hacia un estudiante y
+responder sobre la posible solución ante la falta cometida, mediante la utilización de silogismos
+jurídicos como modelo en la aplicación del Reglamento y Normas Universitarias y herramienta
+adicional para apoyar las dudas de los estudiantes sobre el tratamiento de las mismas. Se parte de
+proposiciones como forma de representar la información y lógica de predicados de primer orden
+para formalizar dicha información sobre un dominio de trabajo y definir reglas que es la forma
+de almacenar a la base de conocimiento del sistema experto. Además de apoyarse en el
+especialista humano que en este caso se trata de un Abogado quien ayuda a conocer las leyes y
+poder entenderlas, o en su defecto interpretarlas.
+Se muestra y expone mediante un prototipo del sistema experto, el tratamiento sobre algún
+conflicto en particular donde el estudiante es responsable de cometer una falta; que en base a las
+características del conflicto se realiza una serie de preguntas como lo haría el especialista
+humano donde las respuestas son los antecedentes y el consecuente es la posible sanción en
+contra del estudiante quien resuelta ser la parte afectada y posiblemente perjudicada después de
+la instauración de un proceso universitario.
+
+INTRODUCCIÓN
+Actualmente y desde hace mucho tiempo atrás la existencia de un conflicto en la vida del
+ser humano es un hecho inevitable, puesto que es considerado como algo natural en la
+evolución de las sociedades y de sus organizaciones. El conflicto es un hecho que se
+inicia cuando una parte percibe que otra la afecta o esta apunto de afectar de manera
+negativa alguno de sus intereses.
+Dentro del ámbito académico la existencia de conflictos estudiantiles mediante
+causales que motivan proceso universitario surgen por diversas razones, las cuales
+deben ser resueltos mediante un proceso apoyado en las leyes que pueda solucionar el
+problema de forma democrática y transparente para el estudiante. En la carrera de
+Informática dependiente de la facultad de Ciencias Puras y Naturales de la Universidad
+Mayor de San Andrés los procesos universitarios se han convertido en un hecho
+caracterizado que afecta a la comunidad universitaria, en un lugar específico y un
+momento determinado de manera negativa. En nuestra prestigiosa universidad se tiene
+un Reglamento y Normas Universitarias que a la mano del departamento jurídico se
+encarga del cumplimiento de las mismas en los procesos universitarios en el marco de un
+clima de justicia y paz social, proporcionando sostenidamente el dialogo entre los
+implicados como un mecanismo efectivo de resolución de conflictos y de desarrollo
+académico.
+En el presente trabajo se propone el desarrollo de un sistema experto que sirva de
+apoyo y colaboración al seguimiento y sanciones a las causales que motivan un
+determinado proceso universitario hacia un estudiante; de esta forma se pretende apoyar
+el cumplimiento de las reglas y normas en la carrera de Informática, mediante el uso de
+tecnologías de la información, que permitan prestar un servicio transparente donde el
+usuario podrá apoyarse, informarse del proceso que se debe seguir en caso de existir un
+conflicto; esto en busca de una solución a un determinado problema, amparado por el
+reglamento y normas universitarias.
+El sistema experto tiene como objetivo emular el comportamiento de un experto
+humano en el área jurídica académico, que en base a sus conocimientos jurídicos
+presenta interrogantes relacionadas con los conflictos académicos más frecuentes
+presentados en el comienzo de un proceso universitario según el tipo de problema. Los
+sistemas expertos proporcionan beneficios significativos; uno de los más importantes es
+el de reducir la dependencia del experto; la mejora en la rapidez del proceso y obtención
+de resultados, puesto que los usuarios pueden beneficiarse de estos conocimientos y
+experiencias.

@@ -1,0 +1,57 @@
+MODELO DE ENTRENAMIENTO DE REDES NEURONALES BASADO EN ALGORITMOS GENETICOS
+
+RESUMEN
+En este trabajo se estudia un método alternativo para el entrenamiento de redes neuronales con
+conexión hacia delante. Una vez determinada la topología de la red neuronal se utiliza un
+algoritmo genético para ajustar los pesos de la red neuronal. Se evalúan diferentes variantes de
+los operadores genéticos para el entrenamiento de las redes neuronales. Los resultados obtenidos
+por el algoritmo genético son contrastados con los resultados obtenidos por el algoritmo de
+retropropagación de errores.
+
+INTRODUCCIÓN
+La inteligencia artificial es una disciplina que estudia la forma de diseñar procesos que
+exhiban características que comúnmente se asocian con el comportamiento humano
+inteligente, está sintetiza y automatiza tareas intelectuales y es, por lo tanto,
+potencialmente relevante para cualquier ámbito de la actividad intelectual humana.
+Actualmente esta ciencia está comprendida por varios subcampos que van desde las
+áreas de propósito general, como el aprendizaje y la percepción, a otras más especificas
+como la demostración de teoremas matemáticos, el diagnostico de enfermedades, etc.
+Uno de los modelos que ha surgido para emular el proceso de aprendizaje es la red
+neuronal artificial. Las redes neuronales son modelos que intentan reproducir el
+comportamiento del cerebro humano.
+Una red neuronal consiste en un conjunto de elementos de procesamiento, llamados
+neuronas, los cuales se conectan entre sí. La organización y disposición
+de las neuronas dentro de una red neuronal se denomina topología, y viene dada por un
+número de capas, la cantidad de neuronas por capa, el grado de conectividad, y el tipo de
+conexión entre neuronas.
+Una vez determinada la topología de la red neuronal es necesario entrenarla. En la
+etapa de entrenamiento de la red es capaz de aprender relaciones complejas entre
+entradas y salidas mediante el ajuste de los procesos de las conexiones entre neuronas.
+Widrow y Lehr en 1900 identifican una cantidad significativa de algoritmos de
+entrenamiento. La mayoría de éstos utilizan información del gradiente de una función
+error para ajustar los pesos de las conexiones, y se los llaman algoritmos de gradiente
+descendente.
+Las redes neuronales artificiales han sido aplicadas con éxito en gran cantidad de
+problemas como por ejemplo reconocimiento de patrones, clasificación, visión, control,
+predicción, etc. Sin embargo, los algoritmos de gradiente
+descendentes poseen dos problemas.
+- Primero, suelen quedar atrapados en mínimos locales, generándose de esta
+manera estimaciones suoptimas de los pesos.
+- Segundo, suelen ser muy lentos por utilizar pasos infinitesimales para alcanzar la
+solución.
+Los algoritmos evolutivos, dentro de los cuales los algoritmos genéticos son los mas
+conocidos, son una familia de modelos computacionales inspirados en la evolución y la
+supervivencia del más apto. Se utilizan
+fundamentalmente en la resolución de problemas de búsqueda y de optimización.
+El verdadero poder de estos algoritmos radica en la búsqueda
+simultánea de la solución en un conjunto de posibles soluciones (individuos). Buscan una
+solución del problema reproduciendo genéticamente una población de individuos a lo
+largo de una seria de generaciones.
+En el contexto de los algoritmos evolutivos, el aprendizaje es formulado como un
+problema de optimización. Dada una topología fija, el entrenamiento de una red neuronal
+puede ser visto como un proceso de optimización cuyos objetivos es encontrar un
+conjunto de pesos que minimice el error que produce la red sobre el conjunto de datos de
+entrenamiento. Estos convierten a los algoritmos evolutivos en una alternativa a los
+métodos de entrenamiento tradicionales, ya que aquellos son capaces de no quedar
+atrapados en mínimos locales y, al avanzar hacia la solución mediante operares
+genéticos, pueden aumentar la velocidad de convergencia a la solución.

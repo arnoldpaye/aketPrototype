@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.apache.commons.math.stat.descriptive.SummaryStatistics;
-import org.apache.commons.math.util.MathUtils;
+import javax.faces.context.FacesContext;
 import org.openlogics.cjb.jdbc.DataStore;
 import org.openlogics.cjb.jdbc.MappedResultVisitor;
 import org.openlogics.cjb.jee.jdbc.StatementReader;
@@ -29,32 +29,8 @@ import org.openlogics.cjb.jee.jdbc.StatementReader;
 public class EvaluationManager {
 
     /* Members */
-    private int keywordSource = 1;
-    private SummaryStatistics ssPrecision;
-    private SummaryStatistics ssRecall;
-    private SummaryStatistics ssFMeasure;
 
     /* Getters and Setters */
-    public int getKeywordSource() {
-        return keywordSource;
-    }
-
-    public void setKeywordSource(int keywordSource) {
-        this.keywordSource = keywordSource;
-    }
-
-    public double getPrecisionMean() {
-        return MathUtils.round(ssPrecision.getMean(), 2);
-    }
-
-    public double getRecallMean() {
-        return MathUtils.round(ssRecall.getMean(), 2);
-    }
-
-    public double getFMeasureMean() {
-        return MathUtils.round(ssFMeasure.getMean(), 2);
-    }
-
     /**
      * Default constructor.
      *
@@ -81,6 +57,13 @@ public class EvaluationManager {
         dataStore.commit();
     }
 
+    public void deleteEvaluation(Keyword keyword) throws FileNotFoundException, IOException, SQLException {
+        DataStore dataStore = DataStoreManager.getDataStore();
+        dataStore.setAutoCommit(false);
+        dataStore.execute(new StatementReader("sql/evaluation.xml").getStatement("deleteEvaluation"), keyword);
+        dataStore.commit();
+    }
+
     /**
      * Load all evaluations.
      *
@@ -98,21 +81,27 @@ public class EvaluationManager {
      */
     public List<Evaluation> getEvaluations() throws FileNotFoundException {
         final List<Evaluation> evaluationList = new ArrayList<Evaluation>();
-        Keyword keyword = new Keyword();
         try {
             DataStore dataStore = DataStoreManager.getDataStore();
-            ssPrecision = new SummaryStatistics();
-            ssRecall = new SummaryStatistics();
-            ssFMeasure = new SummaryStatistics();
-            dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvaluations"), keywordSource, Evaluation.class, new MappedResultVisitor<Evaluation>() {
+            dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvaluations"), Evaluation.class, new MappedResultVisitor<Evaluation>() {
                 @Override
                 public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
+                    KeywordManager keywordManager = new KeywordManager();
+                    Keyword keyword = keywordManager.getKeyword(ds, evaluation);
+                    if (keyword.getKwSource() == 1) {
+                        evaluation.setSource("KOHA");
+                    } else if (keyword.getKwSource() == 0) {
+                        evaluation.setSource("TEXTRANK");
+                    }
                     evaluationList.add(evaluation);
-                    ssPrecision.addValue(evaluation.getEvPrecision());
-                    ssRecall.addValue(evaluation.getEvRecall());
-                    ssFMeasure.addValue(evaluation.getEvFMeasure());
                 }
             });
+            System.out.println("DBG " + evaluationList.size());
+        } catch (IOException ioe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+        } catch (SQLException sqle) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+
         } finally {
             return evaluationList;
         }

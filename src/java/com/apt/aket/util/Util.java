@@ -136,20 +136,20 @@ public class Util {
         return tag.startsWith("AQ");
     }
 
-    public static double[] evaluate(String[] keyWord, String[] keyWordTextRank) {
-        System.out.println("Set of relevant items: " + keyWord.length);
+    public static double[] evaluate(String[] keywordReal, String[] keywordExtract) {
+        System.out.println("Set of relevant items: " + keywordReal.length);
 //        for (String s : keyWordMac) {
 //            System.out.println(s);
 //        }
-        System.out.println("Set of items retrieved: " + keyWordTextRank.length);
+        System.out.println("Set of items retrieved: " + keywordExtract.length);
 //        for (String s : keyWordTextRank) {
 //            System.out.println(s);
 //        }
         int itemsCounterEquals = 0;
         Collator collator = Collator.getInstance(new Locale("es", "ES"));
         collator.setStrength(Collator.PRIMARY);
-        for (String s1 : keyWord) {
-            for (String s2 : keyWordTextRank) {
+        for (String s1 : keywordReal) {
+            for (String s2 : keywordExtract) {
                 if (collator.compare(s1, s2) == 0) {
                     System.out.println(s1 + " is equals to " + s2);
                     itemsCounterEquals++;
@@ -158,8 +158,8 @@ public class Util {
         }
         System.out.println("itemsCounterEquals: " + itemsCounterEquals);
         int a = itemsCounterEquals;
-        int b = keyWord.length - itemsCounterEquals;
-        int c = keyWordTextRank.length - itemsCounterEquals;
+        int b = keywordReal.length - itemsCounterEquals;
+        int c = keywordExtract.length - itemsCounterEquals;
 
 
 

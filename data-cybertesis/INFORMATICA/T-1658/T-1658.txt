@@ -1,0 +1,68 @@
+MODELO PARA EL RECONOCIMIENTO DE PATRONES EN FORMULARIOS
+
+INTRODUCCION
+La necesidad de poder indentificar ya sea a una persona o a algún conjunto de objetos es
+importante, es decir, que cada objeto es único y distinto al resto ya que posee
+características físicas particulares, como la cara, las huellas digitales, las marcas que
+diferencian ciertos objetos como ser exámentes, test psicológicos y existen otros tipo de
+características con diferente tipo de comportamiento, como ser la voz, la manera de
+firmar e incluso el olor. El iris de los ojos, las huellas dactilares, son inalterables ante el
+paso del tiempo pero existen otros tipos de características que varían como ser las
+características de una encuesta que la realiza una persona, así como los rasgos físicos
+de una persona como las características físicas de un documento pueden decir mucho de
+una persona.
+La digitalización de información (textos, imágenes, sonido, etc.) se ha convertido en
+los últimos años en un punto de interés para la sociedad.
+Por lo que respecta a los textos, existen y se generan continuamente grandes
+cantidades de información escrita, tipográfica o manuscrita en todo tipo de soportes.
+Especialmente en papel, soporte susceptible a ser digitalizado, para poder gozar de las
+ventajas que del procesamiento de datos por computador se derivan.
+En este contexto, automatizar la introducción de caracteres o de diferentes tipos de
+características como ser la marcas de un documento al sistema evitando la entrada por
+teclado, implica un importante ahorro de recursos para las empresas, incrementando la
+productividad al mismo tiempo que se preserva o mejora la calidad de los servicios
+ofrecidos a los clientes.
+Los sistemas de reconocimiento óptico de caracteres (OCR), así como el
+reconocimiento de texto en general, tienen como objetivo ayudar al desarrollo de estas
+tareas. Se presentan en forma de aplicaciones diversas dirigidas al tratamiento
+automático de textos, ofreciendo así, claros beneficios a la sociedad actual.
+De hecho la tecnología OCR llega hoy en día, tanto a empresas directamente
+relacionadas con la digitalización y la gestión documental con requerimientos de
+procesamiento de grandes volúmenes de datos, como a la administración publica y a
+gran variedad de pymes. Esto se debe en parte a la gran versatilidad de campos de
+aplicación y el coste asequible que presentan estos sistemas.
+Existen sistemas OCR muy diversos según los tipos de problemas que abordan y las
+funcionalidades que ofrecen.
+Respecto de reconocimiento de caracteres y símbolos propiamente dicho, existe una
+terminología de empleo extendido en la industria para referirse a cada una de las
+variantes específicas de sistemas OCR.
+Así ICR (Intelligent Character Recognition) se utiliza para designar el
+reconocimiento de caracteres manuscritos.
+OCV (Optical Character Verification) hace referencia a la verificación de contenidos
+previamente conocidos.
+Y OMR (Optical Mark Recognition) designa una funcionalidad de reconocimiento de
+marcas el cual estoy proponiendo como investigación.
+Aunque habitualmente se asocial el problema del OCR, a la extracción de caracteres
+de una imagen proveniente de un papel adquirido mediante un escáner, existen sistemas
+OCR diseñados para trabajar con otros soportes, dispositivos y entornos de adquisición
+diferentes.
+La captura mediante una cámara, con luz visible o infrarroja, tableta digital, captura
+en pantalla, etc., proporcionan imágenes de diferente naturaleza.
+Existen también requerimientos relativos a velocidad de adquisición y procesamiento,
+implantación en entornos dispares como: oficinas, industrias tipográficas o de envasado,
+entornos exteriores como el urbano o las carreteras en el caso de reconocimiento de
+matriculas de vehículos.
+En el caso de documentos OCR/OMR para documentos, la problemática se enmarca
+en el campo de análisis de documentos. En este contexto, los sistemas pueden resolver
+tareas como: identificación de documentos de registro, segmentación del documento en
+bloques lógicos, selección de marcas previamente definidas, texto, gráficos, tablas, títulos
+y columnas, entre otros.
+La detección en el texto, de líneas, de marcas, palabras y caracteres también puede
+ser necesaria para poder aplicar finalmente el reconocimiento del patrón dado.
+Finalmente los resultados obtenidos pueden ser proporcionados de diferentes
+maneras: simple salida de texto o xml, salida formateada para un procesador de textos o
+utilizada para la recuperación de información, indexación de documentos para bases de
+datos u otras finalidades especificas.
+En síntesis "los sistemas de reconocimiento óptico se presentan en forma de
+aplicaciones diversas dirigidas al tratamiento automático de textos, ofrenciendo así, claros
+beneficios a la sociedad actual".
