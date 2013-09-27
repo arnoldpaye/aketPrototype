@@ -29,8 +29,17 @@ import org.openlogics.cjb.jee.jdbc.StatementReader;
 public class EvaluationManager {
 
     /* Members */
+    private int careerId;
 
     /* Getters and Setters */
+    public int getCareerId() {
+        return careerId;
+    }
+
+    public void setCareerId(int careerId) {
+        this.careerId = careerId;
+    }
+
     /**
      * Default constructor.
      *
@@ -83,19 +92,81 @@ public class EvaluationManager {
         final List<Evaluation> evaluationList = new ArrayList<Evaluation>();
         try {
             DataStore dataStore = DataStoreManager.getDataStore();
-            dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvaluations"), Evaluation.class, new MappedResultVisitor<Evaluation>() {
-                @Override
-                public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
-                    KeywordManager keywordManager = new KeywordManager();
-                    Keyword keyword = keywordManager.getKeyword(ds, evaluation);
-                    if (keyword.getKwSource() == 1) {
-                        evaluation.setSource("KOHA");
-                    } else if (keyword.getKwSource() == 0) {
-                        evaluation.setSource("TEXTRANK");
+            
+            if (careerId == 0) {
+                dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvaluations"), Evaluation.class, new MappedResultVisitor<Evaluation>() {
+                    @Override
+                    public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        Keyword keyword = keywordManager.getKeyword(ds, evaluation);
+                        if (keyword.getKwSource() == 1) {
+                            evaluation.setSource("KOHA");
+                        } else if (keyword.getKwSource() == 0) {
+                            evaluation.setSource("TEXTRANK");
+                        }
+                        evaluationList.add(evaluation);
                     }
-                    evaluationList.add(evaluation);
-                }
-            });
+                });
+            } else {
+                dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvalulationsByCareer"), careerId, Evaluation.class, new MappedResultVisitor<Evaluation>() {
+                    @Override
+                    public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        Keyword keyword = keywordManager.getKeyword(ds, evaluation);
+                        if (keyword.getKwSource() == 1) {
+                            evaluation.setSource("KOHA");
+                        } else if (keyword.getKwSource() == 0) {
+                            evaluation.setSource("TEXTRANK");
+                        }
+                        evaluationList.add(evaluation);
+                    }
+                });
+                
+            }
+        } catch (IOException ioe) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
+        } catch (SQLException sqle) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, sqle.getMessage()));
+
+        } finally {
+            return evaluationList;
+        }
+    }
+
+    public List<Evaluation> getEvaluationsByCareer(int careerId) {
+        final List<Evaluation> evaluationList = new ArrayList<Evaluation>();
+        try {
+            DataStore dataStore = DataStoreManager.getDataStore();
+            if (careerId == 0) {
+                dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvaluations"), Evaluation.class, new MappedResultVisitor<Evaluation>() {
+                    @Override
+                    public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        Keyword keyword = keywordManager.getKeyword(ds, evaluation);
+                        if (keyword.getKwSource() == 1) {
+                            evaluation.setSource("KOHA");
+                        } else if (keyword.getKwSource() == 0) {
+                            evaluation.setSource("TEXTRANK");
+                        }
+                        evaluationList.add(evaluation);
+                    }
+                });
+            } else {
+                dataStore.select(new StatementReader("sql/evaluation.xml").getStatement("getEvalulationsByCareer"), careerId, Evaluation.class, new MappedResultVisitor<Evaluation>() {
+                    @Override
+                    public void visit(Evaluation evaluation, DataStore ds, ResultSet rs) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        Keyword keyword = keywordManager.getKeyword(ds, evaluation);
+                        if (keyword.getKwSource() == 1) {
+                            evaluation.setSource("KOHA");
+                        } else if (keyword.getKwSource() == 0) {
+                            evaluation.setSource("TEXTRANK");
+                        }
+                        evaluationList.add(evaluation);
+                    }
+                });
+            }
+
             System.out.println("DBG " + evaluationList.size());
         } catch (IOException ioe) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));

@@ -51,6 +51,7 @@ public class TextManager extends DefaultManager<Text> {
 
     /* Members */
     static Logger log = Logger.getLogger(TextManager.class);
+    private int careerId;
     private boolean switchDisplayGraph;
     private UploadedFile txtFile;
     private UploadedFile pdfFile;
@@ -62,6 +63,14 @@ public class TextManager extends DefaultManager<Text> {
     private List<Evaluation> evaluationList = new ArrayList<Evaluation>();
 
     /* Getters and Setters */
+    public int getCareerId() {
+        return careerId;
+    }
+
+    public void setCareerId(int careerId) {
+        this.careerId = careerId;
+    }
+
     public boolean isSwitchDisplayGraph() {
         return switchDisplayGraph;
     }
@@ -117,19 +126,36 @@ public class TextManager extends DefaultManager<Text> {
             DataStore dataStore = DataStoreManager.getDataStore();
             data.clear();
             log.info("DataStore select" + getStatementReader().getStatement("getAllTexts"));
-            dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
-                @Override
-                public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
-                    KeywordManager keywordManager = new KeywordManager();
-                    List<Keyword> keywords = keywordManager.getKeywords(dataStore, text);
-                    for (Keyword keyword : keywords) {
-                        if (keyword.getKwSource() == 1) {
-                            text.setKeyword(keyword);
+            if (careerId == 0) {
+                dataStore.select(getStatementReader().getStatement("getAllTexts"), Text.class, new MappedResultVisitor<Text>() {
+                    @Override
+                    public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        List<Keyword> keywords = keywordManager.getKeywords(dataStore, text);
+                        for (Keyword keyword : keywords) {
+                            if (keyword.getKwSource() == 1) {
+                                text.setKeyword(keyword);
+                            }
                         }
+                        data.add(text);
                     }
-                    data.add(text);
-                }
-            });
+                });
+            } else {
+                dataStore.select(getStatementReader().getStatement("getTextsByCareer"), careerId, Text.class, new MappedResultVisitor<Text>() {
+                    @Override
+                    public void visit(Text text, DataStore dataStore, ResultSet resultSet) throws SQLException {
+                        KeywordManager keywordManager = new KeywordManager();
+                        List<Keyword> keywords = keywordManager.getKeywords(dataStore, text);
+                        for (Keyword keyword : keywords) {
+                            if (keyword.getKwSource() == 1) {
+                                text.setKeyword(keyword);
+                            }
+                        }
+                        data.add(text);
+                    }
+                });
+            }
+
         } catch (SQLException sqle) {
             log.error("SQLException in fetchDataFromDataSource method->" + sqle.getMessage());
         } catch (IOException ioe) {

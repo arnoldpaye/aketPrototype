@@ -14,18 +14,22 @@
         <p:messages autoUpdate="true" id="msgEditText" showDetail="true" showSummary="false" closable="true" />
         <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data" id="editTextForm">
             <p:panelGrid columns="2">
+                <h:outputText value="Carrera" />
+                <p:selectOneMenu value="#{textManager.selected.txtCrId}">
+                    <f:selectItems itemLabel="#{vCareer.crName}" itemValue="#{vCareer.crId}" value="#{careerManager.data}" var="vCareer" />
+                </p:selectOneMenu>
                 <h:outputText value="T&iacute;tulo"/>
-                <p:inputText id="txtTitle" style="width: 750px" value="#{textManager.selected.txtTitle}" />
+                <p:inputText id="txtTitle" style="width: 830px" value="#{textManager.selected.txtTitle}" />
                 <h:outputText value="C&oacute;digo"/>
                 <p:inputText id="txtCode" style="width: 100px" value="#{textManager.selected.txtCode}" />
                 <h:outputText value="Autor" />
-                <p:inputText id="txtAuthor" style="width: 750px" value="#{textManager.selected.txtAuthor}" />
+                <p:inputText id="txtAuthor" style="width: 830px" value="#{textManager.selected.txtAuthor}" />
                 <h:outputText value="Palabras clave (Fuente Original)" />
-                <p:inputText id="kwMarc21" style="width: 750px" value="#{textManager.selected.txtKeyword}" />
+                <p:inputText id="kwMarc21" style="width: 830px" value="#{textManager.selected.txtKeyword}" />
             </p:panelGrid>
             <p:panelGrid columns="2" columnClasses="alignTop,alignTop">
                 <p:panel header="Texto" id="pnlText">
-                    <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="12" style="font-size: 0.9em" value="#{textManager.selected.txtText}" />
+                    <p:inputTextarea autoResize="false" cols="100" id="txtText" rows="12" style="font-size: 0.9em; width: 600px" value="#{textManager.selected.txtText}" />
                     <p:panelGrid columns="2">
                         <p:commandButton action="#{textManager.loadEditFromTxt()}" ajax="false" icon="ui-icon-clipboard" value="Importar TXT" />
                         <p:fileUpload mode="simple" value="#{textManager.txtFile}" /> 
@@ -34,7 +38,7 @@
                 <p:panel header="Palabras Clave (Otras fuentes)" id="pnlKeywords">
                     <p:panelGrid columns="2">
                         <h:outputText value="KOHA" />
-                        <p:inputText style="width: 260px" value="#{textManager.selected.keyword.kwValue}" />
+                        <p:inputText style="width: 280px" value="#{textManager.selected.keyword.kwValue}" />
                     </p:panelGrid>
                 </p:panel>
             </p:panelGrid>

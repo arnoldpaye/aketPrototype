@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+    <st id ="getAllCareers">
+        SELECT cr_id, cr_name
+        FROM career; 
+    </st>
+</statements>

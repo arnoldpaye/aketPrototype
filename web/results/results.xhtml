@@ -10,6 +10,11 @@
     <ui:define name="content">
         <p:messages autoUpdate="true" id="msgEvaluation" showDetail="true" showSummary="false" closable="true" />
         <h:form id="mainForm">
+            <p:selectOneMenu onchange="#{evaluationManager.loadEvaluations()}" value="#{evaluationManager.careerId}">
+                <p:ajax event="change" update="@form" />
+                <f:selectItem itemLabel="--TODAS LAS CARRERAS--" itemValue="0" />
+                <f:selectItems itemLabel="#{vCareer.crName}" itemValue="#{vCareer.crId}" value="#{careerManager.data}" var="vCareer" />
+            </p:selectOneMenu>
             <p:dataTable emptyMessage="Sin registros." paginator="true" rows="20" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
                 <p:column headerText="Texto" style="width: 500px">
                     <h:outputText value="#{vEvaluation.txtTitle}" />

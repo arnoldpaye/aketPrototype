@@ -18,6 +18,10 @@ public class Text {
     /* Members */
     @Column("txt_id")
     private int txtId;
+    @Column("txt_cr_id")
+    private int txtCrId;
+    @Column("cr_name")
+    private String crName;
     @Column("txt_code")
     private String txtCode;
     @Column("txt_title")
@@ -38,6 +42,22 @@ public class Text {
 
     public void setTxtId(int txtId) {
         this.txtId = txtId;
+    }
+
+    public int getTxtCrId() {
+        return txtCrId;
+    }
+
+    public void setTxtCrId(int txtCrId) {
+        this.txtCrId = txtCrId;
+    }
+
+    public String getCrName() {
+        return crName;
+    }
+
+    public void setCrName(String crName) {
+        this.crName = crName;
     }
 
     public String getTxtCode() {

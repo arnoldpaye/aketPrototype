@@ -4,19 +4,25 @@
     template="../base-template.xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">Reportes</ui:define>
     <ui:define name="content">
-        <p:tabView id="tvReports">
-            <p:tab id="tbPrecision" title="Precision">
+        <h:form id="reportForm">
+            <p:selectOneMenu value="#{reportManager.careerId}" onchange="#{reportManager.loadEvaluations()}">
+                <p:ajax event="change" update="@form" />
+                <f:selectItem itemLabel="--TODAS LAS CARRERAS--" itemValue="0" />
+                <f:selectItems itemLabel="#{vCareer.crName}" itemValue="#{vCareer.crId}" value="#{careerManager.data}" var="vCareer" />
+            </p:selectOneMenu>
+            <p:panel header="Precision" rendered="#{reportManager.precisionModel != null}">
                 <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.precisionModel}" />
-            </p:tab>
-            <p:tab id="tbRecall" title="Exhaustividad">
+            </p:panel>
+            <p:panel header="Exhaustividad" rendered="#{reportManager.recallModel != null}">
                 <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.recallModel}" />
-            </p:tab>
-            <p:tab id="tbFMeasure" title="Valor-F">
+            </p:panel>
+            <p:panel header="Valor-F" rendered="#{reportManager.fmeasureModel != null}">
                 <p:lineChart animate="true" legendPosition="e" maxY="100" minY="0" value="#{reportManager.fmeasureModel}" />
-            </p:tab>
-        </p:tabView>
+            </p:panel>
+        </h:form>
     </ui:define>
 </ui:composition>

@@ -12,14 +12,19 @@
         <h:outputStylesheet library="css" name="styles.css" />
     </ui:define>
     <ui:define name="content">
-        <p:messages autoUpdate="true" id="msgText" showDetail="true" showSummary="false" closable="true" />
+        <p:messages autoUpdate="true" closable="true" id="msgText" showDetail="true" showSummary="false" />
         <h:form id="mainForm">
             <p:toolbar>
                 <p:toolbarGroup align="left">
                     <p:commandButton action="text/newText?faces-redirect=true" icon="ui-icon-document" value="Nuevo" />
                 </p:toolbarGroup>
             </p:toolbar>
-            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" scrollable="true" value="#{textManager.data}" var="vText">
+            <p:selectOneMenu onchange="#{textManager.refresh()}" value="#{textManager.careerId}">
+                <p:ajax event="change" update="@form" />
+                <f:selectItem itemLabel="--TODAS LAS CARRERAS--" itemValue="0" />
+                <f:selectItems itemLabel="#{vCareer.crName}" itemValue="#{vCareer.crId}" value="#{careerManager.data}" var="vCareer" />
+            </p:selectOneMenu>
+            <p:dataTable emptyMessage="Sin registros." id="dtText" paginator="true" rows="10" scrollable="true" value="#{textManager.data}" var="vText">
                 <p:column style="width: 30px">
                     <p:commandButton icon="ui-icon-circle-close" id="btnDeleteText" oncomplete="dlgDeleteText.show()" update=":mainForm">
                         <f:setPropertyActionListener value="#{vText}" target="#{textManager.selected}" />
@@ -41,8 +46,8 @@
                 <p:column headerText="Autor" sortBy="#{vText.txtAuthor}">
                     <h:outputText value="#{vText.txtAuthor}" />
                 </p:column>
-                <p:column headerText="Texto" sortBy="#{vText.txtText}">
-                    <h:outputText value="#{vText.txtText}" />
+                <p:column headerText="Carrera" sortBy="#{vText.crName}">
+                    <h:outputText value="#{vText.crName}" />
                 </p:column>
                 <p:column>
                     <p:commandLink action="text/editText?faces-redirect=true" value="Editar">

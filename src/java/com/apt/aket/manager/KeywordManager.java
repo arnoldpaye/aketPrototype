@@ -29,7 +29,7 @@ public class KeywordManager {
             throw sqle;
         }
     }
-    
+
     public Keyword getKeywordBySource(DataStore dataStore, Keyword keyword) throws SQLException {
         try {
             return dataStore.selectOne(new StatementReader("sql/keyword.xml").getStatement("getKeywordBySource"), keyword, Keyword.class);

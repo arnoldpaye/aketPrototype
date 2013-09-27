@@ -2,20 +2,27 @@
 <statements>
     <st id ="getAllTexts">
         SELECT 
-        txt_id, txt_code, txt_title, txt_author, txt_keyword, txt_text
-        FROM text
+        t.txt_id, t.txt_cr_id, c.cr_name, t.txt_code, t.txt_title, t.txt_author, t.txt_keyword, t.txt_text
+        FROM text t INNER JOIN career c ON t.txt_cr_id = c.cr_id
+        ORDER BY txt_id;
+    </st>
+    <st id="getTextsByCareer">
+        SELECT 
+        t.txt_id, t.txt_cr_id, c.cr_name, t.txt_code, t.txt_title, t.txt_author, t.txt_keyword, t.txt_text
+        FROM text t INNER JOIN career c ON t.txt_cr_id = c.cr_id
+        WHERE txt_cr_id = #{txtCrId}
         ORDER BY txt_id;
     </st>
     <st id="insertText">
-        INSERT INTO text(txt_code, txt_title, txt_author, txt_keyword, txt_text)
-        VALUES (#{txtCode}, #{txtTitle}, #{txtAuthor}, #{txtKeyword}, #{txtText})
+        INSERT INTO text(txt_cr_id, txt_code, txt_title, txt_author, txt_keyword, txt_text)
+        VALUES (#{txtCrId}, #{txtCode}, #{txtTitle}, #{txtAuthor}, #{txtKeyword}, #{txtText})
         RETURNING txt_id;
     </st>
     <st id="editText">
         UPDATE text
         SET
-        txt_code = #{txtCode}, txt_title=#{txtTitle}, txt_author=#{txtAuthor}, 
-        txt_keyword = #{txtKeyword}, txt_text=#{txtText}
+        txt_code = #{txtCode}, txt_cr_id = #{txtCrId}, txt_title=#{txtTitle}, 
+        txt_author=#{txtAuthor}, txt_keyword = #{txtKeyword}, txt_text=#{txtText}
         WHERE txt_id = #{txtId};
     </st>
     <st id="deleteText">

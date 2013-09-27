@@ -1,4 +1,19 @@
 --------------------------------------------------------------------------------
+-- Table   :   career
+--------------------------------------------------------------------------------
+CREATE SEQUENCE career_cr_id_seq INCREMENT 1 START 1
+;
+
+CREATE TABLE career ( 
+	cr_id integer DEFAULT NEXTVAL('career_cr_id_seq'::TEXT) NOT NULL,
+	cr_name varchar(30) NOT NULL
+)
+;
+
+ALTER TABLE career ADD CONSTRAINT PK_career 
+	PRIMARY KEY (cr_id)
+;
+--------------------------------------------------------------------------------
 -- Table   :   text
 --------------------------------------------------------------------------------
 CREATE SEQUENCE text_txt_id_seq INCREMENT 1 START 1
@@ -6,6 +21,7 @@ CREATE SEQUENCE text_txt_id_seq INCREMENT 1 START 1
 
 CREATE TABLE text ( 
 	txt_id integer DEFAULT NEXTVAL('text_txt_id_seq'::TEXT) NOT NULL,
+	txt_cr_id integer NOT NULL,
 	txt_code varchar(15) NOT NULL,
 	txt_title varchar(300) NOT NULL,
 	txt_author varchar(150) NOT NULL,
@@ -16,6 +32,11 @@ CREATE TABLE text (
 
 ALTER TABLE text ADD CONSTRAINT PK_Text 
 	PRIMARY KEY (txt_id)
+;
+
+
+ALTER TABLE text ADD CONSTRAINT FK_text_career 
+	FOREIGN KEY (txt_cr_id) REFERENCES career (cr_id)
 ;
 --------------------------------------------------------------------------------
 -- Table   :   keyword

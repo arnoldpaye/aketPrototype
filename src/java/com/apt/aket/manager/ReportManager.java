@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
@@ -19,10 +19,11 @@ import org.primefaces.model.chart.LineChartSeries;
  * @author Arnold Paye
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ReportManager {
 
     /* Members */
+    private int careerId;
     private List<Evaluation> evaluations = new ArrayList<Evaluation>();
     private CartesianChartModel precisionModel;
     private CartesianChartModel recallModel;
@@ -35,6 +36,14 @@ public class ReportManager {
     LineChartSeries seriesf2 = new LineChartSeries();
 
     /* Getters and setters */
+    public int getCareerId() {
+        return careerId;
+    }
+
+    public void setCareerId(int careerId) {
+        this.careerId = careerId;
+    }
+
     public CartesianChartModel getPrecisionModel() {
         return precisionModel;
     }
@@ -49,31 +58,49 @@ public class ReportManager {
 
     public ReportManager() throws FileNotFoundException, SQLException, IOException {
         loadEvaluations();
-        createPrecisionModel();
-        createRecallModel();
-        createFMeasureModel();
+
     }
 
-    public void loadEvaluations() throws FileNotFoundException {
+    public void loadEvaluations() throws FileNotFoundException, SQLException, IOException {
         try {
             EvaluationManager evaluationManager = new EvaluationManager();
+            evaluationManager.setCareerId(careerId);
             evaluations = evaluationManager.getEvaluations();
-            int i = 1;
-            for (Evaluation evaluation : evaluations) {
-                System.out.println("DBG " + evaluation.getSource());
-                if ("KOHA".equals(evaluation.getSource())) {
-                    seriesp1.set(i, evaluation.getEvPrecision());
-                    seriesr1.set(i, evaluation.getEvRecall());
-                    seriesf1.set(i, evaluation.getEvFMeasure());
-                } else if ("TEXTRANK".equals(evaluation.getSource())) {
-                    seriesp2.set(i, evaluation.getEvPrecision());
-                    seriesr2.set(i, evaluation.getEvRecall());
-                    seriesf2.set(i, evaluation.getEvFMeasure());
-                    i++;
+            if (evaluations.size() > 0) {
+                
+                seriesp1 = new LineChartSeries();
+                seriesr1 = new LineChartSeries();
+                seriesf1 = new LineChartSeries();
+                seriesp2 = new LineChartSeries();
+                seriesr2 = new LineChartSeries();
+                seriesf2 = new LineChartSeries();
+                int i = 1;
+                for (Evaluation evaluation : evaluations) {
+                    if ("KOHA".equals(evaluation.getSource())) {
+                        seriesp1.set(i, evaluation.getEvPrecision());
+                        seriesr1.set(i, evaluation.getEvRecall());
+                        seriesf1.set(i, evaluation.getEvFMeasure());
+                    } else if ("TEXTRANK".equals(evaluation.getSource())) {
+                        seriesp2.set(i, evaluation.getEvPrecision());
+                        seriesr2.set(i, evaluation.getEvRecall());
+                        seriesf2.set(i, evaluation.getEvFMeasure());
+                        i++;
+                    }
                 }
+                createPrecisionModel();
+                createRecallModel();
+                createFMeasureModel();
+            } else {
+                precisionModel = null;
+                recallModel = null;
+                fmeasureModel = null;
             }
-        } catch (FileNotFoundException ex) {
-            throw ex;
+        } catch (FileNotFoundException fnfe) {
+            throw fnfe;
+        } catch (IOException ioe) {
+            throw ioe;
+        } catch (SQLException sqle) {
+            throw sqle;
         }
     }
 
