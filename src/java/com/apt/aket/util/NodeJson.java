@@ -13,18 +13,19 @@ import java.util.List;
 public class NodeJson {
 
     /* Members */
-    private int id;
+    private String id;
     private String label;
     private List<NodeJson> nodeList;
 
     /* Getters and Setters */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
+    
 
     public String getLabel() {
         return label;
@@ -48,7 +49,7 @@ public class NodeJson {
      * @param id
      * @param label
      */
-    public NodeJson(int id, String label) {
+    public NodeJson(String id, String label) {
         this.id = id;
         this.label = label;
         nodeList = new ArrayList<NodeJson>();

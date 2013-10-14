@@ -1,0 +1,75 @@
+LA DEPRECIACIÓN DEL TIPO DE CAMBIO REAL COMO INSTRUMENTO DE AJUSTE DEL DÉFICIT COMERCIAL Y SU EFECTO SOBRE EL PRODUCTO EN BOLIVIA DURANTE EL PERIODO 1980-2008
+
+RESUMEN
+El desempeño del sector externo se ha convertido, sobre todo en economías latinoamericanas, en
+un importante indicador del nivel de producción de una economía. Así, un saldo comercial
+positivo condiciona en el mismo sentido el crecimiento del producto, por lo que un déficit genera
+presiones para un crecimiento negativo.
+Entonces, a fin de evitar estas presiones, es necesario corregir el déficit comercial en la
+economía. La teoría económica tradicional plantea distintos enfoques de ajuste que logran el
+objetivo, ya sea vía gasto (modelo de absorción), precios relativos (modelo de elasticidades) o
+una combinación de ambos (modelo de Meade); como un instrumento alternativo del segundo
+enfoque surge el tipo de cambio real.
+El mecanismo de ajuste planteado es un incremento en el tipo de cambio real, es decir, una
+depreciación real, que ocasiona un incremento en los niveles de producción debido al aumento
+de las exportaciones de un país puesto que éstas son más atractivas para el resto del mundo por
+su precio relativo más bajo. A contraposición, existe una línea de pensamiento denominada
+estructuralista, que plantea la posibilidad de una depreciación real contractiva, ocasionada por
+diversos efectos redistributivos, dependencia de insumos importados y otros.
+La pregunta consecuente es, entonces, cuál es el efecto de una depreciación real para la
+economía boliviana. Para responderla, se ha construido un modelo macroeconómico sencillo,
+con formas funcionales expresadas en tasas de crecimiento de las principales variables agregadas
+de la economía como las exportaciones, importaciones, producto interno y tipo de cambio real.
+El modelo resuelto se ha calibrado con series anuales de fuentes oficiales como el B.C.B y
+UDAPE.
+Los resultados comprueban la hipótesis planteada, es decir, que la depreciación real mejora
+el saldo comercial pero genera presiones contraccionarias para el producto en Bolivia; tal
+depreciación no genera incrementos en las exportaciones, al contrario, las desincentiva, por lo
+que se puede afirmar que la evolución del valor y volumen de exportaciones depende de otros
+factores no ligados a los precios relativos.
+En la misma línea, se encuentra la alta dependencia de insumos importados para la
+producción nacional, éstos son insensibles a variaciones en el tipo de cambio real denotando la
+inexistencia de sustitutos locales; finalmente, las importaciones son más sensibles a variaciones
+del ingreso que a los precios relativos.
+Las recomendaciones surgen en dos frentes: el primero es teórico y plantea la posibilidad de
+levantar los supuestos utilizados para resolver el modelo, es decir, incluir el gasto de consumo,
+inversión, etc. y el segundo implica el estudio pormenorizado de las elasticidades de
+exportaciones e importaciones a fin de identificar y explicar sus determinantes. Asimismo, se
+recomienda considerar los valores de las elasticidades del comercio exterior boliviano de forma
+previa a la determinación de medidas de política cambiaria.
+
+INTRODUCCIÓN
+La constante interrelación de las economías, el desarrollo del sector financiero y la
+defensa de la idea del libre comercio mundial, otorgan al desempeño del sector externo
+un peso importante en la dinámica y evolución del nivel de producción de la economía. Es
+así que un saldo comercial positivo condiciona en el mismo sentido el crecimiento del
+producto, lo contrario, es decir, un déficit comercial genera presiones en sentido negativo;
+esta situación debe ser corregida.
+Para corregir el saldo deficitario en la balanza comercial, la teoría económica
+tradicional plantea diversos enfoques y explicaciones que se diferencian por la vía o el
+instrumento de ajuste, que sea a través del gasto interno (modelo de absorción), vía
+precios relativo (modelo de elasticidades) o una combinación de ambos (modelo de
+Meade); como una alternativa y variación del modelo de elasticidades se presenta el
+ajuste vía variación del tipo de cambio real.
+Sin embargo, el pensamiento estructuralista plantea la posibilidad de que una
+depreciación real sea contractiva para el producto, basados en ciertas características de
+economías en desarrollo, efectos redistributivos, grado de dependencia de insumos
+importados y otros son los justificativos teóricos para la utilización del tipo de cambio real
+como instrumento de ajuste. Entonces surge la interrogante para el caso boliviano de cuál
+es el efecto de una depreciación real sobre el producto y la misma balanza comercial.
+Para contestar esta interrogante se ha desarrollado un modelo macroeconómico con
+formas funcionales expresadas en tasas de crecimiento de las principales variables
+agregadas; para la validación empírica del efecto buscado se ha utilizado series
+temporales estadísticas publicadas por UDAPE y el Banco Central de Bolivia. El modelo
+resuelto ha permitido, además de cuantificar el efecto de un depreciación real sobre el
+producto, mostrar sus principales factores condicionantes, expresadas en
+elasticidades-precio y elasticidades ingresos de las exportaciones e importaciones, que
+explican los resultados.
+El trabajo se divide en cuatro capítulos. En el primero se encuentran todos los 
+factores metodológicos y referenciales para el desarrollo de la investigación. En el
+segundo, se exponen las principales teorías que defienden los efectos positivos de una
+depreciación real y en contraposición, el pensamiento estructuralista; al final se encuentra
+el desarrollo del modelo ya citado.
+En el tercero se explican los factores que determinan y condicionan el efecto sobre el
+producto y la balanza comercial, ello implica la calibración del modelo. Finalmente, en el
+cuarto capítulo se concluyen y plantean algunas recomendaciones.

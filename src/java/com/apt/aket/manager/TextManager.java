@@ -8,6 +8,7 @@ import com.apt.aket.model.Evaluation;
 import com.apt.aket.model.Keyword;
 import com.apt.aket.model.Text;
 import com.apt.aket.util.Util;
+import com.apt.textrank.Edge;
 import com.apt.textrank.Graph;
 import com.apt.textrank.Node;
 import com.apt.textrank.TextRank;
@@ -372,15 +373,15 @@ public class TextManager extends DefaultManager<Text> {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Debe seleccionar las categorias gramaticales."));
             } else {
                 if (selected != null) {
-                    textrank = new TextRank(selected.getTxtText(), System.getProperty("catalina.home") + "/resourcesNLP");
-                    graph = textrank.buildGraph();
+                    textrank = new TextRank(System.getProperty("catalina.home") + "/resourcesNLP");
+                    graph = textrank.buildGraph(selected.getTxtText());
                     List<NodeJson> graphNodes = new ArrayList<NodeJson>();
                     int i = 0;
-                    for (Node node : graph.getNodes().values()) {
-                        NodeJson nodeJson = new NodeJson(node.getId(), node.getValue());
+                    for (Node node : graph.values()) {
+                        NodeJson nodeJson = new NodeJson(node.getKey(), node.getKey());
 
-                        for (Node n : node.getEdges()) {
-                            nodeJson.getNodeList().add(new NodeJson(n.getId(), n.getValue()));
+                        for (Edge edge : node.getEdges()) {
+                            nodeJson.getNodeList().add(new NodeJson(edge.getNode().getKey(), edge.getNode().getKey()));
                         }
                         graphNodes.add(nodeJson);
                         if (++i == 10) {
@@ -414,8 +415,8 @@ public class TextManager extends DefaultManager<Text> {
             if (selected != null) {
                 if (graph != null) {
                     keywordSelectionList = new ArrayList<KeywordSelection>();
-                    double[] pr = textrank.pageRank(graph);
-                    List<com.apt.textrank.Keyword> keywordList = textrank.getKeywords(pr, graph);
+                    textrank.runTextRank(graph);
+                    List<com.apt.textrank.Keyword> keywordList = textrank.getKeywords(graph);
                     for (com.apt.textrank.Keyword keyword : keywordList) {
                         keywordSelectionList.add(new KeywordSelection(keyword.getValue(), keyword.getRank()));
                     }
@@ -429,10 +430,6 @@ public class TextManager extends DefaultManager<Text> {
                 }
 
             }
-        } catch (FileNotFoundException fnfe) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, fnfe.getMessage()));
-        } catch (IOException ioe) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, ioe.getMessage()));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, e.getMessage()));
         }

@@ -39,7 +39,7 @@
                         </p:outputPanel>
                         <p:outputPanel id="KeywordsPanel" rendered="#{textManager.switchDisplayGraph}" style="width:  50%">
                             <p:dataList value="#{textManager.keywordSelectionList}" var="vKeyword" rendered="#{textManager.keywordSelectionList.size() > 0}" type="definition">
-                                #{vKeyword.value}
+                                #{vKeyword.value} (#{vKeyword.rank})
                             </p:dataList>
                         </p:outputPanel>
                     </p:panel>
