@@ -1,0 +1,75 @@
+CONSULTAS REMOTAS A UN SERVIDOR DE BASE DE DATOS POR MEDIO DE LAS REDES DE TELEFONÍA
+
+RESUMEN
+El requerimiento de la información en tiempo real se ha convertido en una necesidad
+para varias empresas en nuestro medio. En busca de lograr un medio de conexión a una
+base de datos alternativo al internet, se optó por el uso de las redes de telefonía. A través
+de la experimentación con el sistema web de control y gestión de almacenes de Inova
+Networks y su central de telecomunicaciones Asterisk, se verificó que dicha empresa
+contaba con la necesidad de acceder a la información de los productos registrados en su
+sistema web, también se verificó la necesidad de contar con un sistema de alertas que
+informe automáticamente el desabastecimiento de alguno de sus productos.
+Para tal fin, se creó un sistema interactivo de respuesta de voz (IVR) basado en Asterisk,
+que permite al usuario acceder, por medio de las redes de telefonía, a la información de
+productos registrados en la base de datos de un sistema web, por medio de scripts
+programados en lenguaje PHP y la utilización de la interfaz pasarela de Asterisk. Para el
+sistema de alertas se utilizó, como herramienta fundamental, el demonio Cron, con el
+que se verifica cada dos minutos las cantidades existentes de los productos en almacén,
+si se halla algún desabastecimiento, se ejecuta un programa encargado de utilizar la
+funcionalidad outgoing de Asterisk, el cual permite realizar llamadas automáticamente.
+Los resultados obtenidos una vez concluido el proyecto, demostraron que la información
+requerida es proporcionada por el sistema IVR en tiempo real. Las alertas respecto al
+desabastecimiento de productos fueron oportunas, permitiendo realizar una correcta
+toma de decisiones y un mejor control del almacenamiento de los productos.
+Se concluye que el uso de la tecnología IVR, como mediador al acceso de información
+almacenada en una base de datos remota, es factible y funcional, aún más si se utilizan
+herramientas y software con licencia de dominio público.
+
+INTRODUCCIÓN
+Actualmente la cobertura de telefonía móvil va creciendo vertiginosamente,
+convirtiéndolo en un gran candidato para solventar las necesidades de conectividad. Una
+de las aplicaciones más utilizadas en base a este medio es el sistema IVR (Intereactive
+Voice Responce, Respuesta Interactiva de Voz) el mismo que puede ser considerado
+como una tecnología CTI1 (Computer Telephone Integration) que permite la
+interactividad entre los usuarios y computadoras por medio de aplicaciones escritas en
+un determinado lenguaje de programación.
+En el territorio boliviano, según la Autoridad de Transportes y Telecomunicaciones
+(ATT, 2012) basados en los resultados del informe de la Unión Internacional de
+Telecomunicaciones (UIT, Union International of Telecomunications) (UTI, 2012, p. 7),
+el crecimiento de las TIC‟s corresponde a un índice de crecimiento del 3.13 para el 2011
+respecto al 2.93 de la gestión 2010, teniendo entre los principales avances las redes de
+telefonía móvil, con un total de 8.79 millones de abonados y una cobertura física
+abarcada por un mil quinientos cuarenta y cuatro radio bases en el territorio boliviano,
+dicha cifra refleja un incremento de un 350% respecto a la gestión 2008 (MOPSV,
+2012, pág. 84).
+La empresa Inova Networks se encontraba en la necesidad de acceder a la información
+de su sistema de control de almacenes en forma remota y en tiempo real, con el fin de
+mejorar la productividad de dicha empresa, contar con las cantidades reales existentes
+de los diversos productos almacenados, planificar correctamente los proyectos que
+inicia, evitar problemas de sobre almacenaje y preventa de productos con stock cero.
+También se vio la necesidad de contar con un sistema automático que informe sobre el
+desabastecimiento de productos oportunamente.
+La obtención de información desde el sistema de control de almacenes, realizado a
+través de una conexión a internet móvil se ve limitada, pues a pesar del crecimiento de
+las TIC‟s en nuestro medio, se evidencia que la conectividad a internet es una de las más
+caras y lentas en la región, según la comparativa de costos y velocidad de conexión
+presentada en el anexo A. Por lo que se vio necesario buscar distintas formas de acceder
+a la información registrada en bases de datos externos o remotos, sin la necesidad de
+depender exclusivamente de una conexión a internet.
+En el presente proyecto se diseña e implementa un sistema IVR, el cual posibilita la
+integración de la red de telefonía conmutada (RTC2) y la red de telefonía móvil, con un
+sistema web de control de almacenes, permitiendo al usuario acceder a la información de
+los productos almacenados y registrados en la base de datos de dicho sistema.
+Para la elaboración del sistema IVR se utilizó la metodología sistémica, reconociendo
+los problemas y documentándolos utilizando la recopilación de historias de usuario
+planteado por la metodología de desarrollo Scrum y la especificación de los requisitos
+utilizando la norma IEEE 830. Seguidamente se identificó los problemas de
+accesibilidad a la información remotamente, la solución a dicho problema radicó en el
+desarrollo de un sistema de interacción para proveer información de forma remota
+utilizando la telefonía como medio de comunicación y acceso a la misma.
+Una vez procesado los resultados que se obtuvieron por medio de formularios de
+evaluación a fin de observar el comportamiento de la aplicación en determinados casos
+de estudio, se verificó el correcto funcionamiento del sistema, siempre y cuando este
+sea utilizado fuera de las zonas de riesgo identificados en el proceso de realización de
+pruebas, verificación y validación de resultados.
+

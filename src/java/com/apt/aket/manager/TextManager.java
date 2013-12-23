@@ -281,7 +281,7 @@ public class TextManager extends DefaultManager<Text> {
      */
     public void loadFromTxt() throws IOException {
         Text text = JEEContext.getRequestScopedBean(Text.class);
-        byte[] buffer = new byte[6124];
+        byte[] buffer = new byte[32768];
         int bulk;
         StringBuilder stringBuilder = new StringBuilder();
         if (text != null) {
@@ -310,7 +310,7 @@ public class TextManager extends DefaultManager<Text> {
      */
     public void loadEditFromTxt() throws IOException {
         Text text = selected;
-        byte[] buffer = new byte[6124];
+        byte[] buffer = new byte[32768];
         int bulk;
         StringBuilder stringBuilder = new StringBuilder();
         if (text != null) {
@@ -463,6 +463,7 @@ public class TextManager extends DefaultManager<Text> {
                     keywordManager.insertItem(dataStore, keyword);
                 } else {
                     evaluationManager.deleteEvaluation(keyword);
+                    keyword.setKwValue(keyWordsText);
                     keywordManager.updateItem(dataStore, keyword);
 
                 }

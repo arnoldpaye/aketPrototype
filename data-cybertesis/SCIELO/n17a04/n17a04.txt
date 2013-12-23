@@ -1,0 +1,12 @@
+ESTUDIO DE LA GANACIA DE HUMEDAD DE LA YERBA MATE DURANTE EL ESTACIONAMIENTO
+
+RESUMEN
+Se estudió la influencia de diferentes variables en la ganancia de humedad durante el estacionamiento natural
+en un depósito de yerba mate. Para ello se midieron la temperatura del aire y humedad relativa del depósito, la
+velocidad de absorción de humedad en hojas y palos en bolsas ubicadas en diferentes posiciones de la estiva y las
+condiciones climáticas externas. Las mediciones de humedad se realizaron semanalmente y se utilizó un medidor
+de luz halógena. Para poder comparar las diferentes velocidades de adsorción, los valores de humedad en función
+del tiempo se ajustaron al modelo de Pilosof, Se encontró que la humedad del material tuvo un aumento rápido en
+los primeros días, hasta alcanzar el equilibrio, produciéndose luego oscilaciones que dependían de las condiciones
+externas. Las hojas y los palos tuvieron un comportamiento similar y el tiempo medio para alcanzar el equilibrio
+dependió del valor inicial y no del material.

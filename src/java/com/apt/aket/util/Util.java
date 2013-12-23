@@ -137,11 +137,11 @@ public class Util {
     }
 
     public static double[] evaluate(String[] keywordReal, String[] keywordExtract) {
-        System.out.println("Set of relevant items: " + keywordReal.length);
+//        System.out.println("Set of relevant items: " + keywordReal.length);
 //        for (String s : keyWordMac) {
 //            System.out.println(s);
 //        }
-        System.out.println("Set of items retrieved: " + keywordExtract.length);
+//        System.out.println("Set of items retrieved: " + keywordExtract.length);
 //        for (String s : keyWordTextRank) {
 //            System.out.println(s);
 //        }

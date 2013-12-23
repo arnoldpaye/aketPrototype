@@ -1,0 +1,56 @@
+ASA: SISTEMA AUTOMÁTICO DE PERSONALIZACIÓN APLICADO A PERSONAJES DE VIDEOJUEGOS
+
+RESUMEN
+ASA es un sistema de adaptación automática de aplicaciones a las características del usuario, esa
+adaptación es independiente del dominio, lo que le da reusabilidad para ser aplicado en todo tipo de
+aplicaciones. Para la representación del conocimiento se han utilizado ontologías, lo cual hace al
+sistema escalable, y se hace uso del CBR que nos proporciona "jColibri" para la obtención de
+perfiles similares, ya existentes en la ontologías. Las características utilizadas para realizar la
+personalización son los HCC Issues, que están divididas, en físicas (edad, sexo, color de pelo, mano
+preferida), culturales (conocimientos informáticos, país, símbolos culturales, lenguaje, profesión
+religión), emocionales (emociones, estado de ánimo, estado mental) y personales (hábitos, gustos,
+temperamento). Los temperamentos son una parte muy importante para determinar la personalidad,
+por ello proporciono tres versiones de personificadores en función de como se utilizan dichos
+temperamentos: Absoluto, que solo tienen en cuenta uno de los temperamentos, Combinado, que
+tiene en cuenta su grado de pertenencia de cada temperamento, y Keirsey, que aplica la teoría de
+Keirsey, de que las personas vamos cambiando un temperamento u otro, de manera proporcional a
+los niveles de temparamento que tengamos. Para obtener el temperamento, ofrezco una
+modificación del cuestionario de keirsey, aplicándole la teoría de conjuntos borrosos, del cual se
+obtiene el grado de pertenecia a cada temperamento.
+Como caso de estudio se ha utilizado la adaptación del comportamiento de los personajes de
+videojuegos (NPCs) a las características de usuario. Se ha utilizado el juego "CUBE II saurbraten",
+que es un shooter de software libre realizado en C++. Para realizar la personalización se han
+utilizado atributos de los NPCs como son la velocidad, el arma, la salud, la agresividad y la
+frecuencia de disparo.
+
+INTRODUCCIÓN
+Yo en este trabajo presento un modelo de personalización independiente del dominio, centrándome
+en el estudio del comportamiento de los personajes de videojuegos (NPCs), para demostrar la
+necesidad del uso de la personalización, ya que creo que como cada persona tiene unas preferencias
+diferentes, es necesaria la adaptación de manera automática de la aplicación segun los HCC (Human
+Centered Computing) issues y otras características más particulares del usuario. La adaptación
+puede ser por ejemplo la apariencia visual (Colores y formas), el sonido, la narrativa y el
+comportamiento de los componenetes de la aplicación. En mi caso de estudio me voy a centrar el
+comportamiento de los personajes de videojuegos.
+Además de los videojuegos hay numerosas aplicaciones donde se puede aplicar la personalización,
+como puede ser en aplicaciones educativas ya que cada persona tiene unas capacidades y
+necesidades particulares y también se puede utilizar para facilitar el acceso a aplicaciones para los
+que tienen discapacidades.
+En el caso de los videojuegos yo me voy a centrar en el comportamiento de los personajes de
+videojuegos no controlados por el usuario NPCs, aunque hay otras partes de los videojuegos en los
+que se aprecia antes las adaptaciones como puede ser la parte visual, ya que lo primero que
+percibimos es lo que nos entra por los ojos, y también los efectos de sonido. Quizás el
+comportamiento de los NPCs al principio no se note mucho ya que los videojuegos están hechos
+para entretener pero sí se aprecia con el tiempo, pues se podría producir cierta pasividad o
+aburrimiento por un comportamiento monótono de los NPCs, o frustación e impotencia por no
+cumplir los objetivos por una excesiva dificultad del juego. Está claro que a los usuarios que no les
+guste jugar a videojuegos va a ser muy complicado que con la adaptación les guste jugar, pero si se
+puede conseguir que a gente que les produzca miedo el que les ataque con tanta agresividad,
+modificando los parámetros de los NPCs para un comportamiento menos agresivo, se sientan más
+seguros y vayan animándose a jugar, quizás para este tipo de usuarios sería mejor adaptar la parte
+visual, para que se encuentre más a gusto con los videojuegos, ya que por ejemplo en los shooters
+suelen tener colores muy oscuros y tenebrosos, quizás con colores más alegres se conseguiría un
+entorno más agradable para el usuario. También se podría realizar un estudio en un futuro de la
+inclusión de música en las aplicaciones para buscar mayor excitación o relax en función de las
+preferencias del usuario y de las circunstancias en que se encuentre durante la ejecución de la
+aplicación.

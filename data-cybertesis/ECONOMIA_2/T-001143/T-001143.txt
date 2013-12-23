@@ -1,0 +1,92 @@
+DESALINEAMIENTO DEL TIPO DE CAMBIO REAL
+
+RESUMEN
+El presente trabajo busca determinar y cuantificar el desalineamiento del Tipo de Cambio Real
+respecto a su trayectoria de largo plazo, y los efectos que tiene dicho desalineamiento sobre los
+distintos sectores de la Economía Boliviana a partir del shock positivo de precios internacionales
+vivido a partir del año 2003 en el contexto mundial. Para dicho fin se ha dividido el mismo en
+tres partes.
+En una primera parte se identifica la situación de dicha variable al interior de nuestra
+economía y se plantea el periodo de estudio (1991 - 2008).
+En la segunda parte se plantea todo el marco teórico a utilizarse: Se presenta el modelo de
+PPC, mismo que se descarta, el modelo TNT para determinación del Tipo de Cambio Real, el
+cual finalmente se utiliza y un modelo de Booming Sector para una economía pequeña y abierta,
+el cual se utiliza para el testeo de Enfermedad Holandesa.
+La tercera parte es la de desarrollo a partir de series estadísticas para los modelos planteados
+en la segunda parte.
+Se utiliza el Modelo TNT para obtención del Tipo de Cambio Real, utilizando la
+metodología de dos paos de Engel - Granger.
+El primer paso consiste en plantear y determinar un Tipo de Cambio Real de Equilibrio a
+partir de variables que lo determinan (Fundamentos del Tipo de Cambio Real).
+El segundo paso determina la velocidad de ajuste del TCR hacia su trayectoria de equilibrio
+de largo plazo, luego de un shock externo.
+Para determinar la trayectoria de equilibrio de largo plazo es necesaria la eliminación de la
+tendencia para ello se utilizo el filtro de Hodrick y Prescott. A partir de lo anteriormente
+mencionado, se obtuvo una apreciación del Tipo de Cambio Real de 16% respecto a su
+trayectoria de equilibrio.
+Una vez obtenido el resultado que arroja apreciación del Tipo de Cambio Real, se utiliza el
+modelo de Booming Sector dividiendo a la economía en tres sectores y se corrobora insipiente
+presencia de Enfermedad Holandesa en la Economía Boliviana, cuantificándose el efecto
+causado por el boom de precios sobre el nivel de producción sobre los tres sectores en que se
+divide a la economía.
+
+INTRODUCCIÓN
+El estudio del tipo de cambio va mas allá del ámbito cambiario y al que generalmente se
+lo asocia, su importancia se centra básicamente en que es un macro precio, el cual según
+la dinámica que adopte influirá en la toma de decisiones de los agentes económicos tanto
+en el corto plazo como en el largo plazo.
+De inicio hay que diferenciar el Tipo de Cambio Nominal del Tipo de Cambio Real. El
+Tipo de Cambio Nominal (TCN) puede ser tomado como "la cantidad de moneda nacional
+por unidad de moneda extranjera" o como lo determina el modelo Mundell - Fleming "la
+cantidad de moneda extranjera por unidad de moneda nacional" (valga resaltar que la
+diferencia radica únicamente en el sentido del análisis). El Tipo de Cambio Real (TCR)
+expresa la cantidad de bienes producidos en un país por la cantidad de bienes
+producidos en otro país, en otras palabras el Tipo de Cambio Real no es mas que el Tipo
+de Cambio Nominal deflactado por el nivel de precios de cada país.
+El Tipo de Cambio Real es una variable de suma importancia en el ámbito de la
+Política Económica, en el logro de estabilidad y crecimiento, es así que existe consenso
+en que un objetivo central de la política cambiaria es el de evitar desvíos prolongados de
+esta variable respecto a su valor de equilibrio de largo plazo.
+Dicho objetivo implica la necesidad de emprender dos tareas centrales: la definición
+de un Tipo de Cambio Real de equilibrio de largo plazo, y en segunda instancia la
+determinación de la trayectoria en el tiempo para la mencionada variable.
+Estudios empíricos han demostrado que desviaciones prolongadas del tipo de
+cambio real respecto a su trayectoria de largo plazo, han ocasionado distorsiones en el
+funcionamiento del sistema económico, especialmente en la asignación eficiente de
+recursos, y en la eficiente determinación de los precios relativos.
+La estructura de precios relativos es esencial para la toma de decisiones de los
+agentes económicos orientando las condiciones de producción y reflejando las
+preferencias de los consumidores.
+Diversos autores concuerdan en que variaciones en los precios relativos son
+producto de variaciones en variables reales dentro de una economía. Cukierman y
+Wachtel (1982) basándose en el trabajo empírico de Parks sostienen que "cambios en los
+precios relativos resultan de socks externos sean estos de demanda o de oferta globales
+o sectoriales", dicha afirmación da un marco importante para la presente investigación,
+debido a que se busca determinar los efectos sobre los precios relativos que tienen
+variaciones en el tipo de cambio real, producto de "shocks externos de demanda"
+principalmente.
+El pequeño tamaño de la economía boliviana, así como su nivel de apertura al
+exterior hace al país vulnerable a la ocurrencia de shocks externos, por tanto es de
+esperarse que durante los últimos años el contexto internacional haya sido determinante
+en el comportamiento de las variables antes mencionadas, específicamente es de
+esperarse que el shock positivo de precios en materias primas que se dio a partir del
+2003 haya causado algún efecto en la economía.
+Es peculiar el manejo que el Banco Central ha venido teniendo con el tipo de cambio
+nominal pues si bien desde la estabilización posterior a la hiperinflación se adopto un tipo
+de cambio deslizante que permite tener cierta regulación a la autoridad monetaria sobre
+el control del tipo de cambio, en los últimos años se ha observado la cuasi fijación de
+dicha variable en un nivel de sobre valuación nominal de la misma a pesar de las
+presiones del mercado para una devaluación.
+Tal y como lo expresa Mankiw: "tomando en cuenta que en el corto plazo los precios
+se matienen constantes, un Tipo de Cambio Nominal fijo implica un tipo de cambio real
+fijo".
+Dejando de lado esta aseveración del profesor Mankiw, esta el hecho de la clara
+mejoría de los términos de intercambio en el periodo posterior al 2003 lo cual hace
+sospechar la existencia de distorciones en el comportamiento de la variable Tipo de
+Cambio Real respecto a su trayectoria de largo plazo.
+En el marco de los antecedentes señalados, en el presente documento, se analiza
+inicialmente el comportamiento de la variable tipo de cambio real en primera instancia, en
+una segunda parte se analizarán los posibles efectos de una desviación de la variable,
+utilizando un modelo de 3 sectores del tipo booming sector debido a que un modelo de
+estas características es compatible con la realidad de la economía de un país pequeño y
+abierto tal es el caso de Bolivia.

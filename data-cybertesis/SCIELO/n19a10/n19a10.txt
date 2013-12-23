@@ -1,0 +1,32 @@
+ESTUDIO DEL EFECTO DEL HIDRÓGENO SOBRE LA MICRODUREZA DE ACEROS
+
+RESUMEN
+El hidrógeno deteriora las propiedades mecánicas de muchos metales y aleaciones reduciendo la ductilidad hasta
+causar su falla prematura. Este hecho, es un problema significativo a nivel industrial, ya que la influencia del
+hidrógeno se da en toda la cadena: manufactura, almacenaje y servicio. Las fuentes posibles de ingreso de este
+elemento son diversas; ya sea durante la fusión del metal, la limpieza química (eliminación de los óxidos superficiales
+mediante reacción química o electroquímica), en el proceso de electrólisis durante la electrodeposición, a través
+de electrodos y/o fundentes húmedos utilizados en la soldadura; y desde luego mediante el vapor de agua de la
+atmósfera.
+Para lograr situaciones severas de ingreso de hidrógeno en los aceros se realizaron ensayos de carga electrolítica
+considerando diferentes condiciones; tiempo de carga, densidad de correinte y empleo de venenos. En este
+caso, el veneno empleado es un compuesto de arsénico, que actúa como promotor, inhibiendo la reacción de
+recombinación de hidrógeno y debilitando los enlaces atómicos del metal.
+Posteriormente, se realizaron las mediciones de microdureza, como resultado se puede expresar que el hidrógeno,
+y sobre un acero inoxidable 316L. En estos casos la densidad de corriente y los tiempos de carga, junto con las de
+capas de óxido formadas sobre las muestras, resultaron ser las variables significativas.
+
+INTRODUCCIÓN
+El efecto causado por el hidrógeno sobre la microdureza
+de los materiales metálicos ha sido informado en diferentes
+ocasiones por diversos investigadores. Panagopolus y
+Papapanayiotou [1] econtraron que la carga catódica de
+hidrógeno en una aleación de A1-4Zn-1Mg genera endurecimiento
+superficial. Observaron que la microdureza se
+incremeenta con la densidad de corriente y el tiempo de
+carga y lo asociaron al mecanismo de anclaje de dislocaciones.
+Lost y Vogt [2] estudiaron los efectos del hidrógeno
+sobre la microdureza en aceros inoxidables austeníticos.
+Observaron que la carga catódica de hidrógeno cambia la
+microdureza del material. Las variaciones se relacionaron
+con el contenido de hidrógeno en la fase gamma.

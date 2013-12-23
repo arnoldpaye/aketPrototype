@@ -1,0 +1,59 @@
+RECONOCIMIENTO DE PATRONES PARA IDENTIFICACIÓN DE USUARIOS EN ACCESOS INFORMÁTICOS
+
+RESUMEN
+La detección y control de intrusos o accesos no autorizados en los sistemas informáticos ha sido
+desde siempre un tema a tener en cuenta en los sistemas de información donde la seguridad,
+integridad y privacidad de la información son aspectos fundamentales. El avance del
+conocimiento y la tecnología es cada vez mayor, lo que permite el desarrollo y aplicación de
+sistemas informáticos más sofisticados y eficientes, pero también aumenta la posibilidad de que
+sean vulnerados mediante accesos no legítimos.
+En este trabajo se plantea el uso de diversas técnicas automáticas para identificar a los usuarios
+que acceden a datos fundamentales de los sistemas y comprobar si el acceso está o no permitido.
+Se han aplicado técnicas avanzadas e inteligentes para el análisis y aplicación de minería de
+datos, para obtener patrones de comportamiento; como son los árboles de decisión y las redes
+neuronales artificiales (RNA). Con ellas se obtienen perfiles dinámicos (patrones) de usuario. La
+hipótesis principal del trabajo es una solución efectiva para la detección de intrusos en los
+sistemas informáticos de información.
+
+INTRODUCCIÓN
+En la actualidad, los sistemas informáticos a nivel mundial han constituido una gran red de
+información [1,2]. Los usuarios que acceden a esta red han generado datos sobre su
+comportamiento sin percatarse de que, al utilizar dichos sistemas, están brindando información,
+por ejemplo, de sus preferencias personales, posición geográfica, actividades realizadas, etc. Esa
+información personal describe un patrón de actividad que permite utilizarlo como una firma o un
+identificador único de cada persona y así facilitar sistemas de detección de intrusiones de una
+manera más efectiva.
+La información personal obtenida se registra en diversas bases de manera sistemática, sin
+embargo, su análisis es muy complejo debido a sus enormes dimensiones. Por ello se han creado
+herramientas para el análisis de esa información de una manera eficiente y rápida, lo que
+permitirá obtener un patrón de comportamiento de cada persona y así generar un perfil de uso
+para cada usuario que utilice el sistema.
+Teniendo en cuenta que el usuario posee un comportamiento regular (patrón) [15], este patrón
+debe ser dinámico para ajustarse a las actividades y necesidades diarias de cada persona. Por ello
+se ha realizado el análisis con técnicas ágiles, robustas y eficientes que puedan modelar o
+ajustarse a los continuos cambios de comportamiento de los usuarios. En el estudio se utilizaran
+metodologías de clasificación e identificación de patrones para modelar el perfil de cada usuario.
+Las metodologías de clasificación de datos se describen como técnicas de aprendizaje automático
+que utilizan un conjunto de datos para construir un "modelo" o una "representación" de la
+regularidad existente (subyacente) en los datos, analizando una situación real con posibles
+opciones y, a partir de una determinada condición, ser excluyentes y así bridar un acceso seguro,
+adaptable y confiable en todos los sistemas informáticos.
+En este estudio se van a utilizar varias técnicas para el análisis de información, dentro de la
+minería de datos, los árboles de decisión y las redes neuronales artificiales (RNA). Una de las
+técnicas que se utilizará son los árboles de decisión, los cuales representan la información de
+forma más comprensible, utilizando un conjunto de condiciones y reglas para obtener como
+resultado modelos inteligibles para los seres humanos. Esta técnica proporciona una visión
+gráfica para la toma de decisiones, así como también especifica las variables que son evaluadas,
+qué acciones deben ser tomadas y el orden en que la toma de decisión será efectuada.[25,27,31]
+Se ha demostrado que los árboles de decisión son eficaces cuando es necesario describir
+problemas con más de una dimensión o condición, además de ser útiles para identificar los
+requerimientos de la información crítica que rodean al proceso de decisión [3].
+De forma complementaria se utilizará la técnica de redes neuronales artificiales, ya que es una de
+las más utilizadas y efectivas para el reconocimiento de patrones, reducción de la
+dimensionalidad, agrupamiento y clasificación [3, 17]. Las redes neuronales, son un método de
+aprendizaje cuyo objetivo es imitar a las neuronas biológicas y la forma en la que éstas procesan
+la información.
+En el presente estudio se aplicarán las técnicas mencionadas anteriormente para obtener un perfil
+de usuario dinámico, que permita ser un identificador único en el acceso a los sistemas
+informáticos y con ello mejorar la detección de intrusos o de agentes maliciosos en los sistemas.
+

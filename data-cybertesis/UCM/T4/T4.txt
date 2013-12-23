@@ -1,0 +1,74 @@
+SIMULACIÓN BASADA EN AGENTES DE TRÁFICO AÉREO
+
+RESUMEN
+La importancia del transporte aéreo genera crecientes necesidades de estudiar y comprender sus
+distintas facetas. En esta tarea cabe destacar el papel de las simulaciones. Éstas han
+ayudado tanto a la hora de saber cuáles son los factores clave que intervienen en este trasporte
+y en qué modo, como en la aplicación de nuevas técnias, estrategias y tecnologías para su
+mejora.
+Dada la cantidad y complejidad de los factores involucrados, las simulaciones suelen
+centrarse en algunos aspectos particulares del transporte aéreo: el vuelo de aeronaves
+individuales, la gestión del vuelo de múltiples aeronaves y la interacción entre las personas
+participantes. Esta parcelación hace que las simulaciones frecuentemente simplifiquen en exceso
+algunos aspectos en los que no se centran. Además, las constante evolución del transporte aéreo
+hace necesario adaptar estas simulaciones a los nuevos escenarios que surgen. Aquí hay que
+destacar por su novedad y potencial impacto los esfuerzos para introducir aviones comerciales no
+tripulados en el espacio aéreo actual.
+Para intentar abordar algunas de estas carencias, este trabajo considera la utilización de
+aproximaciones basadas en agentes software y de desarrollo dirigido por modelos para estas
+simulaciones. Los agentes software permiten implementar sistemas muy modulares donde es
+sencillo representar comportamientos, estados e interacciones mediante metáforas de grupos de
+personas. Por ello facilitan estudiar la influencia que tienen sobre los participantes en este
+transporte el entorno físico y social, así como los distintos comportamientos y estados
+emocionales tanto propios como de las personas que les rodean. El desarrollo dirigido por
+modelos permite generar las simulaciones de forma semi-automatizada a partir de esos modelos.
+La aproximación propuesta se ilustra con el desarrollo de los modelos para estudiar las
+interacciones piloto-aeronave y piloto-controlador, y un sistema basado en ellos. Se presta
+especial atención a los intercambios de información entre los participantes y a la influencia en su
+comportamiento de su estado. Este caso de estudio muestra la viabilidad y flexibilidad de la
+propuesta para hacer explícito el conocimiento del dominio empleado y adaptarlo a nuevos
+requisitos.
+
+INTRODUCCIÓN
+El tráfico aéreo es una actividad de vital importancia para las sociedades modernas. Es el medio
+principal de transporte para mover personas y mercancías a medias y largas distancias en cortos
+periodos de tiempo. Sus mejoras en velocidad, eficiencia, seguridad y coste han incrementado muy
+notablemente su uso durante las últimas décadas. En algunos países como EEUU, el avión es ya el
+medio de transporte más usado para algunos ciudadanos y Eurocontrol estima que éste continuará
+creciendo aproximadamente al 3,7 por ciento anual en Europa entre 2005 y 2011 [1]. Debido a ello
+se dedican en la actualidad importantes esfuerzos a su análsis y mejora. Sin embargo, estos
+estudios se enfrentan a un fenómeno de elevada complejidad y en continua evolución.
+Existen numerosos factores que afectan al desarrollo del tráfico aéreo. En primer lugar, se
+encuentran los factores relacionados con los usuarios. Personas y organizaciones emplean aeronaves
+para muy diversas actividades, tales como viajes de ocio, movimientos de mercancías o vigilancia.
+Conocer las motivaciones, necesidades y desarrollo temporal de tales movimientos es clave para
+organizar de forma eficiente las infraestructuras y el movimiento de aeronaves [2]. La componente
+humana también aparece desde el punto de vista de los encargados directos de gestionar el tráfico
+aéreo y ejecutar sus operaciones. El personal de las compañías aéreas y los responsables que
+planifican y preparan los vuelos, y los controladores y los pilotos que los ejecutan tienen una
+importancia clave [3]. Sus procesos están marcados por numerosas consideraciones de eficiencia,
+seguridad y legalidad. En segundo lugar hay que considerar las aeronaves, incluyendo aspectos de
+limitaciones en el vuelo según sus características o configuraciones óptimas [4]. Por último, existen
+también factores del entorno, como geográficos y de condiciones ambientales que afectan a la
+navegación y al diseño de aeropuertos [5]. El análisis de estos factores por separado reviste una
+gran dificultad, pero se torna aún más complejo cuando se consideran sus influencias mutuas.
+Precisamente, estas interrelaciones hacen que sea necesario abordar los estudios sobre el tráfico
+aéreo con enfoques sistémicos, que permitan asegurar que no se obvia la influencia de factores
+relevantes para un aspecto dado.
+El segundo elemento que marca la dificultad para estudiar el tráfico aéreo es su continua
+evolución, tanto por los cambios en las necesidades que atiende como por la evolución tecnológica.
+Además de las preocupaciones habituales en cualquier actividad de transporte por mejorar el
+rendimiento y la seguridad, existe aquí una notable preocupación por la posible saturación en un
+futuro cercano del espacio aéreo y de los aeropuertos [6]. Si bien es difícil limitar la demanda de
+vuelos, existen otros aspectos del tráfico aéreo que influyen en esta potencial saturación y sobre los
+que es posible actuar. Por ejemplo, se pueden adoptar diferentes organizaciones del espacio aéreo o
+cambiar los procedimientos de operación. Explorar estas alternativas requiere disponer de datos y
+medios para evaluar de forma realista diferentes hipótesis.
+Para hacer frente a estos retos, el análisis del tráfico aéreo hace uso de multitud de
+aproximaciones. Los estudios sobre entornos reales son necesarios para recopilar datos, identificar
+las características de los elementos participantes y realizar la validación definitiva de hipótesis. Sin
+embargo, no son muy adecuados para la evaluación de estas hipótesis (por ejemplo por motivos de
+seguridad y tiempo), además de tener unos costes elevados. Para solventar estas limitaciones es
+frecuente recurrir a herramientas de simulación [7]. Las simulaciones son un proceso relativamente
+económico para crear y analizar modelos de la realidad sin interferir en ella.
+

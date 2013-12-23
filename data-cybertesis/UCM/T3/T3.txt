@@ -1,0 +1,55 @@
+DISEÑO DE UN MÉTODO SELECTIVO INSPIRADO EN ENFRIAMIENTO SIMULADO APLICADO A UN PROCESO BIOQUÍMICO
+
+RESUMEN
+Este trabajo describe un método inspirado en la estrategia de enfriamiento simulado
+para el caso de estimación de parámetros cinéticos de una reacción metabólica simple. El
+método se combina con un algoritmo genético que ya ofrece una combinación de
+parámetros válida, pero que debido a la naturaleza del modelo no consigue decantarse por
+una única solución, siendo ligeramente diferentes las soluciones en cada ejecución, aún
+obteniendo el mismo valor de la función de fitness.
+Con la propuesta formulada en este trabajo, se ha definido un criterio para analizar
+los resultados proporcionados por el algoritmo genético. Dicho criterio se basa en la
+minimización de una función de energía, que es propia del método de optimización global
+conocido como Enfriamiento Simulado. Esta función permite observar cómo evoluciona el
+modelo biológico hacia la estabilidad en función de los valores de mínima energía y según
+las diferentes combinaciones de parámetros proporcionadas por el algoritmo genético. Los
+resultados obtenidos muestran la eficiencia del método propuesto.
+
+INTRODUCCIÓN
+En el campo de la bioquímica, las llamadas redes metabólicas redes de reacciones
+son una parte importantísima en la maquinaria por la cual un organismo se mantiene vivo y
+se adapta a su entorno. Estas redes son responsables de numerosos procesos que ocurren en
+la célula, incluyendo la creación y propagación de señales químicas tales como aquellas
+que indican hambre o saciedad. Una de la tareas más difíciles en este ámbito es la
+estimación in vitro de los llamados parámetros cinéticos, que son aquellos que determinan
+el comportamiento de estas redes, por ello a lo largo de los años se han intentado
+desarrollar nuevas técnicas que permitan determinar estos parámetros
+computacionalmente.
+Una red metabólica puede entenderse como un sistema computacional con una o
+varias entradas, entre las que se incluye un determinado tipo de sustrato, diversos
+parámetros o señales de regulación, y una o más salidas, que se obtienen como resultado de
+un proceso de transformaciones químicas. El resultado consiste en la transformación de
+substratos en productos.
+En este trabajo se estudia un modelo de reacción bioquímica simple, regulada por los
+propios componentes químicos del sistema, cuya función se explica seguidamente.
+Los procesos químicos están caracterizados por mecanismos de reacción y por un
+determinado conjunto de parámetros cinéticos. En este trabajo se propone una metodología
+computacional para determinar precisamente el conjunto de parámetros cinéticos que, bajo
+unas condiciones de contorno determinadas, optimiza la respuesta del sistema. Teniendo en
+cuenta el número de parámetros cinéticos y el hecho de que éstos poseen valores que
+varían de forma continua, el número de posibles combinaciones de parámetros que
+proporcionan una respuesta dinámica determinada es eventualmente ilimitado. Por tanto,
+nos encontramos ante un problema que se sitúa claramente en el campo de la optimización.
+
+OBJETIVOS DE LA INVESTIGACIÓN
+1. Aprender a manejar bibliográficas, así como la forma de abordar
+las investigaciones, su metodología y forma de plantear e indicar las
+investigaciones a desarrollar.
+2. Identificar métodos de estimación de parámetros cinéticos en reacciones
+bioquímicas existentes en la literatura.
+3. Diseñar un nuevo método de estimación óptima de los parámetros cinéticos
+de una reacción metabólica, teniendo como base el estudio y análisis de los
+métodos más prometedores identificados previamente.
+4. Analizar el comportamiento en base a las pruebas realizadas.
+5. Identificar las posibilidades de futuro ofrecidas por el diseño propuesto en
+el marco de la bioinformática.

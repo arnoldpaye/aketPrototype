@@ -1,0 +1,13 @@
+PROCESADOR DIGITAL SINCRÓNICO EN TIEMPO REAL SOPORTADO SOBRE UN CIRCUITO FPGA SPARTAN3E
+
+RESUMEN
+En este trabajo se propone el diseño, implementación y comprobación de un procesador discreto sincrónico en
+tiempo real soportado sobre un circuito reconfigurable FPGA del tipo Xilinx Spartan-3E Starter Kit. Se realiza el
+diseño de un procesador digital sincrónico en tiempo real y se implementa sobre un circuito FPGA empleando la
+herramienta XSG que se instala en el Simulink de MATLAB. Se construyó además una tarjeta auxiliar DSP_Gidam01
+que junto con la tarjeta Xilinx Spartan-3E contiene los componentes del sistema. Sin embargo los circuitos de
+control y de procesamiento digital se construyen sobre el circuito reconfigurable FPGA de la tarjeta. Se introduce
+brevemente la utilización del PROTEUS como herramienta para construir el PCB de la tarjeta auxiliar. Se evalúa la
+síntesis y funcionamiento del procesador con la implementación de determinados filtros digitales y la comparación
+entre las respuestas simulada y real. También se presenta una aplicación para procesamiento de audio con un
+banco de filtros.

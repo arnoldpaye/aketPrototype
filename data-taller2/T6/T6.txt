@@ -1,0 +1,53 @@
+SELECCIÓN DE PALABRAS CLAVE MEDIANTE EL MODELO TEXTRANK
+
+RESUMEN
+La catalogación e indización de material escrito es importante porque facilita su
+organización e identificación dentro de áreas de conocimiento, esta organización requiere
+de criterios confiables para su realización, las palabras clave han demostrado ser un
+criterio eficiente para la organización de este tipo de material.
+La selección de palabras clave ha sido un campo de estudio abarcado principalmente por
+la Lingüística Computacional y el Procesamiento del Lenguaje Natural (PLN), se han
+realizado diferentes estudios para obtener palabras clave de un texto, Peter D. Turney creó
+el sistema GenEx para la selección de palabras clave utilizando algoritmos genéticos
+(1999), Annette Hulth propuso un modelo de selección de palabras clave utilizando
+conocimiento lingüístico en un sistema de aprendizaje automático (2003), Rada Mihalcea
+y Paul Tarau propusieron la selección de palabras clave mediante algoritmos de
+puntuación de nodos de grafos denominado modelo TextRank (2004).
+El objetivo del presente trabajo de investigación fue probar la eficiencia del método de
+selección de palabras clave utilizando el modelo TextRank, para este fin se construyó un
+software que implemente dicho modelo.
+La evaluación del modelo se realizó mediante la comparación de métricas basadas en la
+relevancia de las palabras clave: precisión, exhaustividad y valor – F. Se utilizó el Portal
+Cybertesis – Bolivia como fuente de los textos y palabras clave originales seleccionadas
+por los autores (Cybertesis Bolivia, 2013).
+
+INTRODUCCIÓN
+A través de la historia, el conocimiento humano ha sido almacenado en gran medida de
+forma escrita, teniéndose a los libros, periódicos, artículos científicos, etc. como
+constancia de este hecho. Dada la abrumadora cantidad de este tipo de información, surge
+la necesidad de organizarla, para su correcta identificación entre las diferentes áreas de
+conocimiento a las que puede pertenecer, a fin de facilitar su consulta e indización, para
+este cometido es necesario contar con criterios de clasificación que faciliten su posterior
+consulta.
+El Procesamiento del Lenguaje Natural (PLN), es una rama de la Lingüística
+Computacional que estudia la comunicación entre personas y máquinas por medio de
+lenguajes naturales; entre las principales tareas de las que se ocupa se encuentra la
+extracción de terminología que permite identificar y seleccionar palabras clave de un
+texto, que representan el tema central del mismo y son utilizadas en los sistemas
+bibliotecarios.
+Existen diferentes métodos de selección de palabras clave divididos en dos enfoques
+principales: en base a aprendizaje supervisado y no supervisado, en el primero existe un
+proceso de aprendizaje previo realizado con un entrenamiento de textos y palabras clave
+seleccionadas por un experto en la materia; en el segundo no se requiere del proceso de
+entrenamiento previo y la selección se realiza de manera automática.
+En la biblioteca de la carrera de Informática muchos de los trabajos de tesis carecen de
+palabras clave debido a que en el pasado no se requerían de manera obligatoria, otros
+presentan palabras seleccionadas de forma incorrecta por los autores por lo que no reflejan
+el tema central del trabajo.
+El presente trabajo de investigación se propuso como objetivo desarrollar un software que
+permita seleccionar palabras clave de tesis de forma automática, para este fin y siguiendo
+1
+un proceso de investigación y desarrollo se implementó el modelo TextRank que es un
+método de aprendizaje no supervisado basado en algoritmos de puntuación de grafos.
+Los resultados encontrados del software son alentadores y demuestran la utilidad de este
+modelo en la tarea de selección de palabras clave.

@@ -1,0 +1,73 @@
+ALGORITMO DE IDENTIFICACIÓN DE FUENTE EN IMÁGENES DIGITALES DE DISPOSITIVOS MÓVILES
+
+RESUMEN
+Actualmente las imagenes digitales desempeñan un papel importante en nuestra sociedad.
+La presencia de dispositivos moviles con camaras fotograficas integradas crece a
+un ritmo imparable, provocando que la mayoria de las imagenes digitales provengan de
+este tipo de dispositivos. El desarrollo tecnologico no solo facilita la generación de estas
+imágenes, sino también la manipulación intencionada de éstas. Las técnicas de análisis
+forense de imágenes de dispositivos móviles cobran, pues, especial importancia. En este
+trabajo se propone una seria de algoritmos basados en el ruido del sensor y en la transformada
+wavelet que permiten identificar el dispositivo móvil (marca y modelo) que generó la
+imagen, eliminar la posibilidad de identificación del mismo y falsificar la identidad de una
+imagen dada.
+
+INTRODUCCIÓN
+Con frecuencia las fotografías son consideradas como una parte de la verdad al ser
+hechos reales capturados por dispositivos electrónicos (cámaras). Sin embargo, con el desarrollo
+de la tecnología han surgido herramientas potentes y sofisticadas que facilitan de
+una manera impresionante la alteración de las imágenes digitales, incluso para quienes no
+tienen conocimientos técnicos o especializados en el área.
+El desarrollo de las tecnologías digitales ha estado y continúa avanzando a un ritmo
+imparable. Cada día el número de cámaras digitales va creciendo, así como la facilidad
+de acceso a ellas. Las cámaras digitales de móviles merecen especial atención, ya que
+estudios realizados indican que al final del año 2012 el número total de dispositivos móviles
+activos alcanzó los 6,7 billones y en este verano (2013) se vivirá lo que algunos llaman "El
+momento del móvil" ya que por primera vez una tecnología de consumo igualará al total
+de la población del planeta (7,1 billones).
+El 83% de estos móviles cuentan con cámara digital integrada, las cuales a diferencia
+de las cámaras digitales convencionales son llevadas por sus dueños todo el tiempo a la
+mayoría de lugares que asiste y, en muchos casos, estos dispositivos tienen conexión a
+internet.
+Debido al incremento en sus capacidades de almacenamiento, de procesamiento, de
+usabilidad y de portabilidad así como a su bajo coste, los dispostivos móviles están presentes
+en diversidad de actividades, lugares y eventos de la vida diaria. Algunos datos que
+permiten hacerse una idea de la magnitud de la presencia de este tipo de dispositivos son
+los siguientes [AM12]:
+- Más del 90% de las personas que alguna vez ha tomado una fotografía lo ha hecho
+únicamente con cámaras de dispositivos móviles.
+- Un gran número de personas tienen y usan más de un dispositivo móvil.
+- Las estadísticas globales arrojan que un usuario típico en promedio mira su móvil
+150 veces al día y 8 de ellas es para hacer uso de la funcionalidad de la cámara.
+A causa del extenso uso de las cámaras digitales de dispositivos móviles se han generado
+polémicas, discusiones y normas sobre la prohibición de su uso en lugares como escuelas,
+oficinas  de gobierno, eventos empresariales, conciertos, empresas, etc.
+Una consecuencia más de su extenso uso es que las imágenes digitales en la actualidad
+son utilizadas como testigos silenciosos en procesos judiciales, siendo una pieza crucial
+de la evidencia del crimen [AZ06]. Es por ello que contar con herramientas que permitan
+identificar a los dispositivos que han generado una cierta imagen digital cobra importancia
+ya que podría servir en diversas áreas como la lucha contra la pornografía infantil, la
+prevención de robo de tarjetas de crédito, el combate a la piratería, la prevención de
+secuestros, etc.
+De manera análoga a la balística que trata de relacionar una pistola con sus balas, el
+análisis forense de imágenes digitales trata de identificar la imagen con la cámara digital
+con la que fue generada [WGKM09].
+
+OBJETO DE LA INVESTIGACIÓN
+La fuente de una imagen digital se puede identificar a través de los rasgos que el
+dispositivo que la genera impregna en ella durante el proceso de su generación.
+La mayoría de las investigaciones realizadas en los últimos años sobre técnias de
+identificación de fuente se han enfocado únicamente en la identificación de cámaras
+tradicionales Digital Still Camera (DSC). Considerando que hoy en día las cámaras de los
+dispositivos móviles prácticamente han sustituido a las DSCs se detectó la necesidad de
+realizar investigación sobre las técnicas para identificar la fuente de imágenes generadas
+por dispositivos móviles.
+Las imágenes digitales generadas por un dispositivo (móvil o no) contienen intrínsecamente
+un patrón del ruido del sensor que se puede usar como medio de identificación de la
+fuente [LFG06]. Específicamente, las cámaras digitales de dispositivos móviles cuentan en
+su mayoría con un tipo de sensor que deja rasgos característicos en la imagen. La presente
+investigación se centra en las técnicas de identificación de fuente basadas en el ruido del
+sensor.
+Este trabajo propone un algoritmo que mejora la identificación de los dispositivos
+móviles fuente de una imagen. Asimismo, propone un algoritmo para falsificar la huella
+de una imagen que no requiere acceso a la cámara del dispositivo fuente.

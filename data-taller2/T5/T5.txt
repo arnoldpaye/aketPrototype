@@ -1,0 +1,57 @@
+SISTEMA DE CONTROL AUTOMATIZADO DE INVENTARIOS DE INSUMOS MÉDICOS Y FARMACIA
+
+RESUMEN
+En la actualidad, la informática se ha convertido en un factor importante para el
+desarrollo de las empresas, esto se debe a la gran cantidad de información que estas
+manejan, lo cual implica la importancia del uso de herramientas automáticas para la
+generación de informes y reportes en las empresas, las cuales permitirán realizar un
+control eficiente, y de esta manera lograr que las organizaciones cumplan sus metas y
+objetivos.
+El presente trabajo fue desarrollado en el Seguro Social Universitario La Paz,
+para la Unidad de Almacén de Insumos Médicos y Farmacia debido a que esta unidad
+realizaba sus tareas diarias sobre una hoja de cálculo diseñada en Microsoft Office Excel
+la cual no cubría los requerimientos del personal que trabaja en esta área produciendo
+demoras en el trabajo y susceptibilidad sobre el manejo de la información por parte de
+los usuarios. Por lo que se desarrolló un Sistema de Control automatizado de Inventarios
+de Insumos Médicos y Farmacia, el cual tiene una importancia significativa al
+constituirse como una herramienta de software de gran apoyo, en la administración,
+seguimiento y control de inventarios, así mismo construyendo reportes de forma
+eficiente y transparente para tener información útil, segura y oportuna para la toma de
+decisiones y el logro de los objetivos de la empresa.
+Para el análisis, diseño e implementación del presente proyecto se aplicó la
+metodología Rational Unified Process (RUP) y el modelado UML, utilizado para apoyar
+las actividades del diseño de sitios Web e implementación del mismo.
+Para el desarrollo del Sistema Web se utilizó el lenguaje de programación PHP, y
+como gestor de base de datos SqlServer2005 para la función correcta del Sistema Web.
+Para la calidad de software, la norma ISO 9126, basado en estándares con la
+funcionalidad y rendimiento total que satisfacen los requerimientos del cliente.
+
+INTRODUCCIÓN
+La necesidad del manejo de la información cada vez se hace más frecuente en la
+sociedad. Esto como transmisión de conocimiento para el progreso de la humanidad y la
+clave para el logro de los objetivos de una organización. La misma que es resultado de
+un sistema de información que procesa datos, y son plasmadas en reportes y otras salidas
+que permiten la toma de decisiones.
+En la actualidad todas las organizaciones tienden a depender de herramientas más
+rápidas para el procesamiento de datos y la toma de decisiones. El más requerido, usado
+en la mayoría de las empresas es la computadora, sistemas informáticos, con el fin de
+centralizar toda su información para el logro de sus objetivos.
+El Seguro Social Universitario La Paz (SSU) en la actualidad cuenta con la
+cantidad de transacciones que se realza por día, según datos proporcionados por el
+personal de la Unidad de Almacenes, concentrándose de esta manera un gran volumen
+de documentación e ítems.
+El SSU viendo el problema que atraviesa en cuanto se refiere a la utilización, y la
+distribución de datos en tiempo de real de todo el material de insumos médicos, los
+cuales son almacenados en el la Unidad de Almacenes e Insumos Médicos y Farmacia,
+se vieron con la necesidad de centralizar toda esta información para su mejor uso y
+distribución.
+La propuesta del presente proyecto de grado es automatizar los procesos de la
+unidad de Almacén de Medicamentos en Insumos Médicos y Farmacia (AMIMF), que
+controle los ingresos y egresos de insumos médicos, control del stock, la emisión de
+inventarios y muchas opciones que facilitará el uso de la información de una manera
+más eficiente además de la incursión de nuevas tecnologías para así obtener información
+confiable, permitiendo el seguimiento y control de Medicamentos e Insumos, reduciendo
+el tiempo invertido en el proceso del manejo de información de los productos y así dar
+1
+solución a los problemas que se suscitan dando cumplimiento a los requerimientos de la
+institución.

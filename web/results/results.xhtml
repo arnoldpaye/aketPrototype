@@ -15,7 +15,7 @@
                 <f:selectItem itemLabel="--TODAS LAS CARRERAS--" itemValue="0" />
                 <f:selectItems itemLabel="#{vCareer.crName}" itemValue="#{vCareer.crId}" value="#{careerManager.data}" var="vCareer" />
             </p:selectOneMenu>
-            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="20" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
+            <p:dataTable emptyMessage="Sin registros." paginator="true" rows="10" scrollable="true" value="#{evaluationManager.evaluations}" var="vEvaluation">
                 <p:column headerText="Texto" style="width: 500px">
                     <h:outputText value="#{vEvaluation.txtTitle}" />
                 </p:column>
